@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/main"
+        android:title="Главная"
+        android:icon="@drawable/ic_main"
+
+        android:orderInCategory="1"/>
+    <item
+        android:id="@+id/workouts"
+        android:title="Тренировки"
+        android:icon="@drawable/ic_list"
+        android:orderInCategory="2"/>
+    <item
+        android:id="@+id/guide"
+        android:title="Справочник"
+        android:icon="@drawable/ic_guide"
+        android:orderInCategory="3"/>
+    <item
+        android:id="@+id/stats"
+        android:title="Статистика"
+        android:icon="@drawable/ic_stats"
+        android:orderInCategory="4"/>
+    <item
+        android:id="@+id/profile"
+        android:title="Профиль"
+        android:icon="@drawable/ic_profile"
+        android:orderInCategory="5"/>
+</menu>
