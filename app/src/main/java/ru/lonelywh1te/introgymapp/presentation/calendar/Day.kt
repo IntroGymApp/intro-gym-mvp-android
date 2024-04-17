@@ -9,7 +9,7 @@ data class Day (
 
     val dayOfMouth: Int = localDate.dayOfMonth,
     val dayOfWeek: String = localDate.dayOfWeek.getDisplayName(TextStyle.SHORT, Locale.getDefault()).uppercase(),
-    val month: String = localDate.month.toString(),
+    val month: String = localDate.month.getDisplayName(TextStyle.FULL, Locale.getDefault()),
     val year: Int = localDate.year,
     val date: Long = localDate.toEpochDay() * 86400000L,
     val isSelected: Boolean = false,

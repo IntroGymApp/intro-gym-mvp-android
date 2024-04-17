@@ -22,30 +22,23 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
 
         setFragment(mainFragment)
-        setHeaderBackgroundColor(R.id.main) // TODO: придумать что-то получше
 
         binding.bottomMenu.setOnItemSelectedListener {
             when(it.itemId) {
                 R.id.main -> {
                     setFragment(mainFragment)
-                    setHeaderBackgroundColor(it.itemId)
                 }
                 R.id.workouts -> {
                     setFragment(workoutFragment)
-                    setHeaderBackgroundColor(it.itemId)
                 }
                 R.id.guide -> {
-                    setHeaderBackgroundColor(it.itemId)
                     setFragment(guideFragment)
-                    setHeaderBackgroundColor(it.itemId)
                 }
                 R.id.stats -> {
                     setFragment(statsFragment)
-                    setHeaderBackgroundColor(it.itemId)
                 }
                 R.id.profile -> {
                     setFragment(profileFragment)
-                    setHeaderBackgroundColor(it.itemId)
                 }
             }
 
@@ -57,10 +50,5 @@ class MainActivity : AppCompatActivity() {
 
     private fun setFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction().replace(R.id.fragmentContainer, fragment).commit()
-    }
-
-    private fun setHeaderBackgroundColor(id: Int) {
-        if (id == R.id.main) binding.headerLayout.setBackgroundColor(ContextCompat.getColor(this, R.color.background_block_color))
-        else binding.headerLayout.setBackgroundColor(ContextCompat.getColor(this, R.color.background_color))
     }
 }
