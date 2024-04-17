@@ -1,4 +1,4 @@
-package ru.lonelywh1te.introgymapp.presentation
+package ru.lonelywh1te.introgymapp.presentation.view
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

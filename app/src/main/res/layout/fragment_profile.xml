@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:paddingStart="20dp"
     android:paddingEnd="20dp"
-    tools:context=".presentation.ProfileFragment">
+    android:background="@color/background_color"
+    tools:context=".presentation.view.ProfileFragment">
 
     <LinearLayout
         android:id="@+id/linearLayout2"
@@ -132,6 +133,7 @@
                 android:layout_height="0dp"
                 app:layout_constraintDimensionRatio="H,1:1"
                 android:layout_marginEnd="10dp"
+                android:backgroundTint="@color/background_block_color"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/guideline"
                 app:layout_constraintStart_toStartOf="parent"
@@ -142,8 +144,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/background_kkal"
-                    android:alpha="0.8"/>
+                    android:src="@drawable/background_kkal" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -249,14 +250,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
+                    android:backgroundTint="@color/background_block_color"
                     app:cardCornerRadius="10dp">
 
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/background_imt"
-                        android:alpha="0.8"/>
+                        android:src="@drawable/background_imt"/>
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -288,6 +289,7 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
+                    android:backgroundTint="@color/background_block_color"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_marginStart="10dp"
@@ -299,8 +301,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/background_weight"
-                        android:alpha="0.5"/>
+                        android:src="@drawable/background_weight" />
 
                     <LinearLayout
                         android:layout_width="match_parent"

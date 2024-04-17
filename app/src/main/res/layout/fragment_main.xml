@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.MainFragment">
+    android:background="@color/background_color"
+    tools:context=".presentation.view.MainFragment">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
@@ -18,15 +19,19 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
+            android:background="@color/background_block_color"
             android:gravity="center"
             android:orientation="vertical">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvCalendar"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:orientation="horizontal" />
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="5dp"
+                tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/day_item"
+                tools:orientation="horizontal" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -38,12 +43,12 @@
                     android:id="@+id/btnPrevWeek"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:background="@android:color/transparent"
-                    android:padding="5dp"
+                    android:padding="15dp"
                     android:src="@drawable/ic_arrow_left"
                     app:tint="@color/black" />
 
                 <TextView
+                    android:id="@+id/tvCalendarCurrentMonthYear"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:gravity="center"
@@ -56,9 +61,9 @@
                     android:id="@+id/btnNextWeek"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:background="@android:color/transparent"
                     app:tint="@color/black"
-                    android:padding="5dp"
+                    android:padding="15dp"
+
                     android:src="@drawable/ic_arrow_right" />
             </LinearLayout>
 

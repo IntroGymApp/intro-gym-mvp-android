@@ -15,11 +15,13 @@
         android:pathData="M115.58,158.74m-60.03,0a60.03,60.03 0,1 1,120.05 0a60.03,60.03 0,1 1,-120.05 0"
         android:strokeWidth="2"
         android:fillColor="#00000000"
+        android:strokeAlpha="0.5"
         android:strokeColor="#59662A"/>
     <path
         android:pathData="M115.58,158.74m-44.6,0a44.6,44.6 0,1 1,89.2 0a44.6,44.6 0,1 1,-89.2 0"
         android:strokeWidth="2"
         android:fillColor="#00000000"
+        android:strokeAlpha="0.2"
         android:strokeColor="#2C2D26"/>
   </group>
 </vector>
