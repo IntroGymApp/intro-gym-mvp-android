@@ -1,15 +1,21 @@
 package ru.lonelywh1te.introgymapp.presentation.view.adapter
 
 import android.net.Uri
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import ru.lonelywh1te.introgymapp.databinding.ExerciseGroupItemBinding
+import ru.lonelywh1te.introgymapp.domain.AssetsPath
 import ru.lonelywh1te.introgymapp.domain.ExerciseGroup
+interface OnExerciseGroupItemClick {
+    fun onClick(item: ExerciseGroup)
+}
 
-class ExerciseGroupAdapter: RecyclerView.Adapter<ExerciseGroupViewHolder>() {
-    var list = listOf<ExerciseGroup>()
+class ExerciseGroupAdapter(private val onExerciseGroupItemClick: OnExerciseGroupItemClick): RecyclerView.Adapter<ExerciseGroupViewHolder>() {
+    var exerciseGroupList = listOf<ExerciseGroup>()
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -20,11 +26,15 @@ class ExerciseGroupAdapter: RecyclerView.Adapter<ExerciseGroupViewHolder>() {
         return ExerciseGroupViewHolder(binding)
     }
 
-    override fun getItemCount(): Int = list.size
-
+    override fun getItemCount(): Int = exerciseGroupList.size
 
     override fun onBindViewHolder(holder: ExerciseGroupViewHolder, position: Int) {
-        val item = list[position]
+        val item = exerciseGroupList[position]
+        val binding = ExerciseGroupItemBinding.bind(holder.itemView)
+
+        binding.exerciseGroupCard.setOnClickListener {
+            onExerciseGroupItemClick.onClick(item)
+        }
 
         holder.bind(item)
     }
@@ -34,9 +44,10 @@ class ExerciseGroupViewHolder(private val binding: ExerciseGroupItemBinding): Re
     fun bind(item: ExerciseGroup) {
         binding.tvGroupName.text = item.name
         binding.tvExerciseCount.text = "Упражнения: ${item.count}"
-
-        val imagesAssetsPath = "file:///android_asset/"
-        Glide.with(binding.root).load((Uri.parse(imagesAssetsPath + item.imageAssetPath))).into(binding.ivGroupImage)
+        Glide.with(binding.root)
+            .load((Uri.parse(item.img)))
+            .diskCacheStrategy(DiskCacheStrategy.ALL)
+            .into(binding.ivGroupImage)
     }
 }
 
