@@ -5,9 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import ru.lonelywh1te.introgymapp.R
 import ru.lonelywh1te.introgymapp.databinding.FragmentGuideBinding
 import ru.lonelywh1te.introgymapp.domain.ExerciseGroup
 import ru.lonelywh1te.introgymapp.presentation.view.adapter.ExerciseGroupAdapter
@@ -22,10 +22,8 @@ class GuideFragment : Fragment() {
         binding = FragmentGuideBinding.inflate(inflater, container, false)
         val adapter = ExerciseGroupAdapter(object : OnExerciseGroupItemClick {
             override fun onClick(item: ExerciseGroup) {
-                val exerciseGroupFragment = ExerciseGroupFragment.newInstance(item.groupId)
-                activity?.supportFragmentManager?.beginTransaction()
-                    ?.replace(R.id.fragmentContainer, exerciseGroupFragment)
-                    ?.commit();
+                val action = GuideFragmentDirections.toExerciseGroupFragment(item.groupId)
+                Navigation.findNavController(binding.root).navigate(action)
             }
         })
 

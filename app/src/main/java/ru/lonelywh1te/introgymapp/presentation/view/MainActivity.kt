@@ -7,66 +7,39 @@ import android.view.View
 import android.window.OnBackInvokedDispatcher
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavController
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
 import ru.lonelywh1te.introgymapp.R
 import ru.lonelywh1te.introgymapp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-
-    private val mainFragment = MainFragment()
-    private val workoutFragment = WorkoutFragment()
-    private val guideFragment = GuideFragment()
-    private val statsFragment = StatsFragment()
-    private val profileFragment = ProfileFragment()
+    private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
-
-        setFragment(mainFragment)
-
-        binding.bottomMenu.setOnItemSelectedListener {
-            when(it.itemId) {
-                R.id.main -> {
-                    setFragment(mainFragment)
-                }
-                R.id.workouts -> {
-                    setFragment(workoutFragment)
-                }
-                R.id.guide -> {
-                    setFragment(guideFragment)
-                }
-                R.id.stats -> {
-                    setFragment(statsFragment)
-                }
-                R.id.profile -> {
-                    setFragment(profileFragment)
-                }
-            }
-
-            true
-        }
-
-        binding.ibBackButton.setOnClickListener {
-            supportFragmentManager.popBackStack()
-        }
-
         setContentView(binding.root)
+
+        navController = binding.fragmentContainer.getFragment<NavHostFragment>().navController
+
+        val appBarConfiguration = AppBarConfiguration(setOf(
+            R.id.mainFragment,
+            R.id.workoutFragment,
+            R.id.guideFragment,
+            R.id.statsFragment,
+            R.id.profileFragment
+        ))
+
+        binding.bottomMenu.setupWithNavController(navController)
+        setupActionBarWithNavController(navController, appBarConfiguration)
     }
 
-    private fun setFragment(fragment: Fragment) {
-        supportFragmentManager.beginTransaction().replace(R.id.fragmentContainer, fragment).commit()
-    }
-
-
-    override fun getOnBackInvokedDispatcher(): OnBackInvokedDispatcher {
-        if (supportFragmentManager.backStackEntryCount > 0) {
-            Log.i("MainActivity", "popping backstack");
-            supportFragmentManager.popBackStack();
-        }
-
-        Log.d("MainActivity", "popping backstack");
-
-        return super.getOnBackInvokedDispatcher()
+    override fun onSupportNavigateUp(): Boolean {
+        return navController.navigateUp() || super.onSupportNavigateUp()
     }
 }

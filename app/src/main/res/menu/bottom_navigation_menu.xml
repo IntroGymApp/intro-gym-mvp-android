@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/main"
+        android:id="@+id/mainFragment"
         android:title="Главная"
         android:icon="@drawable/ic_main"
 
         android:orderInCategory="1"/>
     <item
-        android:id="@+id/workouts"
+        android:id="@+id/workoutFragment"
         android:title="Тренировки"
         android:icon="@drawable/ic_list"
         android:orderInCategory="2"/>
     <item
-        android:id="@+id/guide"
+        android:id="@+id/guideFragment"
         android:title="Справочник"
         android:icon="@drawable/ic_guide"
         android:orderInCategory="3"/>
     <item
-        android:id="@+id/stats"
+        android:id="@+id/statsFragment"
         android:title="Статистика"
         android:icon="@drawable/ic_stats"
         android:orderInCategory="4"/>
     <item
-        android:id="@+id/profile"
+        android:id="@+id/profileFragment"
         android:title="Профиль"
         android:icon="@drawable/ic_profile"
         android:orderInCategory="5"/>

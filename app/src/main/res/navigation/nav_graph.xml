@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="ru.lonelywh1te.introgymapp.presentation.view.MainFragment"
+        android:label="Главная"
+        tools:layout="@layout/fragment_main" />
+
+    <fragment
+        android:id="@+id/workoutFragment"
+        android:name="ru.lonelywh1te.introgymapp.presentation.view.WorkoutFragment"
+        android:label="Тренировки"
+        tools:layout="@layout/fragment_workout" />
+    <fragment
+        android:id="@+id/statsFragment"
+        android:name="ru.lonelywh1te.introgymapp.presentation.view.StatsFragment"
+        android:label="Статистика"
+        tools:layout="@layout/fragment_stats" />
+    <fragment
+        android:id="@+id/guideFragment"
+        android:name="ru.lonelywh1te.introgymapp.presentation.view.GuideFragment"
+        android:label="Справочник"
+        tools:layout="@layout/fragment_guide" >
+        <action
+            android:id="@+id/toExerciseGroupFragment"
+            app:destination="@id/exerciseGroupFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="ru.lonelywh1te.introgymapp.presentation.view.ProfileFragment"
+        android:label="Профиль"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/exerciseGroupFragment"
+        android:name="ru.lonelywh1te.introgymapp.presentation.view.ExerciseGroupFragment"
+        android:label="fragment_exercise_group"
+        tools:layout="@layout/fragment_exercise_group" >
+        <argument
+            android:name="groupId"
+            app:argType="string" />
+    </fragment>
+</navigation>

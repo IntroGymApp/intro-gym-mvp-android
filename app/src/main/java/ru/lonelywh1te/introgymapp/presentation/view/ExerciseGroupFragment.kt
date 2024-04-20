@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import ru.lonelywh1te.introgymapp.R
@@ -22,19 +23,12 @@ class ExerciseGroupFragment : Fragment() {
     private lateinit var recycler: RecyclerView
     private lateinit var exerciseInfoViewModel: ExerciseInfoViewModel
 
-    private var group: String? = null
+    private val args: ExerciseGroupFragmentArgs by navArgs()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         exerciseInfoViewModel = ViewModelProvider(this)[ExerciseInfoViewModel::class.java]
-
-        arguments?.let {
-            group = it.getString(GROUP_ARG)
-        }
-
-        group?.let {
-            exerciseInfoViewModel.getAllExerciseInfoByGroup(it)
-        }
+        exerciseInfoViewModel.getAllExerciseInfoByGroup(args.groupId)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
