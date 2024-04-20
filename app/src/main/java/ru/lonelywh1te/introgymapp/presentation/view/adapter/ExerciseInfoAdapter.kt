@@ -1,6 +1,5 @@
 package ru.lonelywh1te.introgymapp.presentation.view.adapter
 
-import android.content.Intent
 import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -10,9 +9,12 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import ru.lonelywh1te.introgymapp.databinding.ExerciseInfoItemBinding
 import ru.lonelywh1te.introgymapp.domain.AssetsPath
 import ru.lonelywh1te.introgymapp.domain.ExerciseInfo
-import ru.lonelywh1te.introgymapp.presentation.view.ExerciseInfoActivity
 
-class ExerciseInfoAdapter: RecyclerView.Adapter<ExerciseInfoViewHolder>() {
+interface OnExerciseInfoItemClick {
+    fun onClick(item: ExerciseInfo)
+}
+
+class ExerciseInfoAdapter(private val onExerciseInfoItemClick: OnExerciseInfoItemClick): RecyclerView.Adapter<ExerciseInfoViewHolder>() {
     var exerciseInfoList = listOf<ExerciseInfo>()
         set(value) {
             field = value
@@ -32,9 +34,7 @@ class ExerciseInfoAdapter: RecyclerView.Adapter<ExerciseInfoViewHolder>() {
         val binding = ExerciseInfoItemBinding.bind(holder.itemView)
 
         binding.exerciseInfoCard.setOnClickListener {
-            val intent = Intent(binding.root.context, ExerciseInfoActivity::class.java)
-            intent.putExtra("exerciseInfo", item)
-            binding.root.context.startActivity(intent)
+            onExerciseInfoItemClick.onClick(item)
         }
 
         holder.bind(item)

@@ -1,10 +1,12 @@
 package ru.lonelywh1te.introgymapp.domain
 
+import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import java.io.Serializable
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 @Entity(tableName = "exercise_info")
 data class ExerciseInfo (
     @ColumnInfo("group")
@@ -24,4 +26,4 @@ data class ExerciseInfo (
 
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
-): Serializable
+): Parcelable

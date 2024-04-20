@@ -4,66 +4,49 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.view.ExerciseInfoActivity">
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/headerLayout"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-            android:id="@+id/tvExerciseInfoName"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="Заголовок"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"/>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    tools:context=".presentation.view.ExerciseInfoFragment">
 
     <ImageView
         android:id="@+id/ivExerciseInfoImage"
         android:layout_width="350dp"
         android:layout_height="200dp"
+        android:layout_marginTop="20dp"
         android:scaleType="centerCrop"
         android:src="@drawable/ic_launcher_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/headerLayout" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
+        android:id="@+id/linearLayout4"
+        app:layout_constraintStart_toStartOf="@+id/ivExerciseInfoImage"
+        app:layout_constraintTop_toBottomOf="@+id/ivExerciseInfoImage"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintStart_toStartOf="@+id/ivExerciseInfoImage"
-        app:layout_constraintTop_toBottomOf="@+id/ivExerciseInfoImage">
+        android:orientation="vertical">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:text="Описание"
-            android:textStyle="bold"
-            android:textSize="20dp"/>
+            android:textSize="20dp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tvExersiceInfoDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Описание упражнения"
-            android:textSize="16dp"/>
+            android:textSize="16dp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:text="Выполнение"
-            android:textStyle="bold"
-            android:textSize="20dp"/>
+            android:textSize="20dp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tvExecution"
@@ -71,23 +54,23 @@
             android:layout_height="wrap_content"
             android:maxLines="10"
             android:text="1. Первое действие\n2. Второе Действие"
-            android:textSize="16dp"/>
+            android:textSize="16dp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:text="Советы"
-            android:textStyle="bold"
-            android:textSize="20dp"/>
+            android:textSize="20dp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tvAdvices"
-            android:maxLines="10"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:maxLines="10"
             android:text="- Первый совет\n- Второй совет\n- Третий совет"
-            android:textSize="16dp"/>
+            android:textSize="16dp" />
 
     </LinearLayout>
 

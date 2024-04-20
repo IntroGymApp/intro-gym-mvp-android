@@ -1,32 +1,34 @@
 package ru.lonelywh1te.introgymapp.presentation.view
 
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Html
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
-import ru.lonelywh1te.introgymapp.R
-import ru.lonelywh1te.introgymapp.databinding.ActivityExerciseInfoBinding
+import ru.lonelywh1te.introgymapp.databinding.FragmentExerciseInfoBinding
 import ru.lonelywh1te.introgymapp.domain.AssetsPath
 import ru.lonelywh1te.introgymapp.domain.ExerciseInfo
 
-class ExerciseInfoActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityExerciseInfoBinding
+class ExerciseInfoFragment : Fragment() {
+    private val args: ExerciseInfoFragmentArgs by navArgs()
     private lateinit var exerciseInfo: ExerciseInfo
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivityExerciseInfoBinding.inflate(layoutInflater)
+    private lateinit var binding: FragmentExerciseInfoBinding
 
-        exerciseInfo = intent.getSerializableExtra("exerciseInfo") as ExerciseInfo
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        binding = FragmentExerciseInfoBinding.inflate(inflater, container, false)
+        exerciseInfo = args.exerciseInfo
 
         setExerciseInfoData()
-        setContentView(binding.root)
+        return binding.root
     }
 
     private fun setExerciseInfoData() {
-        binding.tvExerciseInfoName.text = exerciseInfo.name
         binding.tvExersiceInfoDescription.text = exerciseInfo.description
         binding.tvExecution.text = Html.fromHtml(exerciseInfo.execution)
         binding.tvAdvices.text = Html.fromHtml(exerciseInfo.advices)

@@ -38,10 +38,28 @@
     <fragment
         android:id="@+id/exerciseGroupFragment"
         android:name="ru.lonelywh1te.introgymapp.presentation.view.ExerciseGroupFragment"
-        android:label="fragment_exercise_group"
+        android:label="{title}"
         tools:layout="@layout/fragment_exercise_group" >
+        <argument
+            android:name="title"
+            app:argType="string" />
         <argument
             android:name="groupId"
             app:argType="string" />
+        <action
+            android:id="@+id/toExerciseInfoFragment"
+            app:destination="@id/exerciseInfoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/exerciseInfoFragment"
+        android:name="ru.lonelywh1te.introgymapp.presentation.view.ExerciseInfoFragment"
+        android:label="{title}"
+        tools:layout="@layout/fragment_exercise_info" >
+        <argument
+            android:name="title"
+            app:argType="string" />
+        <argument
+            android:name="exerciseInfo"
+            app:argType="ru.lonelywh1te.introgymapp.domain.ExerciseInfo" />
     </fragment>
 </navigation>

@@ -1,22 +1,24 @@
 package ru.lonelywh1te.introgymapp.presentation.view
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import ru.lonelywh1te.introgymapp.R
-import ru.lonelywh1te.introgymapp.databinding.ExerciseGroupItemBinding
 import ru.lonelywh1te.introgymapp.databinding.FragmentExerciseGroupBinding
+import ru.lonelywh1te.introgymapp.domain.ExerciseGroup
 import ru.lonelywh1te.introgymapp.domain.ExerciseInfo
 import ru.lonelywh1te.introgymapp.presentation.view.adapter.ExerciseInfoAdapter
+import ru.lonelywh1te.introgymapp.presentation.view.adapter.OnExerciseInfoItemClick
 import ru.lonelywh1te.introgymapp.presentation.viewModel.ExerciseInfoViewModel
-
-private const val GROUP_ARG = "GROUP"
 
 class ExerciseGroupFragment : Fragment() {
     private lateinit var binding: FragmentExerciseGroupBinding
@@ -33,7 +35,12 @@ class ExerciseGroupFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentExerciseGroupBinding.inflate(inflater, container, false)
-        val adapter = ExerciseInfoAdapter()
+        val adapter = ExerciseInfoAdapter(object : OnExerciseInfoItemClick {
+            override fun onClick(item: ExerciseInfo) {
+                val action = ExerciseGroupFragmentDirections.toExerciseInfoFragment(item.name, item)
+                findNavController().navigate(action)
+            }
+        })
 
         recycler = binding.rvExerciseInfo
         recycler.apply {
@@ -47,15 +54,4 @@ class ExerciseGroupFragment : Fragment() {
 
         return binding.root
     }
-
-    companion object {
-        fun newInstance(group: String): ExerciseGroupFragment {
-            return ExerciseGroupFragment().apply {
-                arguments = Bundle().apply {
-                    putString(GROUP_ARG, group)
-                }
-            }
-        }
-    }
-
 }

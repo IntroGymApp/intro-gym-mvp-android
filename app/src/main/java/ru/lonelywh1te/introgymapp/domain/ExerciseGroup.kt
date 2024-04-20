@@ -4,62 +4,53 @@ data class ExerciseGroup (
     val name: String,
     val groupId: String,
     val img: String,
-    val count: Int,
+    val count: Int = 0,
 ){
     companion object {
-        private const val ASSETS_FOLDER = AssetsPath.EXERCISE_GROUP_IMG
+        private val assetsFolder = AssetsPath.EXERCISE_GROUP_IMG
 
-        fun getGroups(): List<ExerciseGroup> {
-            return listOf(
-                ExerciseGroup (
-                    "Грудь",
-                    "chest",
-                    "$ASSETS_FOLDER/chest.png",
-                    0
-                ),
-                ExerciseGroup (
-                    "Ноги",
-                    "legs",
-                    "$ASSETS_FOLDER/legs.png",
-                    0
-                ),
-                ExerciseGroup (
-                    "Плечи",
-                    "shoulders",
-                    "$ASSETS_FOLDER/shoulders.png",
-                    0
-                ),
-                ExerciseGroup (
-                    "Предплечье",
-                    "forearm",
-                    "$ASSETS_FOLDER/forearm.png",
-                    0
-                ),
-                ExerciseGroup (
-                    "Пресс",
-                    "press",
-                    "$ASSETS_FOLDER/press.png",
-                    0
-                ),
-                ExerciseGroup (
-                    "Руки Бицепс",
-                    "biceps",
-                    "$ASSETS_FOLDER/biceps.png",
-                    0
-                ),
-                ExerciseGroup (
-                    "Руки Трицепс",
-                    "triceps",
-                    "$ASSETS_FOLDER/triceps.png",
-                    0
-                ),
-                ExerciseGroup (
-                    "Спина",
-                    "back",
-                    "$ASSETS_FOLDER/back.png",
-                    0
-                ),
-            )
-        }
+        val list = listOf(
+            ExerciseGroup (
+                "Грудь",
+                "chest",
+                "$assetsFolder/chest.png",
+                2
+            ),
+            ExerciseGroup (
+                "Ноги",
+                "legs",
+                "$assetsFolder/legs.png",
+            ),
+            ExerciseGroup (
+                "Плечи",
+                "shoulders",
+                "$assetsFolder/shoulders.png",
+            ),
+            ExerciseGroup (
+                "Предплечье",
+                "forearm",
+                "$assetsFolder/forearm.png",
+            ),
+            ExerciseGroup (
+                "Пресс",
+                "press",
+                "$assetsFolder/press.png",
+            ),
+            ExerciseGroup (
+                "Руки Бицепс",
+                "biceps",
+                "$assetsFolder/biceps.png",
+            ),
+            ExerciseGroup (
+                "Руки Трицепс",
+                "triceps",
+                "$assetsFolder/triceps.png",
+            ),
+            ExerciseGroup (
+                "Спина",
+                "back",
+                "$assetsFolder/back.png",
+            ),
+        )
     }
 }

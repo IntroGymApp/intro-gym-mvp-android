@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import ru.lonelywh1te.introgymapp.databinding.FragmentGuideBinding
@@ -22,8 +22,8 @@ class GuideFragment : Fragment() {
         binding = FragmentGuideBinding.inflate(inflater, container, false)
         val adapter = ExerciseGroupAdapter(object : OnExerciseGroupItemClick {
             override fun onClick(item: ExerciseGroup) {
-                val action = GuideFragmentDirections.toExerciseGroupFragment(item.groupId)
-                Navigation.findNavController(binding.root).navigate(action)
+                val action = GuideFragmentDirections.toExerciseGroupFragment(item.name, item.groupId)
+                findNavController().navigate(action)
             }
         })
 
@@ -33,7 +33,7 @@ class GuideFragment : Fragment() {
             layoutManager = LinearLayoutManager(requireContext())
         }
 
-        adapter.exerciseGroupList = ExerciseGroup.getGroups()
+        adapter.exerciseGroupList = ExerciseGroup.list
 
         return binding.root
     }
