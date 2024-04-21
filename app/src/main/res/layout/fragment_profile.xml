@@ -40,6 +40,7 @@
                 android:textSize="11sp" />
 
             <EditText
+                android:id="@+id/etUserName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </LinearLayout>
@@ -58,12 +59,14 @@
                 android:textSize="11sp" />
 
             <ImageButton
+                android:id="@+id/btnMale"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="15dp"
                 android:src="@drawable/ic_male" />
 
             <ImageButton
+                android:id="@+id/btnFemale"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="15dp"
@@ -84,6 +87,7 @@
                 android:textSize="11sp" />
 
             <EditText
+                android:id="@+id/etUserHeight"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </LinearLayout>
@@ -102,9 +106,17 @@
                 android:textSize="11sp" />
 
             <EditText
+                android:id="@+id/etUserWeight"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </LinearLayout>
+        <Button
+            android:id="@+id/btnSaveProfileData"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/primary_color"
+            android:text="Сохранить"/>
     </LinearLayout>
 
     <LinearLayout
@@ -156,7 +168,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="2.5dp">
+
                         <TextView
+                            android:id="@+id/tvKcal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="12345"
@@ -175,6 +189,7 @@
                         android:layout_height="wrap_content"
                         android:padding="2.5dp">
                         <TextView
+                            android:id="@+id/tvProtein"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="123"
@@ -193,6 +208,7 @@
                         android:layout_height="wrap_content"
                         android:padding="2.5dp">
                         <TextView
+                            android:id="@+id/tvFat"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="123"
@@ -211,6 +227,7 @@
                         android:layout_height="wrap_content"
                         android:padding="2.5dp">
                         <TextView
+                            android:id="@+id/tvCarbohydrate"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="123"
@@ -271,6 +288,7 @@
                             android:padding="2.5dp">
 
                             <TextView
+                                android:id="@+id/tvBMI"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="25.3"
@@ -324,6 +342,7 @@
                                 android:textSize="11sp" />
 
                             <TextView
+                                android:id="@+id/tvIdealWeight"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="25.3"
@@ -337,6 +356,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="15dp"

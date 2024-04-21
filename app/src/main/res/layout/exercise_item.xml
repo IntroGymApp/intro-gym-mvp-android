@@ -5,15 +5,13 @@
     android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/exerciseInfoCard"
+        android:id="@+id/exerciseCard"
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
         app:cardBackgroundColor="@color/background_block_color"
         app:cardCornerRadius="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,8 +25,8 @@
                 android:id="@+id/materialCardView"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                app:cardCornerRadius="5dp"
                 android:layout_marginStart="20dp"
+                app:cardCornerRadius="5dp"
                 app:layout_constraintBottom_toBottomOf="@+id/linearLayout5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/linearLayout5">
@@ -62,6 +60,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Название упражнения" />
+
+                <TextView
+                    android:id="@+id/tvExercisePlan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:alpha="0.5"
+                    android:text="15 x 10 x 1кг" />
             </LinearLayout>
 
             <ImageView
@@ -76,5 +81,4 @@
                 app:tint="@color/black" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

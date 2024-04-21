@@ -6,7 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import ru.lonelywh1te.introgymapp.data.MainDatabase
-import ru.lonelywh1te.introgymapp.domain.ExerciseInfo
+import ru.lonelywh1te.introgymapp.domain.model.ExerciseInfo
 
 class ExerciseInfoViewModel(app: Application): AndroidViewModel(app) {
     val exerciseInfoList = MutableLiveData<List<ExerciseInfo>>()

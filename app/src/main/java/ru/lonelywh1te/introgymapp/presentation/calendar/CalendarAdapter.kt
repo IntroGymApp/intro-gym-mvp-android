@@ -49,7 +49,5 @@ class CalendarViewHolder(private val binding: DayItemBinding): RecyclerView.View
         } else {
             binding.dayItemCard.setCardBackgroundColor(ContextCompat.getColor(binding.root.context, R.color.primary_light_color))
         }
-
-        Log.println(Log.DEBUG, "IntroGymApp", "$item\n")
     }
 }

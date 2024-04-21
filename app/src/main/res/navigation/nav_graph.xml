@@ -13,22 +13,30 @@
 
     <fragment
         android:id="@+id/workoutFragment"
-        android:name="ru.lonelywh1te.introgymapp.presentation.view.WorkoutFragment"
+        android:name="ru.lonelywh1te.introgymapp.presentation.view.workout.WorkoutFragment"
         android:label="Тренировки"
-        tools:layout="@layout/fragment_workout" />
+        tools:layout="@layout/fragment_workout" >
+        <action
+            android:id="@+id/toCreateWorkout"
+            app:destination="@id/createExerciseFragment" />
+    </fragment>
     <fragment
         android:id="@+id/statsFragment"
         android:name="ru.lonelywh1te.introgymapp.presentation.view.StatsFragment"
         android:label="Статистика"
         tools:layout="@layout/fragment_stats" />
     <fragment
-        android:id="@+id/guideFragment"
-        android:name="ru.lonelywh1te.introgymapp.presentation.view.GuideFragment"
-        android:label="Справочник"
-        tools:layout="@layout/fragment_guide" >
+        android:id="@+id/exerciseGuideFragment"
+        android:name="ru.lonelywh1te.introgymapp.presentation.view.guide.ExerciseGuideFragment"
+        android:label="Упражнения"
+        tools:layout="@layout/fragment_exercise_guide" >
         <action
             android:id="@+id/toExerciseGroupFragment"
             app:destination="@id/exerciseGroupFragment" />
+        <argument
+            android:name="pickMode"
+            app:argType="boolean"
+            android:defaultValue="false" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -49,6 +57,10 @@
         <action
             android:id="@+id/toExerciseInfoFragment"
             app:destination="@id/exerciseInfoFragment" />
+        <argument
+            android:name="pickMode"
+            app:argType="boolean"
+            android:defaultValue="false" />
     </fragment>
     <fragment
         android:id="@+id/exerciseInfoFragment"
@@ -60,6 +72,24 @@
             app:argType="string" />
         <argument
             android:name="exerciseInfo"
-            app:argType="ru.lonelywh1te.introgymapp.domain.ExerciseInfo" />
+            app:argType="ru.lonelywh1te.introgymapp.domain.model.ExerciseInfo" />
+    </fragment>
+    <fragment
+        android:id="@+id/createExerciseFragment"
+        android:name="ru.lonelywh1te.introgymapp.presentation.view.workout.CreateWorkoutFragment"
+        android:label="Новая тренировка"
+        tools:layout="@layout/fragment_create_workout" >
+        <action
+            android:id="@+id/toExerciseGuideFragment"
+            app:destination="@id/exerciseGuideFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/guideFragment"
+        android:name="ru.lonelywh1te.introgymapp.presentation.view.guide.GuideFragment"
+        android:label="Справочник"
+        tools:layout="@layout/fragment_guide" >
+        <action
+            android:id="@+id/toExerciseGuideFragment"
+            app:destination="@id/exerciseGuideFragment" />
     </fragment>
 </navigation>

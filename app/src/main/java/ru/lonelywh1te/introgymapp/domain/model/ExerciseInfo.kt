@@ -1,4 +1,4 @@
-package ru.lonelywh1te.introgymapp.domain
+package ru.lonelywh1te.introgymapp.domain.model
 
 import android.os.Parcelable
 import androidx.room.ColumnInfo

@@ -1,4 +1,6 @@
-package ru.lonelywh1te.introgymapp.domain
+package ru.lonelywh1te.introgymapp.domain.model
+
+import ru.lonelywh1te.introgymapp.domain.AssetsPath
 
 data class ExerciseGroup (
     val name: String,

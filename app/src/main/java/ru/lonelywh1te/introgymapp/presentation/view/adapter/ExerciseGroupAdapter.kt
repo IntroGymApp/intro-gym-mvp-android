@@ -1,15 +1,14 @@
 package ru.lonelywh1te.introgymapp.presentation.view.adapter
 
 import android.net.Uri
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import ru.lonelywh1te.introgymapp.databinding.ExerciseGroupItemBinding
-import ru.lonelywh1te.introgymapp.domain.AssetsPath
-import ru.lonelywh1te.introgymapp.domain.ExerciseGroup
+import ru.lonelywh1te.introgymapp.domain.model.ExerciseGroup
+
 interface OnExerciseGroupItemClick {
     fun onClick(item: ExerciseGroup)
 }
@@ -44,6 +43,7 @@ class ExerciseGroupViewHolder(private val binding: ExerciseGroupItemBinding): Re
     fun bind(item: ExerciseGroup) {
         binding.tvGroupName.text = item.name
         binding.tvExerciseCount.text = "Упражнения: ${item.count}"
+
         Glide.with(binding.root)
             .load((Uri.parse(item.img)))
             .diskCacheStrategy(DiskCacheStrategy.ALL)

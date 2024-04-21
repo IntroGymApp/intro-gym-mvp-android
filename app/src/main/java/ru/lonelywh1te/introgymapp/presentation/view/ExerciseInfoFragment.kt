@@ -12,7 +12,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import ru.lonelywh1te.introgymapp.databinding.FragmentExerciseInfoBinding
 import ru.lonelywh1te.introgymapp.domain.AssetsPath
-import ru.lonelywh1te.introgymapp.domain.ExerciseInfo
+import ru.lonelywh1te.introgymapp.domain.model.ExerciseInfo
 
 class ExerciseInfoFragment : Fragment() {
     private val args: ExerciseInfoFragmentArgs by navArgs()

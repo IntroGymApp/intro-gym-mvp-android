@@ -3,18 +3,20 @@ package ru.lonelywh1te.introgymapp.presentation.view.adapter
 import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import ru.lonelywh1te.introgymapp.R
 import ru.lonelywh1te.introgymapp.databinding.ExerciseInfoItemBinding
 import ru.lonelywh1te.introgymapp.domain.AssetsPath
-import ru.lonelywh1te.introgymapp.domain.ExerciseInfo
+import ru.lonelywh1te.introgymapp.domain.model.ExerciseInfo
 
 interface OnExerciseInfoItemClick {
     fun onClick(item: ExerciseInfo)
 }
 
-class ExerciseInfoAdapter(private val onExerciseInfoItemClick: OnExerciseInfoItemClick): RecyclerView.Adapter<ExerciseInfoViewHolder>() {
+class ExerciseInfoAdapter(private val onExerciseInfoItemClick: OnExerciseInfoItemClick, private val pickMode: Boolean): RecyclerView.Adapter<ExerciseInfoViewHolder>() {
     var exerciseInfoList = listOf<ExerciseInfo>()
         set(value) {
             field = value
@@ -37,14 +39,19 @@ class ExerciseInfoAdapter(private val onExerciseInfoItemClick: OnExerciseInfoIte
             onExerciseInfoItemClick.onClick(item)
         }
 
-        holder.bind(item)
+        holder.bind(item, pickMode)
     }
 }
 
 class ExerciseInfoViewHolder(private val binding: ExerciseInfoItemBinding): RecyclerView.ViewHolder(binding.root) {
-    fun bind(item: ExerciseInfo) {
+    fun bind(item: ExerciseInfo, pickMode: Boolean) {
         binding.tvExerciseInfoName.text = item.name
 
+        if (pickMode) {
+            binding.ivExerciseInfoSelect.setImageDrawable(ContextCompat.getDrawable(binding.root.context, R.drawable.ic_add))
+        } else {
+            binding.ivExerciseInfoSelect.setImageDrawable(ContextCompat.getDrawable(binding.root.context, R.drawable.ic_arrow_right))
+        }
 
         Glide.with(binding.root)
             .load((Uri.parse("${AssetsPath.PREVIEW_EXERCISE_INFO_IMG}/${item.img}")))

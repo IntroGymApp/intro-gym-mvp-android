@@ -3,7 +3,7 @@ package ru.lonelywh1te.introgymapp.data.dao
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
-import ru.lonelywh1te.introgymapp.domain.ExerciseInfo
+import ru.lonelywh1te.introgymapp.domain.model.ExerciseInfo
 
 @Dao
 interface ExerciseInfoDao {
