@@ -15,7 +15,7 @@ interface OnExerciseItemClick {
     fun onClick(item: ExerciseWithInfo, itemIndex: Int)
 }
 
-class ExerciseAdapter(private val onExerciseItemClick: OnExerciseItemClick): RecyclerView.Adapter<ExerciseViewHolder>() {
+class ExerciseAdapter(private val onExerciseItemClick: OnExerciseItemClick?): RecyclerView.Adapter<ExerciseViewHolder>() {
     var exerciseList = listOf<ExerciseWithInfo>()
         set(value) {
             field = value
@@ -33,8 +33,10 @@ class ExerciseAdapter(private val onExerciseItemClick: OnExerciseItemClick): Rec
         val item = exerciseList[position]
         val binding = ExerciseItemBinding.bind(holder.itemView)
 
+        if (onExerciseItemClick == null) binding.ivExerciseInfoSelect.visibility = View.GONE
+
         binding.exerciseCard.setOnClickListener {
-            onExerciseItemClick.onClick(item, position)
+            onExerciseItemClick?.onClick(item, position)
         }
 
         holder.bind(item)

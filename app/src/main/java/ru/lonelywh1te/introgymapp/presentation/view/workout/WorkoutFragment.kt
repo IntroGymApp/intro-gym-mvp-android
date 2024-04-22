@@ -26,7 +26,8 @@ class WorkoutFragment : Fragment() {
 
         val adapter = WorkoutAdapter(object: OnWorkoutItemClick {
             override fun onClick(item: Workout) {
-                TODO("Not yet implemented")
+                val action = WorkoutFragmentDirections.toWorkoutViewFragment(item)
+                findNavController().navigate(action)
             }
         })
 

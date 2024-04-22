@@ -65,8 +65,9 @@
                     android:id="@+id/tvExercisePlan"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:alpha="0.5"
-                    android:text="15 x 10 x 1кг" />
+                    android:textColor="@color/primary_light_color"
+                    android:alpha="0.8"
+                    android:text="3x10x15кг" />
             </LinearLayout>
 
             <ImageView

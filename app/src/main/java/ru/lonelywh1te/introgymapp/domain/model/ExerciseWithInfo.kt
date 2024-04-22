@@ -11,7 +11,7 @@ data class ExerciseWithInfo(
 
     @Relation(
         entity = ExerciseInfo::class,
-        parentColumn = "exercise_id",
+        parentColumn = "exercise_info_id",
         entityColumn = "id"
     )
     val exerciseInfo: ExerciseInfo

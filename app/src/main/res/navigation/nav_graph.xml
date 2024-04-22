@@ -19,6 +19,9 @@
         <action
             android:id="@+id/toCreateWorkout"
             app:destination="@id/createExerciseFragment" />
+        <action
+            android:id="@+id/toWorkoutViewFragment"
+            app:destination="@id/workoutViewFragment" />
     </fragment>
     <fragment
         android:id="@+id/statsFragment"
@@ -107,5 +110,14 @@
             android:name="index"
             app:argType="integer"
             android:defaultValue="0" />
+    </fragment>
+    <fragment
+        android:id="@+id/workoutViewFragment"
+        android:name="ru.lonelywh1te.introgymapp.presentation.view.workout.WorkoutViewFragment"
+        android:label="fragment_workout_view"
+        tools:layout="@layout/fragment_workout_view" >
+        <argument
+            android:name="workout"
+            app:argType="ru.lonelywh1te.introgymapp.domain.model.Workout" />
     </fragment>
 </navigation>
