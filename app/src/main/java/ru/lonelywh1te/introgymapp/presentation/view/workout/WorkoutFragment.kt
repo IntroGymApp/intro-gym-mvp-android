@@ -1,7 +1,6 @@
 package ru.lonelywh1te.introgymapp.presentation.view.workout
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -21,13 +20,7 @@ class WorkoutFragment : Fragment() {
     private lateinit var workoutViewModel: WorkoutViewModel
     private lateinit var recycler: RecyclerView
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        Log.println(Log.DEBUG, "WorkoutFragment", "ON_CREATE")
-    }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        Log.println(Log.DEBUG, "WorkoutFragment", "ON_CREATE_VIEW")
         binding = FragmentWorkoutBinding.inflate(inflater, container, false)
         workoutViewModel = ViewModelProvider(this)[WorkoutViewModel::class.java]
 
@@ -39,7 +32,6 @@ class WorkoutFragment : Fragment() {
 
         workoutViewModel.workoutList.observe(viewLifecycleOwner) {
             adapter.workoutList = it
-            Log.println(Log.DEBUG, "WorkoutFragment", "$it")
         }
 
         recycler = binding.rvWorkouts

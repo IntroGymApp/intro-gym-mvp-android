@@ -82,6 +82,9 @@
         <action
             android:id="@+id/toExerciseGuideFragment"
             app:destination="@id/exerciseGuideFragment" />
+        <action
+            android:id="@+id/toPlanExerciseFragment"
+            app:destination="@id/planExerciseFragment" />
     </fragment>
     <fragment
         android:id="@+id/guideFragment"
@@ -91,5 +94,18 @@
         <action
             android:id="@+id/toExerciseGuideFragment"
             app:destination="@id/exerciseGuideFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/planExerciseFragment"
+        android:name="ru.lonelywh1te.introgymapp.presentation.view.PlanExerciseFragment"
+        android:label="fragment_plan_exercise"
+        tools:layout="@layout/fragment_plan_exercise" >
+        <argument
+            android:name="exerciseWithInfo"
+            app:argType="ru.lonelywh1te.introgymapp.domain.model.ExerciseWithInfo" />
+        <argument
+            android:name="index"
+            app:argType="integer"
+            android:defaultValue="0" />
     </fragment>
 </navigation>

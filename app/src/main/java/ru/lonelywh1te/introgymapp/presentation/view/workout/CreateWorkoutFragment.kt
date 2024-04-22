@@ -1,11 +1,10 @@
 package ru.lonelywh1te.introgymapp.presentation.view.workout
 
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -14,23 +13,28 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.launch
 import ru.lonelywh1te.introgymapp.databinding.FragmentCreateWorkoutBinding
-import ru.lonelywh1te.introgymapp.domain.model.Exercise
 import ru.lonelywh1te.introgymapp.domain.model.ExerciseWithInfo
 import ru.lonelywh1te.introgymapp.domain.model.Workout
 import ru.lonelywh1te.introgymapp.presentation.view.adapter.ExerciseAdapter
+import ru.lonelywh1te.introgymapp.presentation.view.adapter.OnExerciseItemClick
 import ru.lonelywh1te.introgymapp.presentation.viewModel.WorkoutViewModel
 
 class CreateWorkoutFragment : Fragment() {
     private lateinit var binding: FragmentCreateWorkoutBinding
     private lateinit var workoutViewModel: WorkoutViewModel
     private lateinit var recycler: RecyclerView
-    val exerciseList = mutableListOf<ExerciseWithInfo>()
+    private val exerciseList = mutableListOf<ExerciseWithInfo>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        val binding = FragmentCreateWorkoutBinding.inflate(layoutInflater, container, false)
+        binding = FragmentCreateWorkoutBinding.inflate(layoutInflater, container, false)
         workoutViewModel = ViewModelProvider(this)[WorkoutViewModel::class.java]
 
-        val adapter = ExerciseAdapter()
+        val adapter = ExerciseAdapter(object: OnExerciseItemClick {
+            override fun onClick(item: ExerciseWithInfo, itemIndex: Int) {
+                val action = CreateWorkoutFragmentDirections.toPlanExerciseFragment(item, itemIndex)
+                findNavController().navigate(action)
+            }
+        })
 
         recycler = binding.rvWorkoutExercises
         recycler.apply {
@@ -54,15 +58,21 @@ class CreateWorkoutFragment : Fragment() {
         }
 
         setFragmentResultListener("ADD_EXERCISE") {_, bundle ->
-            bundle.getParcelable<ExerciseWithInfo>("exercise")?.let { exerciseList.add(it) }
+            bundle.getParcelable<ExerciseWithInfo>("exercise")?.let {
+                exerciseList.add(it)
+            }
+            adapter.exerciseList = exerciseList
+        }
+
+        setFragmentResultListener("CONFIG_EXERCISE") {_, bundle ->
+            val index = bundle.getInt("exerciseIndex")
+            bundle.getParcelable<ExerciseWithInfo>("exercise")?.let {changedExercise ->
+                exerciseList[index] = changedExercise
+            }
+
             adapter.exerciseList = exerciseList
         }
 
         return binding.root
-    }
-
-    override fun onResume() {
-        super.onResume()
-
     }
 }
