@@ -1,6 +1,5 @@
 package ru.lonelywh1te.introgymapp.presentation.view.workout
 
-import android.app.Activity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -76,18 +75,26 @@ class WorkoutViewFragment : Fragment(), MenuProvider {
 
     override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
         when(menuItem.itemId) {
-            R.id.editWorkout -> {
-                workout?.let {
-                    val action = WorkoutViewFragmentDirections.toCreateEditWorkoutFragment(it)
-                    findNavController().navigate(action)
-                }
-            }
-            else -> {
-                findNavController().popBackStack()
-            }
+            R.id.editWorkout -> editWorkout()
+            R.id.deleteWorkout -> deleteWorkout()
+            else -> findNavController().popBackStack()
         }
 
         return true
+    }
+
+    private fun editWorkout() {
+        workout?.let {
+            val action = WorkoutViewFragmentDirections.toCreateEditWorkoutFragment(it)
+            findNavController().navigate(action)
+        }
+    }
+
+    private fun deleteWorkout() {
+        workout?.let {
+            workoutViewModel.deleteWorkout(it)
+            findNavController().popBackStack()
+        }
     }
 
     private fun setWorkoutData() {

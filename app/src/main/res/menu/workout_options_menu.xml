@@ -5,5 +5,11 @@
         android:id="@+id/editWorkout"
         android:title="Изменить"
         android:icon="@drawable/ic_edit"
-        app:showAsAction="always"/>
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/deleteWorkout"
+        android:title="Удалить"
+        android:icon="@drawable/ic_delete"
+        app:showAsAction="ifRoom"/>
 </menu>

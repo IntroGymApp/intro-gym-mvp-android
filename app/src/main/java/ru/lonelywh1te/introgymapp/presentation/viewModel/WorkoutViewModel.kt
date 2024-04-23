@@ -42,6 +42,12 @@ class WorkoutViewModel(app: Application): AndroidViewModel(app) {
         }
     }
 
+    fun deleteWorkout(workout: Workout) {
+        viewModelScope.launch {
+            workoutDao.deleteWorkout(workout)
+        }
+    }
+
     fun getAllWorkouts() {
         viewModelScope.launch {
             workoutList.postValue(workoutDao.getAllUserWorkouts())
