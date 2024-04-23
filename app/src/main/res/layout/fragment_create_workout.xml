@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.view.workout.CreateWorkoutFragment"
+    tools:context=".presentation.view.workout.CreateEditWorkoutFragment"
     android:orientation="vertical"
     android:padding="20dp">
 
@@ -82,7 +82,7 @@
         android:text="Добавить упражнение"/>
 
     <Button
-        android:id="@+id/btnCreateWorkout"
+        android:id="@+id/btnSaveWorkout"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:backgroundTint="@color/primary_color"

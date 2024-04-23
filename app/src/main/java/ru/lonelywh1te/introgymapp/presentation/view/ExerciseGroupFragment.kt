@@ -5,7 +5,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResult
 import androidx.lifecycle.ViewModelProvider
@@ -48,7 +47,7 @@ class ExerciseGroupFragment : Fragment() {
                     }
 
                     setFragmentResult("ADD_EXERCISE", bundle)
-                    findNavController().popBackStack(R.id.createExerciseFragment, false)
+                    findNavController().popBackStack(R.id.createEditWorkoutFragment, false)
                 } else {
                     val action = ExerciseGroupFragmentDirections.toExerciseInfoFragment(item.name, item)
                     findNavController().navigate(action)

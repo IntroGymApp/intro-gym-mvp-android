@@ -1,6 +1,7 @@
 package ru.lonelywh1te.introgymapp.presentation.view
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -23,6 +24,8 @@ class PlanExerciseFragment : Fragment() {
         binding = FragmentPlanExerciseBinding.inflate(inflater, container, false)
         exerciseWithInfo = args.exerciseWithInfo
 
+        setExerciseData(exerciseWithInfo)
+
         binding.btnSaveExercise.setOnClickListener {
             val sets = binding.etSets.text.toString().toInt()
             val reps = binding.etReps.text.toString().toInt()
@@ -41,9 +44,13 @@ class PlanExerciseFragment : Fragment() {
             findNavController().popBackStack()
         }
 
-
-
-
         return binding.root
+    }
+
+    private fun setExerciseData(exerciseWithInfo: ExerciseWithInfo) {
+        binding.etSets.setText(exerciseWithInfo.exercise.sets.toString())
+        binding.etReps.setText(exerciseWithInfo.exercise.reps.toString())
+        binding.etWeight.setText(exerciseWithInfo.exercise.weight.toString())
+        binding.etNote.setText(exerciseWithInfo.exercise.note)
     }
 }

@@ -18,7 +18,7 @@
         tools:layout="@layout/fragment_workout" >
         <action
             android:id="@+id/toCreateWorkout"
-            app:destination="@id/createExerciseFragment" />
+            app:destination="@id/createEditWorkoutFragment" />
         <action
             android:id="@+id/toWorkoutViewFragment"
             app:destination="@id/workoutViewFragment" />
@@ -78,8 +78,8 @@
             app:argType="ru.lonelywh1te.introgymapp.domain.model.ExerciseInfo" />
     </fragment>
     <fragment
-        android:id="@+id/createExerciseFragment"
-        android:name="ru.lonelywh1te.introgymapp.presentation.view.workout.CreateWorkoutFragment"
+        android:id="@+id/createEditWorkoutFragment"
+        android:name="ru.lonelywh1te.introgymapp.presentation.view.workout.CreateEditWorkoutFragment"
         android:label="Новая тренировка"
         tools:layout="@layout/fragment_create_workout" >
         <action
@@ -88,6 +88,11 @@
         <action
             android:id="@+id/toPlanExerciseFragment"
             app:destination="@id/planExerciseFragment" />
+        <argument
+            android:name="workout"
+            app:argType="ru.lonelywh1te.introgymapp.domain.model.Workout"
+            app:nullable="true"
+            android:defaultValue="@null" />
     </fragment>
     <fragment
         android:id="@+id/guideFragment"
@@ -114,10 +119,12 @@
     <fragment
         android:id="@+id/workoutViewFragment"
         android:name="ru.lonelywh1te.introgymapp.presentation.view.workout.WorkoutViewFragment"
-        android:label="fragment_workout_view"
         tools:layout="@layout/fragment_workout_view" >
         <argument
             android:name="workout"
             app:argType="ru.lonelywh1te.introgymapp.domain.model.Workout" />
+        <action
+            android:id="@+id/toCreateEditWorkoutFragment"
+            app:destination="@id/createEditWorkoutFragment" />
     </fragment>
 </navigation>

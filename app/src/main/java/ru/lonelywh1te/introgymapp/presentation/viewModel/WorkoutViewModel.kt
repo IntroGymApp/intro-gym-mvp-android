@@ -1,7 +1,6 @@
 package ru.lonelywh1te.introgymapp.presentation.viewModel
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -24,7 +23,22 @@ class WorkoutViewModel(app: Application): AndroidViewModel(app) {
 
         for (exercise in exercises) {
             val workoutExercise = exercise.copy(workoutId = workoutId)
-            exerciseDao.createExercise(workoutExercise)
+            exerciseDao.addExercise(workoutExercise)
+        }
+    }
+
+    suspend fun updateWorkout(workout: Workout, exercises: List<Exercise>) {
+        workoutDao.updateWorkout(workout)
+
+        for (exercise in exercises) {
+            val workoutExercise = exercise.copy(workoutId = workout.id)
+            exerciseDao.addExercise(workoutExercise)
+        }
+    }
+
+    fun getWorkoutById(id: Int) {
+        viewModelScope.launch {
+            currentWorkout.postValue(workoutDao.getWorkoutById(id))
         }
     }
 
