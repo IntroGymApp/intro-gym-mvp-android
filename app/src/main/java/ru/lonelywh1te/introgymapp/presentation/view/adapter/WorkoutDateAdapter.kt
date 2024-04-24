@@ -1,7 +1,9 @@
 package ru.lonelywh1te.introgymapp.presentation.view.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import ru.lonelywh1te.introgymapp.databinding.WorkoutDateItemBinding
 import ru.lonelywh1te.introgymapp.databinding.WorkoutItemBinding
@@ -23,10 +25,14 @@ class WorkoutDateAdapter(private val onWorkoutItemClick: OnWorkoutItemClick): Re
 
     override fun onBindViewHolder(holder: WorkoutDateViewHolder, position: Int) {
         val item = workoutList[position]
+        val binding = WorkoutDateItemBinding.bind(holder.itemView)
+
+        binding.workoutDateCard.setOnClickListener {
+            onWorkoutItemClick.onClick(item)
+        }
 
         holder.bind(item)
     }
-
 }
 
 class WorkoutDateViewHolder(private val binding: WorkoutDateItemBinding): RecyclerView.ViewHolder(binding.root) {

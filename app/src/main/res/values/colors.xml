@@ -7,4 +7,5 @@
     <color name="background_block_color">#ECEEE8</color>
     <color name="primary_color">#60B741</color>
     <color name="primary_light_color">#B1C178</color>
+    <color name="negative_color">#EB5F5F</color>
 </resources>

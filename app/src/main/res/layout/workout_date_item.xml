@@ -10,6 +10,7 @@
     android:layout_marginBottom="5dp">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/workoutDateCard"
         android:layout_width="match_parent"
         android:layout_height="120dp"
         app:cardCornerRadius="10dp"
@@ -45,7 +46,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingStart="15dp"
-                android:paddingEnd="150dp"
+                android:paddingEnd="140dp"
+                android:maxLines="2"
+                android:ellipsize="end"
                 android:text="Какое-то описание которое пользователь сам написал"
                 android:textSize="11dp"/>
 

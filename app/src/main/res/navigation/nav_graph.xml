@@ -13,6 +13,9 @@
         <action
             android:id="@+id/toWorkoutFragment"
             app:destination="@id/workoutFragment" />
+        <action
+            android:id="@+id/toWorkoutViewFragment"
+            app:destination="@id/workoutViewFragment" />
     </fragment>
 
     <fragment
@@ -137,5 +140,9 @@
         <action
             android:id="@+id/toCreateEditWorkoutFragment"
             app:destination="@id/createEditWorkoutFragment" />
+        <argument
+            android:name="executionMode"
+            app:argType="boolean"
+            android:defaultValue="false" />
     </fragment>
 </navigation>

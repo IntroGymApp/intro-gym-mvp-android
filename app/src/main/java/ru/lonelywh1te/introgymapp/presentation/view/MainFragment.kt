@@ -1,5 +1,6 @@
 package ru.lonelywh1te.introgymapp.presentation.view
 
+import android.graphics.Canvas
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -13,6 +14,8 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
+import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator
 import ru.lonelywh1te.introgymapp.R
 import ru.lonelywh1te.introgymapp.databinding.FragmentMainBinding
 import ru.lonelywh1te.introgymapp.domain.model.Exercise
@@ -50,7 +53,8 @@ class MainFragment : Fragment() {
 
         val workoutAdapter = WorkoutDateAdapter(object: OnWorkoutItemClick {
             override fun onClick(item: Workout) {
-
+                val action = MainFragmentDirections.toWorkoutViewFragment(item, true)
+                findNavController().navigate(action)
             }
         })
 
