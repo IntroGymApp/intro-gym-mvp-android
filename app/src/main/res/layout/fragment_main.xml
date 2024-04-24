@@ -97,11 +97,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="С возвращением, Имя!"
+                android:textStyle="bold"
                 android:textSize="16sp" />
 
         </LinearLayout>
 
         <ImageButton
+            android:id="@+id/ibAddWorkoutToDate"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:background="@android:color/transparent"
@@ -117,6 +119,7 @@
         android:layout_marginTop="30dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
+        tools:listitem="@layout/workout_date_item"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

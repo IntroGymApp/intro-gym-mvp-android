@@ -6,9 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.coroutines.launch
 import ru.lonelywh1te.introgymapp.databinding.FragmentWorkoutBinding
 import ru.lonelywh1te.introgymapp.domain.model.Workout
 import ru.lonelywh1te.introgymapp.presentation.view.adapter.OnWorkoutItemClick
@@ -20,14 +23,23 @@ class WorkoutFragment : Fragment() {
     private lateinit var workoutViewModel: WorkoutViewModel
     private lateinit var recycler: RecyclerView
 
+    private val args: WorkoutFragmentArgs by navArgs()
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentWorkoutBinding.inflate(inflater, container, false)
         workoutViewModel = ViewModelProvider(this)[WorkoutViewModel::class.java]
 
         val adapter = WorkoutAdapter(object: OnWorkoutItemClick {
             override fun onClick(item: Workout) {
-                val action = WorkoutFragmentDirections.toWorkoutViewFragment(item)
-                findNavController().navigate(action)
+                if (args.pickMode) {
+                    lifecycleScope.launch {
+                        workoutViewModel.addWorkoutDate(item, args.date)
+                        findNavController().popBackStack()
+                    }
+                } else {
+                    val action = WorkoutFragmentDirections.toWorkoutViewFragment(item)
+                    findNavController().navigate(action)
+                }
             }
         })
 

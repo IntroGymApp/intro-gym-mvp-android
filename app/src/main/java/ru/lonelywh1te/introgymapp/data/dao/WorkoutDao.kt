@@ -3,6 +3,7 @@ package ru.lonelywh1te.introgymapp.data.dao
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
 import ru.lonelywh1te.introgymapp.domain.model.Workout
@@ -10,7 +11,7 @@ import ru.lonelywh1te.introgymapp.domain.model.Workout
 @Dao
 interface WorkoutDao {
 
-    @Insert
+    @Insert()
     suspend fun createWorkout(workout: Workout)
 
     @Update
@@ -21,6 +22,9 @@ interface WorkoutDao {
 
     @Query("SELECT * FROM workout WHERE date is NULL")
     suspend fun getAllUserWorkouts(): List<Workout>
+
+    @Query("SELECT * FROM workout WHERE date=:date")
+    suspend fun getAllWorkoutsByDate(date: Long): List<Workout>
 
     @Query("SELECT * FROM workout WHERE id=(SELECT MAX(id) FROM workout)")
     suspend fun getLastCreatedWorkout(): Workout

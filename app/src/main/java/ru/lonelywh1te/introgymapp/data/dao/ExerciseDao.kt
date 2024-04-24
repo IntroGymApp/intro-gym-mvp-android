@@ -17,4 +17,8 @@ interface ExerciseDao {
     @Transaction
     @Query("SELECT * FROM exercise WHERE workout_id=:id")
     suspend fun getAllExercisesWithInfoByWorkoutId(id: Int): List<ExerciseWithInfo>
+
+
+    @Query("SELECT * FROM exercise WHERE workout_id=:id")
+    suspend fun getAllExercisesByWorkoutId(id: Int): List<Exercise>
 }

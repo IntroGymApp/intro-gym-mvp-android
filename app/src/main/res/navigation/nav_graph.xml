@@ -9,7 +9,11 @@
         android:id="@+id/mainFragment"
         android:name="ru.lonelywh1te.introgymapp.presentation.view.MainFragment"
         android:label="Главная"
-        tools:layout="@layout/fragment_main" />
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/toWorkoutFragment"
+            app:destination="@id/workoutFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/workoutFragment"
@@ -22,6 +26,13 @@
         <action
             android:id="@+id/toWorkoutViewFragment"
             app:destination="@id/workoutViewFragment" />
+        <argument
+            android:name="pickMode"
+            app:argType="boolean"
+            android:defaultValue="false" />
+        <argument android:name="date"
+            app:argType="long"
+            android:defaultValue="0L" />
     </fragment>
     <fragment
         android:id="@+id/statsFragment"
