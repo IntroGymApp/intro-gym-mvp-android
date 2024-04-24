@@ -3,67 +3,70 @@ package ru.lonelywh1te.introgymapp.presentation.viewModel
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import ru.lonelywh1te.introgymapp.data.MainDatabase
 import ru.lonelywh1te.introgymapp.domain.model.Exercise
 import ru.lonelywh1te.introgymapp.domain.model.Workout
+import ru.lonelywh1te.introgymapp.domain.usecase.workout.CreateWorkoutUseCase
+import ru.lonelywh1te.introgymapp.domain.usecase.workout.DeleteWorkoutUseCase
+import ru.lonelywh1te.introgymapp.domain.usecase.workout.GetAllWorkoutsByDateUseCase
+import ru.lonelywh1te.introgymapp.domain.usecase.workout.GetAllWorkoutsUseCase
+import ru.lonelywh1te.introgymapp.domain.usecase.workout.GetLastCreatedWorkoutUseCase
+import ru.lonelywh1te.introgymapp.domain.usecase.workout.GetWorkoutByIdUseCase
+import ru.lonelywh1te.introgymapp.domain.usecase.workout.UpdateWorkoutUseCase
 
-class WorkoutViewModel(app: Application): AndroidViewModel(app) {
+class WorkoutViewModel(
+    private val createWorkoutUseCase: CreateWorkoutUseCase,
+    private val updateWorkoutUseCase: UpdateWorkoutUseCase,
+    private val deleteWorkoutUseCase: DeleteWorkoutUseCase,
+    private val getAllWorkoutsByDateUseCase: GetAllWorkoutsByDateUseCase,
+    private val getAllWorkoutsUseCase: GetAllWorkoutsUseCase,
+    private val getWorkoutByIdUseCase: GetWorkoutByIdUseCase,
+    private val getLastCreatedWorkoutUseCase: GetLastCreatedWorkoutUseCase,
+): ViewModel() {
     val currentWorkout = MutableLiveData<Workout>()
     val workoutList = MutableLiveData<List<Workout>>()
 
-    private val workoutDao = MainDatabase.getInstance(app).workoutDao()
-    private val exerciseDao = MainDatabase.getInstance(app).exerciseDao()
-
-    suspend fun createWorkout(workout: Workout, exercises: List<Exercise>) {
-        workoutDao.createWorkout(workout)
-
-        val workoutId = workoutDao.getLastCreatedWorkout().id
-
-        for (exercise in exercises) {
-            val workoutExercise = Exercise(workoutId, exercise.exerciseInfoId, exercise.sets, exercise.reps, exercise.weight, exercise.note)
-            exerciseDao.addExercise(workoutExercise)
-        }
+    suspend fun createWorkout(workout: Workout) {
+        createWorkoutUseCase.execute(workout)
     }
 
     suspend fun addWorkoutDate(workout: Workout, date: Long) {
         val workoutDate = workout.copy(date = date, id = 0)
-        val exercises = exerciseDao.getAllExercisesByWorkoutId(workout.id)
-
-        createWorkout(workoutDate, exercises)
+        createWorkout(workoutDate)
     }
 
     fun getAllWorkoutsByDate(date: Long) {
         viewModelScope.launch {
-            workoutList.postValue(workoutDao.getAllWorkoutsByDate(date))
+            workoutList.postValue(getAllWorkoutsByDateUseCase.execute(date))
         }
     }
 
-    suspend fun updateWorkout(workout: Workout, exercises: List<Exercise>) {
-        workoutDao.updateWorkout(workout)
+    suspend fun updateWorkout(workout: Workout) {
+        updateWorkoutUseCase.execute(workout)
+    }
 
-        for (exercise in exercises) {
-            val workoutExercise = exercise.copy(workoutId = workout.id)
-            exerciseDao.addExercise(workoutExercise)
-        }
+    suspend fun getLastCreatedWorkout(): Workout {
+        return getLastCreatedWorkoutUseCase.execute()
     }
 
     fun getWorkoutById(id: Int) {
         viewModelScope.launch {
-            currentWorkout.postValue(workoutDao.getWorkoutById(id))
+            currentWorkout.postValue(getWorkoutByIdUseCase.execute(id))
         }
     }
 
     fun deleteWorkout(workout: Workout) {
         viewModelScope.launch {
-            workoutDao.deleteWorkout(workout)
+            deleteWorkoutUseCase.execute(workout)
         }
     }
 
     fun getAllWorkouts() {
         viewModelScope.launch {
-            workoutList.postValue(workoutDao.getAllUserWorkouts())
+            workoutList.postValue(getAllWorkoutsUseCase.execute())
         }
     }
 }

@@ -15,6 +15,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import org.koin.androidx.viewmodel.ext.android.getViewModel
 import ru.lonelywh1te.introgymapp.R
 import ru.lonelywh1te.introgymapp.databinding.FragmentWorkoutViewBinding
 import ru.lonelywh1te.introgymapp.domain.model.Workout
@@ -34,8 +35,8 @@ class WorkoutViewFragment : Fragment(), MenuProvider {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         workout = args.workout
-        workoutViewModel = ViewModelProvider(this)[WorkoutViewModel::class.java]
-        exerciseViewModel = ViewModelProvider(this)[ExerciseViewModel::class.java]
+        workoutViewModel = getViewModel()
+        exerciseViewModel = getViewModel()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {

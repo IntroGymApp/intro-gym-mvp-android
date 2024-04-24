@@ -14,6 +14,7 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.getViewModel
 import ru.lonelywh1te.introgymapp.databinding.FragmentCreateWorkoutBinding
 import ru.lonelywh1te.introgymapp.domain.model.ExerciseWithInfo
 import ru.lonelywh1te.introgymapp.domain.model.Workout
@@ -35,8 +36,8 @@ class CreateEditWorkoutFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        workoutViewModel = ViewModelProvider(this)[WorkoutViewModel::class.java]
-        exerciseViewModel = ViewModelProvider(this)[ExerciseViewModel::class.java]
+        workoutViewModel = getViewModel()
+        exerciseViewModel = getViewModel()
 
         args.workout?.let {
             editMode = true
@@ -100,8 +101,6 @@ class CreateEditWorkoutFragment : Fragment() {
         return binding.root
     }
 
-
-
     private fun setWorkoutData(workout: Workout) {
         binding.etWorkoutName.setText(workout.name)
         binding.etWorkoutDescription.setText(workout.description)
@@ -112,7 +111,8 @@ class CreateEditWorkoutFragment : Fragment() {
         val exercises = exerciseList.map { it.exercise }
 
         lifecycleScope.launch {
-            workoutViewModel.updateWorkout(updatedWorkout, exercises)
+            workoutViewModel.updateWorkout(updatedWorkout)
+            exerciseViewModel.updateExercises(updatedWorkout.id, exercises)
             findNavController().popBackStack()
         }
     }
@@ -122,7 +122,9 @@ class CreateEditWorkoutFragment : Fragment() {
         val exercises = exerciseList.map { it.exercise }
 
         lifecycleScope.launch {
-            workoutViewModel.createWorkout(workout, exercises)
+            workoutViewModel.createWorkout(workout)
+            val workoutId = workoutViewModel.getLastCreatedWorkout().id
+            exerciseViewModel.addExercises(workoutId, exercises)
             findNavController().popBackStack()
         }
     }

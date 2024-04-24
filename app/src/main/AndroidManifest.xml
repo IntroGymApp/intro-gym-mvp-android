@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <application
+        android:name=".App"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -12,9 +13,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.IntroGymApp"
         tools:targetApi="31">
-        <activity
-            android:name=".presentation.view.ExerciseInfoActivity"
-            android:exported="false" />
         <activity
             android:name=".presentation.view.MainActivity"
             android:exported="true">

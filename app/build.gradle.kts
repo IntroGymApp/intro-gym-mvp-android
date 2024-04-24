@@ -66,7 +66,12 @@ dependencies {
     //RecyclerView SwipeDecorator
     implementation("it.xabaras.android:recyclerview-swipedecorator:1.4")
 
-    implementation("androidx.core:core-ktx:1.12.0")
+    // Koin
+    implementation("io.insert-koin:koin-core:3.5.0")
+    implementation("io.insert-koin:koin-android:3.5.0")
+    implementation("io.insert-koin:koin-test:3.1.2")
+
+    implementation("androidx.core:core-ktx:1.13.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.11.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")

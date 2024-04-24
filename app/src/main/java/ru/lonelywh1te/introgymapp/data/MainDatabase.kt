@@ -5,7 +5,6 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import ru.lonelywh1te.introgymapp.data.dao.ExerciseDao
-import ru.lonelywh1te.introgymapp.data.dao.ExerciseInfoDao
 import ru.lonelywh1te.introgymapp.data.dao.WorkoutDao
 import ru.lonelywh1te.introgymapp.domain.model.Exercise
 import ru.lonelywh1te.introgymapp.domain.model.ExerciseInfo
@@ -13,7 +12,6 @@ import ru.lonelywh1te.introgymapp.domain.model.Workout
 
 @Database(entities = [ExerciseInfo::class, Workout::class, Exercise::class], version = 1)
 abstract class MainDatabase: RoomDatabase() {
-    abstract fun exerciseInfoDao(): ExerciseInfoDao
     abstract fun workoutDao(): WorkoutDao
     abstract fun exerciseDao(): ExerciseDao
 

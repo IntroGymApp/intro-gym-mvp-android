@@ -11,7 +11,7 @@ import ru.lonelywh1te.introgymapp.domain.model.Workout
 @Dao
 interface WorkoutDao {
 
-    @Insert()
+    @Insert
     suspend fun createWorkout(workout: Workout)
 
     @Update
