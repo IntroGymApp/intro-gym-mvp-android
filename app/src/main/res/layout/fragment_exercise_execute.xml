@@ -250,6 +250,7 @@
                         android:textSize="14dp"/>
 
                     <ImageButton
+                        android:id="@+id/ibAddExerciseHistory"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="15dp"
@@ -268,7 +269,8 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvExerciseHistory"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
                     tools:listitem="@layout/exercise_history_item"/>
 
             </LinearLayout>

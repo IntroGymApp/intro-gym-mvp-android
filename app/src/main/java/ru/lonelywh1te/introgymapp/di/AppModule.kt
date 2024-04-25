@@ -21,10 +21,13 @@ val appModule = module {
     viewModel<ExerciseViewModel> {
         ExerciseViewModel(
             addExerciseUseCase = get(),
+            addExerciseHistoryUseCase = get(),
             updateExerciseUseCase = get(),
+            deleteExerciseHistoryUseCase = get(),
             getAllExerciseInfoByGroupUseCase = get(),
             getAllExercisesByWorkoutIdUseCase = get(),
-            getAllExercisesWithInfoByWorkoutIdUseCase = get()
+            getAllExercisesWithInfoByWorkoutIdUseCase = get(),
+            getAllExerciseHistoryByIdUseCase = get()
         )
     }
 }

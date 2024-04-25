@@ -7,10 +7,11 @@ import androidx.room.RoomDatabase
 import ru.lonelywh1te.introgymapp.data.dao.ExerciseDao
 import ru.lonelywh1te.introgymapp.data.dao.WorkoutDao
 import ru.lonelywh1te.introgymapp.domain.model.Exercise
+import ru.lonelywh1te.introgymapp.domain.model.ExerciseHistory
 import ru.lonelywh1te.introgymapp.domain.model.ExerciseInfo
 import ru.lonelywh1te.introgymapp.domain.model.Workout
 
-@Database(entities = [ExerciseInfo::class, Workout::class, Exercise::class], version = 1)
+@Database(entities = [ExerciseInfo::class, Workout::class, Exercise::class, ExerciseHistory::class], version = 2)
 abstract class MainDatabase: RoomDatabase() {
     abstract fun workoutDao(): WorkoutDao
     abstract fun exerciseDao(): ExerciseDao
@@ -22,7 +23,6 @@ abstract class MainDatabase: RoomDatabase() {
             if (db == null) {
                 synchronized(MainDatabase::class.java) {
                     db = Room.databaseBuilder(context, MainDatabase::class.java, "app_db")
-                        .fallbackToDestructiveMigration() // TODO: удалить
                         .createFromAsset("db/app_db")
                         .build()
                 }

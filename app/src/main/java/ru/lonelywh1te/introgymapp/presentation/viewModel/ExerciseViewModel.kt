@@ -6,9 +6,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import ru.lonelywh1te.introgymapp.domain.model.Exercise
+import ru.lonelywh1te.introgymapp.domain.model.ExerciseHistory
 import ru.lonelywh1te.introgymapp.domain.model.ExerciseInfo
 import ru.lonelywh1te.introgymapp.domain.model.ExerciseWithInfo
+import ru.lonelywh1te.introgymapp.domain.usecase.exercise.AddExerciseHistoryUseCase
 import ru.lonelywh1te.introgymapp.domain.usecase.exercise.AddExerciseUseCase
+import ru.lonelywh1te.introgymapp.domain.usecase.exercise.DeleteExerciseHistoryUseCase
+import ru.lonelywh1te.introgymapp.domain.usecase.exercise.GetAllExerciseHistoryByIdUseCase
 import ru.lonelywh1te.introgymapp.domain.usecase.exercise.GetAllExerciseInfoByGroupUseCase
 import ru.lonelywh1te.introgymapp.domain.usecase.exercise.GetAllExercisesByWorkoutIdUseCase
 import ru.lonelywh1te.introgymapp.domain.usecase.exercise.GetAllExercisesWithInfoByWorkoutIdUseCase
@@ -16,13 +20,17 @@ import ru.lonelywh1te.introgymapp.domain.usecase.exercise.UpdateExerciseUseCase
 
 class ExerciseViewModel(
     private val addExerciseUseCase: AddExerciseUseCase,
+    private val addExerciseHistoryUseCase: AddExerciseHistoryUseCase,
     private val updateExerciseUseCase: UpdateExerciseUseCase,
+    private val deleteExerciseHistoryUseCase: DeleteExerciseHistoryUseCase,
     private val getAllExerciseInfoByGroupUseCase: GetAllExerciseInfoByGroupUseCase,
     private val getAllExercisesByWorkoutIdUseCase: GetAllExercisesByWorkoutIdUseCase,
-    private val getAllExercisesWithInfoByWorkoutIdUseCase: GetAllExercisesWithInfoByWorkoutIdUseCase
+    private val getAllExercisesWithInfoByWorkoutIdUseCase: GetAllExercisesWithInfoByWorkoutIdUseCase,
+    private val getAllExerciseHistoryByIdUseCase: GetAllExerciseHistoryByIdUseCase
 ): ViewModel() {
     val exerciseInfoList = MutableLiveData<List<ExerciseInfo>>()
     val exerciseWithInfoList = MutableLiveData<List<ExerciseWithInfo>>()
+    val exerciseHistoryList = MutableLiveData<List<ExerciseHistory>>()
 
     fun getAllExercisesWithInfoByWorkoutId(id: Int) {
         viewModelScope.launch {
@@ -57,5 +65,18 @@ class ExerciseViewModel(
 
     suspend fun getAllExercisesByWorkoutId(id: Int): List<Exercise> {
         return getAllExercisesByWorkoutIdUseCase.execute(id)
+    }
+
+    fun addExerciseHistory(exerciseHistory: ExerciseHistory, exerciseId: Int) {
+        viewModelScope.launch {
+            addExerciseHistoryUseCase.execute(exerciseHistory)
+            getAllExerciseHistoryById(exerciseId)
+        }
+    }
+
+    fun getAllExerciseHistoryById(id: Int) {
+        viewModelScope.launch {
+            exerciseHistoryList.postValue(getAllExerciseHistoryByIdUseCase.execute(id))
+        }
     }
 }

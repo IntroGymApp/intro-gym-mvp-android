@@ -20,6 +20,7 @@
             android:layout_height="match_parent">
 
             <TextView
+                android:id="@+id/tvExerciseHistoryCount"
                 android:layout_width="50dp"
                 android:layout_height="match_parent"
                 android:background="@color/background_block_color"
@@ -29,6 +30,7 @@
                 android:textColor="@color/primary_light_color"/>
 
             <TextView
+                android:id="@+id/tvExersiceHistoryInfo"
                 android:layout_width="50dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
