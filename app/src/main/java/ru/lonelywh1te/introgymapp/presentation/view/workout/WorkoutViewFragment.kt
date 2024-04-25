@@ -18,8 +18,10 @@ import androidx.recyclerview.widget.RecyclerView
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 import ru.lonelywh1te.introgymapp.R
 import ru.lonelywh1te.introgymapp.databinding.FragmentWorkoutViewBinding
+import ru.lonelywh1te.introgymapp.domain.model.ExerciseWithInfo
 import ru.lonelywh1te.introgymapp.domain.model.Workout
 import ru.lonelywh1te.introgymapp.presentation.view.adapter.ExerciseAdapter
+import ru.lonelywh1te.introgymapp.presentation.view.adapter.OnExerciseItemClick
 import ru.lonelywh1te.introgymapp.presentation.viewModel.ExerciseViewModel
 import ru.lonelywh1te.introgymapp.presentation.viewModel.WorkoutViewModel
 
@@ -43,7 +45,12 @@ class WorkoutViewFragment : Fragment(), MenuProvider {
         requireActivity().addMenuProvider(this, viewLifecycleOwner)
         binding = FragmentWorkoutViewBinding.inflate(inflater, container, false)
 
-        val adapter = ExerciseAdapter(null)
+        val adapter = ExerciseAdapter(if (!args.executionMode) null else object: OnExerciseItemClick {
+            override fun onClick(item: ExerciseWithInfo, itemIndex: Int) {
+                val action = WorkoutViewFragmentDirections.toExerciseExecuteFragment(item)
+                findNavController().navigate(action)
+            }
+        })
 
         recycler = binding.rvWorkoutExercises
         recycler.apply {

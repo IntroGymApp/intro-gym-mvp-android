@@ -144,5 +144,17 @@
             android:name="executionMode"
             app:argType="boolean"
             android:defaultValue="false" />
+        <action
+            android:id="@+id/toExerciseExecuteFragment"
+            app:destination="@id/exerciseExecuteFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/exerciseExecuteFragment"
+        android:name="ru.lonelywh1te.introgymapp.presentation.view.ExerciseExecuteFragment"
+        android:label="fragment_exercise_execute"
+        tools:layout="@layout/fragment_exercise_execute" >
+        <argument
+            android:name="exerciseWithInfo"
+            app:argType="ru.lonelywh1te.introgymapp.domain.model.ExerciseWithInfo" />
     </fragment>
 </navigation>
