@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import ru.lonelywh1te.introgymapp.databinding.FragmentGuideBinding
 import ru.lonelywh1te.introgymapp.domain.AssetsPath
 
@@ -29,7 +30,8 @@ class GuideFragment : Fragment() {
     private fun setGuideImages() {
         Glide.with(requireContext())
             .load("${AssetsPath.ASSETS}/guides_img/workout_guide_img.png")
-            .diskCacheStrategy(DiskCacheStrategy.ALL)
+            .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+            .transition(DrawableTransitionOptions.withCrossFade())
             .into(binding.ivExerciseGuide)
     }
 }

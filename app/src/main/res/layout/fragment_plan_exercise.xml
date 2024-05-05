@@ -18,10 +18,11 @@
 
         <TableRow>
             <androidx.cardview.widget.CardView
-                android:layout_width="180dp"
+                android:layout_width="wrap_content"
                 android:layout_height="85dp"
                 android:layout_marginEnd="5dp"
                 android:layout_marginBottom="5dp"
+                android:layout_weight="1"
                 app:cardCornerRadius="10dp">
 
                 <LinearLayout
@@ -47,7 +48,8 @@
                             android:layout_height="40dp"
                             android:hint="0"
                             android:textSize="15dp"
-                            android:inputType="number"/>
+                            android:inputType="number"
+                            android:maxLength="2"/>
                     </LinearLayout>
 
                     <ImageView
@@ -60,9 +62,10 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:layout_width="180dp"
+                android:layout_width="wrap_content"
                 android:layout_height="85dp"
                 android:layout_marginStart="5dp"
+                android:layout_weight="1"
                 app:cardCornerRadius="10dp">
 
                 <LinearLayout
@@ -88,7 +91,8 @@
                             android:layout_height="40dp"
                             android:hint="0"
                             android:textSize="15dp"
-                            android:inputType="number"/>
+                            android:inputType="number"
+                            android:maxLength="2"/>
                     </LinearLayout>
 
                     <ImageView
@@ -104,7 +108,7 @@
         <TableRow>
 
             <androidx.cardview.widget.CardView
-                android:layout_width="180dp"
+                android:layout_width="wrap_content"
                 android:layout_height="85dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="5dp"
@@ -133,7 +137,8 @@
                             android:layout_height="40dp"
                             android:hint="0"
                             android:textSize="15dp"
-                            android:inputType="number"/>
+                            android:inputType="numberDecimal"
+                            android:maxLength="6"/>
                     </LinearLayout>
 
                     <ImageView

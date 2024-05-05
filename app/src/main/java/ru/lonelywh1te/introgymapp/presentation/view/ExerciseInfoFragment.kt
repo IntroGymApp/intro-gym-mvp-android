@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import ru.lonelywh1te.introgymapp.databinding.FragmentExerciseInfoBinding
 import ru.lonelywh1te.introgymapp.domain.AssetsPath
 import ru.lonelywh1te.introgymapp.domain.model.ExerciseInfo
@@ -35,7 +36,8 @@ class ExerciseInfoFragment : Fragment() {
 
         Glide.with(binding.root)
             .load((Uri.parse("${AssetsPath.EXERCISE_INFO_IMG}/${exerciseInfo.img}")))
-            .diskCacheStrategy(DiskCacheStrategy.ALL)
+            .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+            .transition(DrawableTransitionOptions.withCrossFade())
             .into(binding.ivExerciseInfoImage)
     }
 }

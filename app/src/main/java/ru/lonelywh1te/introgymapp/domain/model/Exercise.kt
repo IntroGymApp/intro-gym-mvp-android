@@ -32,7 +32,7 @@ data class Exercise(
     @ColumnInfo("reps")
     val reps: Int = 0,
     @ColumnInfo("weight")
-    val weight: Int = 0,
+    val weight: Float = 0f,
     @ColumnInfo("note")
     val note: String? = null,
 

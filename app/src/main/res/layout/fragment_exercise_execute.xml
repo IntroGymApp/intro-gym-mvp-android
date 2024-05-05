@@ -236,8 +236,8 @@
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:hint="Повторений"
-
-
+                        android:inputType="number"
+                        android:maxLength="3"
                         android:layout_weight="1"
                         android:textSize="14dp"/>
 
@@ -246,6 +246,8 @@
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:hint="Вес"
+                        android:inputType="numberDecimal"
+                        android:maxLength="6"
                         android:layout_weight="1"
                         android:textSize="14dp"/>
 

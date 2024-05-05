@@ -6,6 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import ru.lonelywh1te.introgymapp.data.dao.ExerciseDao
 import ru.lonelywh1te.introgymapp.data.dao.WorkoutDao
+import ru.lonelywh1te.introgymapp.domain.AssetsPath
 import ru.lonelywh1te.introgymapp.domain.model.Exercise
 import ru.lonelywh1te.introgymapp.domain.model.ExerciseGroup
 import ru.lonelywh1te.introgymapp.domain.model.ExerciseHistory
@@ -24,7 +25,7 @@ abstract class MainDatabase: RoomDatabase() {
             if (db == null) {
                 synchronized(MainDatabase::class.java) {
                     db = Room.databaseBuilder(context, MainDatabase::class.java, "app_db")
-                        .createFromAsset("db/app_db")
+                        .createFromAsset("${AssetsPath.DATABASE}/app_db")
                         .build()
                 }
             }

@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import ru.lonelywh1te.introgymapp.R
 import ru.lonelywh1te.introgymapp.databinding.ExerciseInfoItemBinding
 import ru.lonelywh1te.introgymapp.domain.AssetsPath
@@ -87,7 +88,8 @@ class ExerciseInfoViewHolder(private val binding: ExerciseInfoItemBinding): Recy
 
         Glide.with(binding.root)
             .load((Uri.parse("${AssetsPath.PREVIEW_EXERCISE_INFO_IMG}/${item.img}")))
-            .diskCacheStrategy(DiskCacheStrategy.ALL)
+            .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+            .transition(DrawableTransitionOptions.withCrossFade())
             .into(binding.ivExerciseInfoPreviewImage)
     }
 }

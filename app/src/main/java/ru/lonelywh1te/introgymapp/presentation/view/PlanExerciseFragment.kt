@@ -27,9 +27,9 @@ class PlanExerciseFragment : Fragment() {
         setExerciseData(exerciseWithInfo)
 
         binding.btnSaveExercise.setOnClickListener {
-            val sets = binding.etSets.text.toString().toInt()
-            val reps = binding.etReps.text.toString().toInt()
-            val weight = binding.etWeight.text.toString().toInt()
+            val sets = if (binding.etSets.text.toString().isNotEmpty()) binding.etSets.text.toString().toInt() else 0
+            val reps = if (binding.etReps.text.toString().isNotEmpty()) binding.etReps.text.toString().toInt() else 0
+            val weight = if (binding.etWeight.text.toString().isNotEmpty()) binding.etWeight.text.toString().toFloat() else 0f
             val note = binding.etNote.text.toString()
 
             val exercise = exerciseWithInfo.exercise.copy(sets = sets, reps = reps, weight = weight, note = note)

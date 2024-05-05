@@ -107,6 +107,11 @@ class CreateEditWorkoutFragment : Fragment() {
     }
 
     private fun updateWorkout() {
+        if (binding.etWorkoutName.text.toString().isEmpty()) {
+            binding.etWorkoutName.error = "Введите название"
+            return
+        }
+
         val updatedWorkout = workout!!.copy(name = binding.etWorkoutName.text.toString(), description = binding.etWorkoutDescription.text.toString(), exerciseCount = exerciseList.size)
         val exercises = exerciseList.map { it.exercise }
 
@@ -118,6 +123,11 @@ class CreateEditWorkoutFragment : Fragment() {
     }
 
     private fun createWorkout() {
+        if (binding.etWorkoutName.text.toString().isEmpty()) {
+            binding.etWorkoutName.error = "Введите название"
+            return
+        }
+
         val workout = Workout(binding.etWorkoutName.text.toString(), binding.etWorkoutDescription.text.toString(), exerciseCount = exerciseList.size)
         val exercises = exerciseList.map { it.exercise }
 

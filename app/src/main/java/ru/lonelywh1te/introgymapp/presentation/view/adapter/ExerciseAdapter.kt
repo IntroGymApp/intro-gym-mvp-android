@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import ru.lonelywh1te.introgymapp.databinding.ExerciseItemBinding
 import ru.lonelywh1te.introgymapp.domain.AssetsPath
 import ru.lonelywh1te.introgymapp.domain.model.ExerciseHistory
@@ -72,7 +73,7 @@ class ExerciseViewHolder(private val binding: ExerciseItemBinding): RecyclerView
     fun bind(item: ExerciseWithInfo) {
         binding.tvExerciseInfoName.text = item.exerciseInfo.name
 
-        if (item.exercise.sets + item.exercise.reps + item.exercise.weight == 0) {
+        if (item.exercise.sets + item.exercise.reps + item.exercise.weight == 0f) {
             binding.tvExercisePlan.visibility = View.GONE
         } else {
             binding.tvExercisePlan.text = "${item.exercise.sets}x${item.exercise.reps}x${item.exercise.weight}кг"
@@ -81,7 +82,8 @@ class ExerciseViewHolder(private val binding: ExerciseItemBinding): RecyclerView
 
         Glide.with(binding.root)
             .load((Uri.parse("${AssetsPath.PREVIEW_EXERCISE_INFO_IMG}/${item.exerciseInfo.img}")))
-            .diskCacheStrategy(DiskCacheStrategy.ALL)
+            .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+            .transition(DrawableTransitionOptions.withCrossFade())
             .into(binding.ivExerciseInfoPreviewImage)
     }
 }

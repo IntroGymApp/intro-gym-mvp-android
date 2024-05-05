@@ -7,10 +7,10 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import ru.lonelywh1te.introgymapp.databinding.ExerciseGroupItemBinding
 import ru.lonelywh1te.introgymapp.domain.AssetsPath
 import ru.lonelywh1te.introgymapp.domain.model.ExerciseGroup
-import ru.lonelywh1te.introgymapp.presentation.viewModel.ExerciseViewModel
 
 interface OnExerciseGroupItemClick {
     fun onClick(item: ExerciseGroup)
@@ -72,7 +72,8 @@ class ExerciseGroupViewHolder(private val binding: ExerciseGroupItemBinding): Re
 
         Glide.with(binding.root)
             .load((Uri.parse("${AssetsPath.EXERCISE_GROUP_IMG}/${item.img}")))
-            .diskCacheStrategy(DiskCacheStrategy.ALL)
+            .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+            .transition(DrawableTransitionOptions.withCrossFade())
             .into(binding.ivGroupImage)
     }
 }
