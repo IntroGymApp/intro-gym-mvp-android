@@ -3,14 +3,15 @@ package ru.lonelywh1te.introgymapp.domain.model
 import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
 @Entity(tableName = "exercise_info")
 data class ExerciseInfo (
-    @ColumnInfo("group")
-    val group: String,
+    @ColumnInfo("group_id")
+    val groupId: String,
     @ColumnInfo("img")
     val img: String,
     @ColumnInfo("name")

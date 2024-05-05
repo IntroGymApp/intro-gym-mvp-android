@@ -7,11 +7,12 @@ import androidx.room.RoomDatabase
 import ru.lonelywh1te.introgymapp.data.dao.ExerciseDao
 import ru.lonelywh1te.introgymapp.data.dao.WorkoutDao
 import ru.lonelywh1te.introgymapp.domain.model.Exercise
+import ru.lonelywh1te.introgymapp.domain.model.ExerciseGroup
 import ru.lonelywh1te.introgymapp.domain.model.ExerciseHistory
 import ru.lonelywh1te.introgymapp.domain.model.ExerciseInfo
 import ru.lonelywh1te.introgymapp.domain.model.Workout
 
-@Database(entities = [ExerciseInfo::class, Workout::class, Exercise::class, ExerciseHistory::class], version = 2)
+@Database(entities = [ExerciseInfo::class, Workout::class, Exercise::class, ExerciseHistory::class, ExerciseGroup::class], version = 3)
 abstract class MainDatabase: RoomDatabase() {
     abstract fun workoutDao(): WorkoutDao
     abstract fun exerciseDao(): ExerciseDao

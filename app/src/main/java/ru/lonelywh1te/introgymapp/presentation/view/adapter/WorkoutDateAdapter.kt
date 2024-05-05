@@ -39,5 +39,6 @@ class WorkoutDateViewHolder(private val binding: WorkoutDateItemBinding): Recycl
     fun bind(item: Workout) {
         binding.tvWorkoutName.text = item.name
         binding.tvWorkoutDescription.text = item.description
+        binding.tvExerciseCount.text = "Упражнений: ${item.exerciseCount}"
     }
 }

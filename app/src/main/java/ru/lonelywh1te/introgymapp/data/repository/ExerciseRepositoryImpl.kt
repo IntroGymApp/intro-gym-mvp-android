@@ -2,6 +2,7 @@ package ru.lonelywh1te.introgymapp.data.repository
 
 import ru.lonelywh1te.introgymapp.data.dao.ExerciseDao
 import ru.lonelywh1te.introgymapp.domain.model.Exercise
+import ru.lonelywh1te.introgymapp.domain.model.ExerciseGroup
 import ru.lonelywh1te.introgymapp.domain.model.ExerciseHistory
 import ru.lonelywh1te.introgymapp.domain.model.ExerciseInfo
 import ru.lonelywh1te.introgymapp.domain.model.ExerciseWithInfo
@@ -38,5 +39,9 @@ class ExerciseRepositoryImpl(private val exerciseDao: ExerciseDao): ExerciseRepo
 
     override suspend fun getAllExerciseHistoryByExerciseId(id: Int): List<ExerciseHistory> {
         return exerciseDao.getAllExerciseHistoryById(id)
+    }
+
+    override suspend fun getAllExerciseGroup(): List<ExerciseGroup> {
+        return exerciseDao.getAllExerciseGroup()
     }
 }

@@ -107,7 +107,7 @@ class CreateEditWorkoutFragment : Fragment() {
     }
 
     private fun updateWorkout() {
-        val updatedWorkout = workout!!.copy(name = binding.etWorkoutName.text.toString(), description = binding.etWorkoutDescription.text.toString())
+        val updatedWorkout = workout!!.copy(name = binding.etWorkoutName.text.toString(), description = binding.etWorkoutDescription.text.toString(), exerciseCount = exerciseList.size)
         val exercises = exerciseList.map { it.exercise }
 
         lifecycleScope.launch {
@@ -118,7 +118,7 @@ class CreateEditWorkoutFragment : Fragment() {
     }
 
     private fun createWorkout() {
-        val workout = Workout(binding.etWorkoutName.text.toString(), binding.etWorkoutDescription.text.toString())
+        val workout = Workout(binding.etWorkoutName.text.toString(), binding.etWorkoutDescription.text.toString(), exerciseCount = exerciseList.size)
         val exercises = exerciseList.map { it.exercise }
 
         lifecycleScope.launch {

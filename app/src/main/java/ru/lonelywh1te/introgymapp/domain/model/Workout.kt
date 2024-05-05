@@ -13,6 +13,8 @@ data class Workout (
     val name: String? = null,
     @ColumnInfo("description")
     val description: String? = null,
+    @ColumnInfo("exercise_count")
+    val exerciseCount: Int,
     @ColumnInfo("date")
     val date: Long? = null,
 

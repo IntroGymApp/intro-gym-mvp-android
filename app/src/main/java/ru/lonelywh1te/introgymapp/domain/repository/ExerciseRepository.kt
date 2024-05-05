@@ -1,6 +1,7 @@
 package ru.lonelywh1te.introgymapp.domain.repository
 
 import ru.lonelywh1te.introgymapp.domain.model.Exercise
+import ru.lonelywh1te.introgymapp.domain.model.ExerciseGroup
 import ru.lonelywh1te.introgymapp.domain.model.ExerciseHistory
 import ru.lonelywh1te.introgymapp.domain.model.ExerciseInfo
 import ru.lonelywh1te.introgymapp.domain.model.ExerciseWithInfo
@@ -14,4 +15,5 @@ interface ExerciseRepository {
     suspend fun getAllExercisesWithInfoByWorkoutId(id: Int): List<ExerciseWithInfo>
     suspend fun getAllExercisesByWorkoutId(id: Int): List<Exercise>
     suspend fun getAllExerciseHistoryByExerciseId(id: Int): List<ExerciseHistory>
+    suspend fun getAllExerciseGroup(): List<ExerciseGroup>
 }

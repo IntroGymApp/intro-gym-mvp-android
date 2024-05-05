@@ -42,5 +42,6 @@ class WorkoutAdapter(private val onWorkoutItemClick: OnWorkoutItemClick): Recycl
 class WorkoutViewHolder(private val binding: WorkoutItemBinding): RecyclerView.ViewHolder(binding.root) {
     fun bind(item: Workout) {
         binding.tvWorkoutName.text = item.name
+        binding.tvExerciseCount.text = "Упражнения: ${item.exerciseCount}"
     }
 }

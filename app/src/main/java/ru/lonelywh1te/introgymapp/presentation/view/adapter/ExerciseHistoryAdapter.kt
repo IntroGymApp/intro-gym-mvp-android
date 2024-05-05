@@ -23,13 +23,13 @@ class ExerciseHistoryAdapter: RecyclerView.Adapter<ExerciseHistoryViewHolder>() 
     override fun onBindViewHolder(holder: ExerciseHistoryViewHolder, position: Int) {
         val item = exerciseHistory[position]
 
-        holder.bind(item)
+        holder.bind(item, itemCount)
     }
 }
 
 class ExerciseHistoryViewHolder(private val binding: ExerciseHistoryItemBinding): RecyclerView.ViewHolder(binding.root) {
-    fun bind(item: ExerciseHistory) {
-        binding.tvExerciseHistoryCount.text = "#" + (absoluteAdapterPosition + 1).toString()
+    fun bind(item: ExerciseHistory, itemCount: Int) {
+        binding.tvExerciseHistoryCount.text = "#" + (itemCount - absoluteAdapterPosition).toString()
         binding.tvExersiceHistoryInfo.text = "Повторений: ${item.reps} x ${item.weight}кг"
     }
 }

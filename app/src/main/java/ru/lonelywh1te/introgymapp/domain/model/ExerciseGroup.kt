@@ -1,58 +1,20 @@
 package ru.lonelywh1te.introgymapp.domain.model
 
-import ru.lonelywh1te.introgymapp.domain.AssetsPath
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
+@Entity("exercise_group")
 data class ExerciseGroup (
+    @ColumnInfo("name")
     val name: String,
-    val groupId: String,
+    @ColumnInfo("text_id")
+    val textId: String,
+    @ColumnInfo("img")
     val img: String,
-    val count: Int = 0,
-){
-    companion object {
-        private val assetsFolder = AssetsPath.EXERCISE_GROUP_IMG
+    @ColumnInfo("exercise_count")
+    var count: Int = 0,
 
-        val list = listOf(
-            ExerciseGroup (
-                "Грудь",
-                "chest",
-                "$assetsFolder/chest.png",
-                2
-            ),
-            ExerciseGroup (
-                "Ноги",
-                "legs",
-                "$assetsFolder/legs.png",
-            ),
-            ExerciseGroup (
-                "Плечи",
-                "shoulders",
-                "$assetsFolder/shoulders.png",
-            ),
-            ExerciseGroup (
-                "Предплечье",
-                "forearm",
-                "$assetsFolder/forearm.png",
-            ),
-            ExerciseGroup (
-                "Пресс",
-                "press",
-                "$assetsFolder/press.png",
-            ),
-            ExerciseGroup (
-                "Руки Бицепс",
-                "biceps",
-                "$assetsFolder/biceps.png",
-            ),
-            ExerciseGroup (
-                "Руки Трицепс",
-                "triceps",
-                "$assetsFolder/triceps.png",
-            ),
-            ExerciseGroup (
-                "Спина",
-                "back",
-                "$assetsFolder/back.png",
-            ),
-        )
-    }
-}
+    @PrimaryKey(autoGenerate = true)
+    val id: Int = 0,
+)
