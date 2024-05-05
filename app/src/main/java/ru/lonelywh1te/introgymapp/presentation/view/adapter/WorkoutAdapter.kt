@@ -2,10 +2,12 @@ package ru.lonelywh1te.introgymapp.presentation.view.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import ru.lonelywh1te.introgymapp.databinding.ExerciseItemBinding
 import ru.lonelywh1te.introgymapp.databinding.WorkoutDateItemBinding
 import ru.lonelywh1te.introgymapp.databinding.WorkoutItemBinding
+import ru.lonelywh1te.introgymapp.domain.model.ExerciseInfo
 import ru.lonelywh1te.introgymapp.domain.model.Workout
 
 interface OnWorkoutItemClick {
@@ -14,9 +16,13 @@ interface OnWorkoutItemClick {
 
 class WorkoutAdapter(private val onWorkoutItemClick: OnWorkoutItemClick): RecyclerView.Adapter<WorkoutViewHolder>() {
     var workoutList = listOf<Workout>()
-        set(value) {
-            field = value
-            notifyDataSetChanged()
+        set(newList) {
+            val diffCallback = WorkoutCallback(workoutList, newList)
+            val diffWorkout = DiffUtil.calculateDiff(diffCallback)
+
+            field = newList
+
+            diffWorkout.dispatchUpdatesTo(this)
         }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WorkoutViewHolder {
@@ -43,5 +49,28 @@ class WorkoutViewHolder(private val binding: WorkoutItemBinding): RecyclerView.V
     fun bind(item: Workout) {
         binding.tvWorkoutName.text = item.name
         binding.tvExerciseCount.text = "Упражнения: ${item.exerciseCount}"
+    }
+}
+
+class WorkoutCallback(private val oldList: List<Workout>, private val newList: List<Workout>): DiffUtil.Callback(){
+    override fun getOldListSize(): Int = oldList.size
+    override fun getNewListSize(): Int = newList.size
+
+    override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+        val oldItem = oldList[oldItemPosition]
+        val newItem = newList[newItemPosition]
+
+        return oldItem.id == newItem.id
+    }
+
+    override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+        val oldItem = oldList[oldItemPosition]
+        val newItem = newList[newItemPosition]
+
+        return oldItem.id == newItem.id &&
+                oldItem.name == newItem.name &&
+                oldItem.description == newItem.description &&
+                oldItem.date == newItem.date &&
+                oldItem.exerciseCount == newItem.exerciseCount
     }
 }

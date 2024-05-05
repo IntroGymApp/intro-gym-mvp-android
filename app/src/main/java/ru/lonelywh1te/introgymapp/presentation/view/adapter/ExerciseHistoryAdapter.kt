@@ -2,15 +2,20 @@ package ru.lonelywh1te.introgymapp.presentation.view.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import ru.lonelywh1te.introgymapp.databinding.ExerciseHistoryItemBinding
 import ru.lonelywh1te.introgymapp.domain.model.ExerciseHistory
 
 class ExerciseHistoryAdapter: RecyclerView.Adapter<ExerciseHistoryViewHolder>() {
     var exerciseHistory = mutableListOf<ExerciseHistory>()
-        set(value) {
-            field = value
-            notifyDataSetChanged()
+        set(newList) {
+            val diffCallback = ExerciseHistoryCallback(exerciseHistory, newList)
+            val diffExerciseHistory = DiffUtil.calculateDiff(diffCallback)
+
+            field = newList
+
+            diffExerciseHistory.dispatchUpdatesTo(this)
         }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExerciseHistoryViewHolder {
@@ -24,6 +29,25 @@ class ExerciseHistoryAdapter: RecyclerView.Adapter<ExerciseHistoryViewHolder>() 
         val item = exerciseHistory[position]
 
         holder.bind(item, itemCount)
+    }
+
+    class ExerciseHistoryCallback(private val oldList: List<ExerciseHistory>, private val newList: List<ExerciseHistory>): DiffUtil.Callback(){
+        override fun getOldListSize(): Int = oldList.size
+        override fun getNewListSize(): Int = newList.size
+
+        override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+            val oldItem = oldList[oldItemPosition]
+            val newItem = newList[newItemPosition]
+
+            return oldItem.id == newItem.id
+        }
+
+        override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+            val oldItem = oldList[oldItemPosition]
+            val newItem = newList[newItemPosition]
+
+            return oldItem.id == newItem.id && oldItem.reps == newItem.reps && oldItem.exerciseId == newItem.exerciseId && oldItem.weight == newItem.weight && oldItem.date == newItem.date
+        }
     }
 }
 

@@ -4,11 +4,13 @@ import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import ru.lonelywh1te.introgymapp.databinding.ExerciseItemBinding
 import ru.lonelywh1te.introgymapp.domain.AssetsPath
+import ru.lonelywh1te.introgymapp.domain.model.ExerciseHistory
 import ru.lonelywh1te.introgymapp.domain.model.ExerciseWithInfo
 
 interface OnExerciseItemClick {
@@ -17,9 +19,13 @@ interface OnExerciseItemClick {
 
 class ExerciseAdapter(private val onExerciseItemClick: OnExerciseItemClick?): RecyclerView.Adapter<ExerciseViewHolder>() {
     var exerciseList = listOf<ExerciseWithInfo>()
-        set(value) {
-            field = value
-            notifyDataSetChanged()
+        set(newList) {
+            val diffCallback = ExerciseCallback(exerciseList, newList)
+            val diffExercise = DiffUtil.calculateDiff(diffCallback)
+
+            field = newList
+
+            diffExercise.dispatchUpdatesTo(this)
         }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExerciseViewHolder {
@@ -42,6 +48,24 @@ class ExerciseAdapter(private val onExerciseItemClick: OnExerciseItemClick?): Re
         holder.bind(item)
     }
 
+    class ExerciseCallback(private val oldList: List<ExerciseWithInfo>, private val newList: List<ExerciseWithInfo>): DiffUtil.Callback(){
+        override fun getOldListSize(): Int = oldList.size
+        override fun getNewListSize(): Int = newList.size
+
+        override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+            val oldItem = oldList[oldItemPosition]
+            val newItem = newList[newItemPosition]
+
+            return oldItem.exercise.id == newItem.exercise.id
+        }
+
+        override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+            val oldItem = oldList[oldItemPosition]
+            val newItem = newList[newItemPosition]
+
+            return oldItem.exercise == newItem.exercise && oldItem.exerciseInfo == newItem.exerciseInfo
+        }
+    }
 }
 
 class ExerciseViewHolder(private val binding: ExerciseItemBinding): RecyclerView.ViewHolder(binding.root) {

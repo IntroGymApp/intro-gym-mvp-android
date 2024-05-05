@@ -4,6 +4,7 @@ import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -11,6 +12,7 @@ import ru.lonelywh1te.introgymapp.R
 import ru.lonelywh1te.introgymapp.databinding.ExerciseInfoItemBinding
 import ru.lonelywh1te.introgymapp.domain.AssetsPath
 import ru.lonelywh1te.introgymapp.domain.model.ExerciseInfo
+import ru.lonelywh1te.introgymapp.domain.model.ExerciseWithInfo
 
 interface OnExerciseInfoItemClick {
     fun onClick(item: ExerciseInfo)
@@ -18,9 +20,13 @@ interface OnExerciseInfoItemClick {
 
 class ExerciseInfoAdapter(private val onExerciseInfoItemClick: OnExerciseInfoItemClick, private val pickMode: Boolean): RecyclerView.Adapter<ExerciseInfoViewHolder>() {
     var exerciseInfoList = listOf<ExerciseInfo>()
-        set(value) {
-            field = value
-            notifyDataSetChanged()
+        set(newList) {
+            val diffCallback = ExerciseInfoCallback(exerciseInfoList, newList)
+            val diffExerciseInfo = DiffUtil.calculateDiff(diffCallback)
+
+            field = newList
+
+            diffExerciseInfo.dispatchUpdatesTo(this)
         }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExerciseInfoViewHolder {
@@ -40,6 +46,32 @@ class ExerciseInfoAdapter(private val onExerciseInfoItemClick: OnExerciseInfoIte
         }
 
         holder.bind(item, pickMode)
+    }
+
+    class ExerciseInfoCallback(private val oldList: List<ExerciseInfo>, private val newList: List<ExerciseInfo>): DiffUtil.Callback(){
+        override fun getOldListSize(): Int = oldList.size
+        override fun getNewListSize(): Int = newList.size
+
+        override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+            val oldItem = oldList[oldItemPosition]
+            val newItem = newList[newItemPosition]
+
+            return oldItem.id == newItem.id
+        }
+
+        override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+            val oldItem = oldList[oldItemPosition]
+            val newItem = newList[newItemPosition]
+
+            return oldItem.id == newItem.id &&
+                    oldItem.img == newItem.img &&
+                    oldItem.name == newItem.name &&
+                    oldItem.description == newItem.description &&
+                    oldItem.advices == newItem.description &&
+                    oldItem.execution == newItem.description &&
+                    oldItem.preparation == newItem.preparation &&
+                    oldItem.groupId == newItem.groupId
+        }
     }
 }
 

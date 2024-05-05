@@ -1,19 +1,21 @@
 package ru.lonelywh1te.introgymapp.presentation.view.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import ru.lonelywh1te.introgymapp.databinding.WorkoutDateItemBinding
-import ru.lonelywh1te.introgymapp.databinding.WorkoutItemBinding
 import ru.lonelywh1te.introgymapp.domain.model.Workout
 
 class WorkoutDateAdapter(private val onWorkoutItemClick: OnWorkoutItemClick): RecyclerView.Adapter<WorkoutDateViewHolder>() {
     var workoutList = listOf<Workout>()
-        set(value) {
-            field = value
-            notifyDataSetChanged()
+        set(newList) {
+            val diffCallback = WorkoutCallback(workoutList, newList)
+            val diffWorkout = DiffUtil.calculateDiff(diffCallback)
+
+            field = newList
+
+            diffWorkout.dispatchUpdatesTo(this)
         }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WorkoutDateViewHolder {
