@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- TEXT STYLES -->
+
+    <style name="TextSmallLightStyle" parent="Widget.AppCompat.TextView">
+        <item name="android:fontFamily">@font/sf_pro_display_light</item>
+        <item name="android:textSize">11sp</item>
+        <item name="android:textColor">?attr/ig_defaultTextColor</item>
+    </style>
+
+    <style name="TextSmallRegularStyle" parent="Widget.AppCompat.TextView">
+        <item name="android:fontFamily">@font/sf_pro_display_regular</item>
+        <item name="android:textSize">11sp</item>
+        <item name="android:textColor">?attr/ig_defaultTextColor</item>
+    </style>
+
+    <style name="TextMediumRegularStyle" parent="Widget.AppCompat.TextView">
+        <item name="android:fontFamily">@font/sf_pro_display_regular</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">?attr/ig_defaultTextColor</item>
+    </style>
+
+    <style name="TextMediumSemiboldStyle" parent="Widget.AppCompat.TextView">
+        <item name="android:fontFamily">@font/sf_pro_display_semibold</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">?attr/ig_defaultTextColor</item>
+    </style>
+
+    <style name="TextLargeSemiboldStyle" parent="Widget.AppCompat.TextView">
+        <item name="android:fontFamily">@font/sf_pro_display_semibold</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">?attr/ig_defaultTextColor</item>
+    </style>
+
+    <style name="TextHeader3SemiboldStyle" parent="Widget.AppCompat.TextView">
+        <item name="android:fontFamily">@font/sf_pro_display_semibold</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">?attr/ig_defaultTextColor</item>
+    </style>
+
+    <style name="TextHeader2SemiboldStyle" parent="Widget.AppCompat.TextView">
+        <item name="android:fontFamily">@font/sf_pro_display_semibold</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">?attr/ig_defaultTextColor</item>
+    </style>
+
+    <style name="TextHeader1BoldStyle" parent="Widget.AppCompat.TextView">
+        <item name="android:fontFamily">@font/sf_pro_display_bold</item>
+        <item name="android:textSize">32sp</item>
+        <item name="android:textColor">?attr/ig_defaultTextColor</item>
+    </style>
+
+    <!-- CARD STYLES -->
+
+    <style name="DefaultCardStyle" parent="Base.CardView">
+        <item name="cardElevation">0dp</item>
+        <item name="cardBackgroundColor">?attr/ig_cardBackgroundColor</item>
+        <item name="cardCornerRadius">10dp</item>
+    </style>
+
+    <style name="DayCardStyle" parent="DefaultCardStyle">
+        <item name="cardBackgroundColor">?attr/ig_primaryLightColor</item>
+        <item name="cardCornerRadius">5dp</item>
+    </style>
+
+    <!-- BUTTON STYLES -->
+
+    <style name="DefaultButtonStyle" parent="Widget.MaterialComponents.Button">
+        <item name="cornerRadius">10dp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">?attr/ig_backgroundColor</item>
+        <item name="android:textAppearance">@style/TextLargeSemiboldStyle</item>
+        <item name="android:backgroundTint">?attr/ig_primaryColor</item>
+    </style>
+
+    <style name="SecondaryButtonStyle" parent="DefaultButtonStyle">
+        <item name="strokeWidth">2dp</item>
+        <item name="strokeColor">?attr/ig_primaryColor</item>
+        <item name="android:textColor">?attr/ig_primaryColor</item>
+        <item name="android:backgroundTint">?attr/ig_backgroundColor</item>
+    </style>
+
+    <!-- INPUT FIELD STYLES -->
+
+    <style name="NumberEditTextStyle" parent="Widget.AppCompat.EditText">
+        <item name="android:inputType">number</item>
+        <item name="android:maxLength">6</item>
+        <item name="android:background">@drawable/shape_edit_text_background</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColorHint">?attr/ig_defaultTextColor</item>
+        <item name="android:textAppearance">@style/TextMediumSemiboldStyle</item>
+    </style>
+
+    <!-- BOTTOM NAV STYLE -->
+
+    <style name="BottomNavigationStyle" parent="Widget.Design.BottomNavigationView">
+        <item name="itemTextAppearanceActive">@style/TextSmallRegularStyle</item>
+        <item name="backgroundTint">?attr/ig_cardBackgroundColor</item>
+        <item name="itemIconTint">@color/selector_bottom_nav_bar</item>
+        <item name="itemTextColor">?attr/ig_primaryColor</item>
+        <item name="itemIconSize">16dp</item>
+        <item name="itemPaddingBottom">12dp</item>
+        <item name="itemPaddingTop">12dp</item>
+    </style>
+</resources>

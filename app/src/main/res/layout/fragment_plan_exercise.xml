@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".presentation.view.PlanExerciseFragment"
+    android:background="?attr/ig_backgroundColor"
     android:padding="20dp">
 
     <TableLayout
@@ -19,11 +20,11 @@
         <TableRow>
             <androidx.cardview.widget.CardView
                 android:layout_width="wrap_content"
+                style="@style/DefaultCardStyle"
                 android:layout_height="85dp"
                 android:layout_marginEnd="5dp"
                 android:layout_marginBottom="5dp"
-                android:layout_weight="1"
-                app:cardCornerRadius="10dp">
+                android:layout_weight="1">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -34,29 +35,35 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:orientation="vertical"
-                        android:padding="15dp">
+                        android:gravity="center_vertical"
+                        android:padding="10dp">
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textColor="@color/primary_color"
+                            android:textAppearance="@style/TextMediumRegularStyle"
+                            android:textColor="?attr/ig_primaryColor"
                             android:text="Подходы" />
 
                         <EditText
                             android:id="@+id/etSets"
                             android:layout_width="match_parent"
-                            android:layout_height="40dp"
+                            android:layout_height="30dp"
                             android:hint="0"
-                            android:textSize="15dp"
-                            android:inputType="number"
-                            android:maxLength="2"/>
+                            style="@style/NumberEditTextStyle"
+                            android:layout_marginTop="5dp"
+                            android:gravity="start|center_vertical"
+                            android:paddingStart="10dp"
+                            android:paddingEnd="10dp"
+                            android:backgroundTint="?attr/ig_backgroundColor"/>
                     </LinearLayout>
 
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="15dp"
-                        android:src="@drawable/ic_list_check" />
+                        android:src="@drawable/ic_list_check"
+                        app:tint="?attr/ig_primaryColor" />
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -66,7 +73,7 @@
                 android:layout_height="85dp"
                 android:layout_marginStart="5dp"
                 android:layout_weight="1"
-                app:cardCornerRadius="10dp">
+                style="@style/DefaultCardStyle">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -76,30 +83,36 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
+                        android:gravity="center_vertical"
                         android:orientation="vertical"
-                        android:padding="15dp">
+                        android:padding="10dp">
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textColor="@color/primary_color"
+                            android:textAppearance="@style/TextMediumRegularStyle"
+                            android:textColor="?attr/ig_primaryColor"
                             android:text="Повторения" />
 
                         <EditText
                             android:id="@+id/etReps"
                             android:layout_width="match_parent"
-                            android:layout_height="40dp"
+                            android:layout_height="30dp"
                             android:hint="0"
-                            android:textSize="15dp"
-                            android:inputType="number"
-                            android:maxLength="2"/>
+                            style="@style/NumberEditTextStyle"
+                            android:layout_marginTop="5dp"
+                            android:gravity="start|center_vertical"
+                            android:paddingStart="10dp"
+                            android:paddingEnd="10dp"
+                            android:backgroundTint="?attr/ig_backgroundColor"/>
                     </LinearLayout>
 
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="15dp"
-                        android:src="@drawable/ic_repeat" />
+                        android:src="@drawable/ic_repeat"
+                        app:tint="?attr/ig_primaryColor"/>
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -112,7 +125,7 @@
                 android:layout_height="85dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="5dp"
-                app:cardCornerRadius="10dp">
+                style="@style/DefaultCardStyle">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -123,29 +136,35 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:orientation="vertical"
-                        android:padding="15dp">
+                        android:gravity="center_vertical"
+                        android:padding="10dp">
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textColor="@color/primary_color"
+                            android:textAppearance="@style/TextMediumRegularStyle"
+                            android:textColor="?attr/ig_primaryColor"
                             android:text="Вес" />
 
                         <EditText
                             android:id="@+id/etWeight"
                             android:layout_width="match_parent"
-                            android:layout_height="40dp"
+                            android:layout_height="30dp"
                             android:hint="0"
-                            android:textSize="15dp"
-                            android:inputType="numberDecimal"
-                            android:maxLength="6"/>
+                            style="@style/NumberEditTextStyle"
+                            android:layout_marginTop="5dp"
+                            android:gravity="start|center_vertical"
+                            android:paddingStart="10dp"
+                            android:paddingEnd="10dp"
+                            android:backgroundTint="?attr/ig_backgroundColor"/>
                     </LinearLayout>
 
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="15dp"
-                        android:src="@drawable/ic_weight" />
+                        android:src="@drawable/ic_weight"
+                        app:tint="?attr/ig_primaryColor"/>
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -166,21 +185,23 @@
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
             android:text="Комментарии"
-            android:textSize="16sp" />
+            android:textAppearance="@style/TextLargeSemiboldStyle" />
 
         <EditText
             android:id="@+id/etNote"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Введите описание"
-            android:textSize="12sp" />
+            android:textColorHint="?attr/ig_defaultTextColor"
+            android:alpha="0.5"
+            android:textAppearance="@style/TextMediumRegularStyle" />
     </LinearLayout>
 
     <Button
         android:id="@+id/btnSaveExercise"
+        style="@style/DefaultButtonStyle"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:backgroundTint="@color/primary_color"
         android:text="Сохранить"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:layout_editor_absoluteX="20dp" />

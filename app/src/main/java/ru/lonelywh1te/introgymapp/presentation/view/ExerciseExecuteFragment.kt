@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
+import com.google.android.material.color.MaterialColors
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 import ru.lonelywh1te.introgymapp.R
 import ru.lonelywh1te.introgymapp.databinding.FragmentExerciseExecuteBinding
@@ -65,7 +66,7 @@ class ExerciseExecuteFragment : Fragment() {
             if (it.size > exerciseWithInfo.exercise.sets) {
                 binding.tvExerciseSets.setTextColor(ContextCompat.getColor(requireContext(), R.color.negative_color))
             } else {
-                binding.tvExerciseSets.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
+                binding.tvExerciseSets.setTextColor(MaterialColors.getColor(binding.tvExerciseSets, R.attr.ig_defaultTextColor))
             }
         }
 

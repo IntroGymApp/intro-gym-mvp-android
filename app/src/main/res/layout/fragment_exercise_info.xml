@@ -4,49 +4,59 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.view.ExerciseInfoFragment">
+    tools:context=".presentation.view.ExerciseInfoFragment"
+    android:background="?attr/ig_backgroundColor">
 
-    <ImageView
-        android:id="@+id/ivExerciseInfoImage"
-        android:layout_width="350dp"
-        android:layout_height="200dp"
-        android:layout_marginTop="20dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/ic_launcher_background"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/imageCard"
+        style="@style/DefaultCardStyle"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:layout_margin="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/ivExerciseInfoImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_launcher_background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.cardview.widget.CardView>
 
     <LinearLayout
         android:id="@+id/linearLayout4"
-        app:layout_constraintStart_toStartOf="@+id/ivExerciseInfoImage"
-        app:layout_constraintTop_toBottomOf="@+id/ivExerciseInfoImage"
+        app:layout_constraintStart_toStartOf="@+id/imageCard"
+        app:layout_constraintTop_toBottomOf="@+id/imageCard"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <TextView
+            android:textAppearance="@style/TextLargeSemiboldStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:text="Описание"
-            android:textSize="20dp"
-            android:textStyle="bold" />
+            android:text="Описание" />
 
         <TextView
             android:id="@+id/tvExersiceInfoDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Описание упражнения"
-            android:textSize="16dp" />
+            android:textAppearance="@style/TextMediumRegularStyle"/>
 
         <TextView
+            android:textAppearance="@style/TextLargeSemiboldStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:text="Выполнение"
-            android:textSize="20dp"
-            android:textStyle="bold" />
+            android:text="Выполнение" />
 
         <TextView
             android:id="@+id/tvExecution"
@@ -54,15 +64,14 @@
             android:layout_height="wrap_content"
             android:maxLines="10"
             android:text="1. Первое действие\n2. Второе Действие"
-            android:textSize="16dp" />
+            android:textAppearance="@style/TextMediumRegularStyle" />
 
         <TextView
+            android:textAppearance="@style/TextLargeSemiboldStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:text="Советы"
-            android:textSize="20dp"
-            android:textStyle="bold" />
+            android:text="Советы" />
 
         <TextView
             android:id="@+id/tvAdvices"
@@ -70,7 +79,7 @@
             android:layout_height="wrap_content"
             android:maxLines="10"
             android:text="- Первый совет\n- Второй совет\n- Третий совет"
-            android:textSize="16dp" />
+            android:textAppearance="@style/TextMediumRegularStyle" />
 
     </LinearLayout>
 

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:paddingStart="20dp"
     android:paddingEnd="20dp"
-    android:background="@color/background_color"
+    android:background="?attr/ig_backgroundColor"
     tools:context=".presentation.view.ProfileFragment">
 
     <LinearLayout
@@ -24,7 +24,7 @@
             android:paddingTop="15dp"
             android:paddingBottom="15dp"
             android:text="Основная информация"
-            android:textSize="16dp" />
+            android:textAppearance="@style/TextLargeSemiboldStyle" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -37,12 +37,13 @@
                 android:layout_marginEnd="15dp"
                 android:gravity="start|center"
                 android:text="Имя"
-                android:textSize="11sp" />
+                android:textAppearance="@style/TextSmallLightStyle" />
 
             <EditText
                 android:id="@+id/etUserName"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextSmallLightStyle"/>
         </LinearLayout>
 
         <LinearLayout
@@ -56,21 +57,26 @@
                 android:layout_marginEnd="15dp"
                 android:gravity="start|center"
                 android:text="Пол"
-                android:textSize="11sp" />
+                android:textAppearance="@style/TextSmallLightStyle" />
 
             <ImageButton
                 android:id="@+id/btnMale"
+                android:background="@drawable/shape_edit_text_background"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="15dp"
-                android:src="@drawable/ic_male" />
+                android:padding="10dp"
+                android:src="@drawable/ic_male"
+                app:tint="?attr/ig_defaultTextColor" />
 
             <ImageButton
                 android:id="@+id/btnFemale"
+                android:background="@drawable/shape_edit_text_background"
+                android:layout_marginStart="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="15dp"
-                android:src="@drawable/ic_female" />
+                android:padding="10dp"
+                android:src="@drawable/ic_female"
+                app:tint="?attr/ig_defaultTextColor"/>
         </LinearLayout>
 
         <LinearLayout
@@ -84,10 +90,11 @@
                 android:layout_marginEnd="15dp"
                 android:gravity="start|center"
                 android:text="Рост"
-                android:textSize="11sp" />
+                android:textAppearance="@style/TextSmallLightStyle" />
 
             <EditText
                 android:id="@+id/etUserHeight"
+                android:textAppearance="@style/TextSmallLightStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </LinearLayout>
@@ -103,14 +110,16 @@
                 android:layout_marginEnd="15dp"
                 android:gravity="start|center"
                 android:text="Вес"
-                android:textSize="11sp" />
+                android:textAppearance="@style/TextSmallLightStyle" />
 
             <EditText
                 android:id="@+id/etUserWeight"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextSmallLightStyle"/>
         </LinearLayout>
         <Button
+            android:visibility="gone"
             android:id="@+id/btnSaveProfileData"
             android:layout_gravity="center"
             android:layout_width="wrap_content"
@@ -132,7 +141,7 @@
             android:paddingTop="15dp"
             android:paddingBottom="15dp"
             android:text="Калькуляторы"
-            android:textSize="16dp"
+            android:textAppearance="@style/TextLargeSemiboldStyle"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
         
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -145,7 +154,7 @@
                 android:layout_height="0dp"
                 app:layout_constraintDimensionRatio="H,1:1"
                 android:layout_marginEnd="10dp"
-                android:backgroundTint="@color/background_block_color"
+                style="@style/DefaultCardStyle"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/guideline"
                 app:layout_constraintStart_toStartOf="parent"
@@ -174,12 +183,12 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="12345"
-                            android:textSize="14sp"/>
+                            android:textAppearance="@style/TextMediumSemiboldStyle"/>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="11sp"
+                            android:textAppearance="@style/TextSmallRegularStyle"
                             android:layout_marginStart="5dp"
                             android:text="ккал"/>
                     </LinearLayout>
@@ -193,12 +202,12 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="123"
-                            android:textSize="14sp"/>
+                            android:textAppearance="@style/TextMediumSemiboldStyle"/>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="11sp"
+                            android:textAppearance="@style/TextSmallRegularStyle"
                             android:layout_marginStart="5dp"
                             android:text="белки"/>
                     </LinearLayout>
@@ -212,12 +221,12 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="123"
-                            android:textSize="14sp"/>
+                            android:textAppearance="@style/TextMediumSemiboldStyle"/>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="11sp"
+                            android:textAppearance="@style/TextSmallRegularStyle"
                             android:layout_marginStart="5dp"
                             android:text="жиры"/>
                     </LinearLayout>
@@ -231,12 +240,12 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="123"
-                            android:textSize="14sp"/>
+                            android:textAppearance="@style/TextMediumSemiboldStyle"/>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="11sp"
+                            android:textAppearance="@style/TextSmallRegularStyle"
                             android:layout_marginStart="5dp"
                             android:text="углеводы"/>
                     </LinearLayout>
@@ -267,8 +276,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:backgroundTint="@color/background_block_color"
-                    app:cardCornerRadius="10dp">
+                    style="@style/DefaultCardStyle">
 
                     <ImageView
                         android:layout_width="match_parent"
@@ -285,6 +293,7 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
                             android:padding="2.5dp">
 
                             <TextView
@@ -292,14 +301,14 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="25.3"
-                                android:textSize="14sp" />
+                                android:textAppearance="@style/TextMediumSemiboldStyle" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="5dp"
                                 android:text="ИМТ"
-                                android:textSize="11sp" />
+                                android:textAppearance="@style/TextSmallRegularStyle" />
                         </LinearLayout>
                     </LinearLayout>
 
@@ -307,13 +316,12 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
-                    android:backgroundTint="@color/background_block_color"
+                    style="@style/DefaultCardStyle"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="5dp"
-                    android:layout_weight="1"
-                    app:cardCornerRadius="10dp">
+                    android:layout_weight="1">
 
                     <ImageView
                         android:layout_width="match_parent"
@@ -339,14 +347,14 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="5dp"
                                 android:text="Идеальный вес"
-                                android:textSize="11sp" />
+                                android:textAppearance="@style/TextSmallRegularStyle" />
 
                             <TextView
                                 android:id="@+id/tvIdealWeight"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="25.3"
-                                android:textSize="14sp" />
+                                android:textAppearance="@style/TextMediumSemiboldStyle" />
                         </LinearLayout>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>

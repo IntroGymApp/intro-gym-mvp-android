@@ -6,7 +6,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:gravity="center_horizontal"
-    tools:context=".presentation.view.guide.GuideFragment">
+    tools:context=".presentation.view.guide.GuideFragment"
+    android:background="?attr/ig_backgroundColor">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/exerciseGuideCard"
@@ -28,8 +29,8 @@
             android:text="Упражнения"
             android:layout_gravity="bottom"
             android:padding="15dp"
-            android:textColor="@color/white"
-            android:textSize="20sp"/>
+            android:textAppearance="@style/TextHeader3SemiboldStyle"
+            android:textColor="@color/white"/>
 
     </androidx.cardview.widget.CardView>
 </LinearLayout>

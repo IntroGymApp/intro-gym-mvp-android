@@ -7,15 +7,13 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/exerciseGroupCard"
+        style="@style/DefaultCardStyle"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
         android:layout_marginStart="20dp"
-        app:cardElevation="0dp"
         android:layout_marginEnd="20dp"
-        app:cardCornerRadius="10dp"
-        app:cardBackgroundColor="@color/background_block_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -49,6 +47,7 @@
                     android:id="@+id/tvGroupName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextMediumSemiboldStyle"
                     android:text="Название группы" />
 
                 <TextView
@@ -56,7 +55,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Упражнения: 5"
-                    android:textColor="@color/primary_color" />
+                    android:textAppearance="@style/TextSmallRegularStyle"
+                    android:textColor="?attr/ig_primaryColor" />
             </LinearLayout>
 
             <ImageView
@@ -68,7 +68,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:tint="@color/black" />
+                app:tint="?attr/ig_defaultTextColor" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 

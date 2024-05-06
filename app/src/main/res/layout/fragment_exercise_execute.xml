@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.view.ExerciseExecuteFragment">
+    tools:context=".presentation.view.ExerciseExecuteFragment"
+    android:background="?attr/ig_backgroundColor">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -15,16 +16,24 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/ivExerciseInfoImage"
+            <androidx.cardview.widget.CardView
+                style="@style/DefaultCardStyle"
                 android:layout_width="match_parent"
                 android:layout_height="180dp"
-                android:layout_margin="20dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/ic_launcher_background"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:layout_margin="20dp">
+
+                <ImageView
+                    android:id="@+id/ivExerciseInfoImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_launcher_background"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.cardview.widget.CardView>
+
 
             <LinearLayout
                 android:id="@+id/exerciseDescriptionLayout"
@@ -43,14 +52,13 @@
                     android:paddingTop="10dp"
                     android:paddingBottom="10dp"
                     android:text="Комментарий"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:textAppearance="@style/TextLargeSemiboldStyle" />
 
                 <TextView
                     android:id="@+id/tvExerciseNote"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="12sp"
+                    android:textAppearance="@style/TextSmallRegularStyle"
                     tools:text="Комментарий пользователя по упражнению" />
 
             </LinearLayout>
@@ -72,8 +80,7 @@
                     android:paddingTop="10dp"
                     android:paddingBottom="10dp"
                     android:text="План"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:textAppearance="@style/TextLargeSemiboldStyle" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -81,10 +88,9 @@
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/cardView3"
+                        style="@style/DefaultCardStyle"
                         android:layout_width="100dp"
                         android:layout_height="130dp"
-                        android:backgroundTint="@color/background_block_color"
-                        app:cardCornerRadius="10dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
@@ -101,7 +107,7 @@
                                 android:gravity="center"
                                 android:padding="15dp"
                                 android:text="Подходы"
-                                android:textSize="12dp"
+                                android:textAppearance="@style/TextSmallRegularStyle"
                                 app:drawableTopCompat="@drawable/ic_list_check" />
 
                             <View
@@ -109,18 +115,17 @@
                                 android:layout_height="1dp"
                                 android:layout_marginStart="20dp"
                                 android:layout_marginEnd="20dp"
-                                android:background="@color/white" />
+                                android:background="?attr/ig_backgroundColor" />
 
                             <TextView
                                 android:id="@+id/tvExerciseSets"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
+                                android:layout_height="0dp"
                                 android:layout_weight="1"
                                 android:gravity="center"
                                 android:padding="10dp"
                                 android:text="0 / 3"
-                                android:textSize="16dp"
-                                android:textStyle="bold" />
+                                android:textAppearance="@style/TextLargeSemiboldStyle"/>
 
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
@@ -129,8 +134,7 @@
                         android:id="@+id/cardView4"
                         android:layout_width="100dp"
                         android:layout_height="130dp"
-                        android:backgroundTint="@color/background_block_color"
-                        app:cardCornerRadius="10dp"
+                        style="@style/DefaultCardStyle"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
@@ -147,7 +151,7 @@
                                 android:gravity="center"
                                 android:padding="15dp"
                                 android:text="Вес"
-                                android:textSize="12dp"
+                                android:textAppearance="@style/TextSmallRegularStyle"
                                 app:drawableTopCompat="@drawable/ic_weight" />
 
                             <View
@@ -155,18 +159,17 @@
                                 android:layout_height="1dp"
                                 android:layout_marginStart="20dp"
                                 android:layout_marginEnd="20dp"
-                                android:background="@color/white" />
+                                android:background="?attr/ig_backgroundColor" />
 
                             <TextView
                                 android:id="@+id/tvExerciseWeight"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
+                                android:layout_height="0dp"
                                 android:layout_weight="1"
                                 android:gravity="center"
                                 android:padding="10dp"
                                 android:text="80"
-                                android:textSize="16dp"
-                                android:textStyle="bold" />
+                                android:textAppearance="@style/TextLargeSemiboldStyle" />
 
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
@@ -174,8 +177,7 @@
                     <androidx.cardview.widget.CardView
                         android:layout_width="100dp"
                         android:layout_height="130dp"
-                        android:backgroundTint="@color/background_block_color"
-                        app:cardCornerRadius="10dp"
+                        style="@style/DefaultCardStyle"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/cardView4"
                         app:layout_constraintStart_toEndOf="@+id/cardView3"
@@ -193,7 +195,7 @@
                                 android:gravity="center"
                                 android:padding="15dp"
                                 android:text="Повторения"
-                                android:textSize="12dp"
+                                android:textAppearance="@style/TextSmallRegularStyle"
                                 app:drawableTopCompat="@drawable/ic_repeat" />
 
                             <View
@@ -201,18 +203,17 @@
                                 android:layout_height="1dp"
                                 android:layout_marginStart="20dp"
                                 android:layout_marginEnd="20dp"
-                                android:background="@color/white" />
+                                android:background="?attr/ig_backgroundColor" />
 
                             <TextView
                                 android:id="@+id/tvExerciseReps"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
+                                android:layout_height="0dp"
                                 android:layout_weight="1"
                                 android:gravity="center"
                                 android:padding="10dp"
                                 android:text="6"
-                                android:textSize="16dp"
-                                android:textStyle="bold" />
+                                android:textAppearance="@style/TextLargeSemiboldStyle"/>
 
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
@@ -224,7 +225,7 @@
                     android:layout_height="1dp"
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="20dp"
-                    android:background="@color/background_block_color" />
+                    android:background="?attr/ig_cardBackgroundColor" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -233,30 +234,30 @@
 
                     <EditText
                         android:id="@+id/etCompletedReps"
+                        style="@style/NumberEditTextStyle"
+                        android:layout_margin="5dp"
                         android:layout_width="150dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="30dp"
                         android:hint="Повторений"
-                        android:inputType="number"
-                        android:maxLength="3"
-                        android:layout_weight="1"
-                        android:textSize="14dp"/>
+                        android:layout_weight="1"/>
 
                     <EditText
                         android:id="@+id/etCompletedWeight"
+                        style="@style/NumberEditTextStyle"
+                        android:layout_margin="5dp"
                         android:layout_width="150dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="30dp"
                         android:hint="Вес"
-                        android:inputType="numberDecimal"
-                        android:maxLength="6"
-                        android:layout_weight="1"
-                        android:textSize="14dp"/>
+                        android:layout_weight="1"/>
 
                     <ImageButton
                         android:id="@+id/ibAddExerciseHistory"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:padding="15dp"
-                        android:backgroundTint="@color/primary_color"
+                        android:layout_gravity="center_vertical"
+                        android:padding="10dp"
+                        android:background="@drawable/shape_edit_text_background"
+                        android:backgroundTint="?attr/ig_primaryColor"
                         android:src="@drawable/ic_add"/>
 
                 </LinearLayout>
@@ -266,7 +267,7 @@
                     android:layout_height="1dp"
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="20dp"
-                    android:background="@color/background_block_color" />
+                    android:background="?attr/ig_cardBackgroundColor" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvExerciseHistory"

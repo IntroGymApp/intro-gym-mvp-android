@@ -4,9 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.view.workout.WorkoutViewFragment"
-    android:layout_marginStart="20dp"
-    android:layout_marginEnd="20dp">
+    android:background="?attr/ig_backgroundColor"
+    tools:context=".presentation.view.workout.WorkoutViewFragment">
 
     <LinearLayout
         android:id="@+id/workoutDescriptionLayout"
@@ -15,6 +14,8 @@
         android:orientation="vertical"
         android:visibility="gone"
         tools:visibility="visible"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -24,15 +25,15 @@
             android:layout_height="wrap_content"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
-            android:textStyle="bold"
             android:text="Описание"
-            android:textSize="16sp" />
+            android:textAppearance="@style/TextLargeSemiboldStyle" />
 
         <TextView
             android:id="@+id/tvWorkoutDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="12sp"
+            android:textAppearance="@style/TextMediumRegularStyle"
+
             tools:text="Какое-то описание, которое пользователь сам написал. Какое-то писание, которое пользователь сам написал. Какое-то писание, которое пользователь сам написал. Какое-то писание, которое пользователь сам написал. Какое-то писание, которое пользователь сам написал. Какое-то писание, которое пользователь сам написал. " />
     </LinearLayout>
 
@@ -41,6 +42,8 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

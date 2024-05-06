@@ -10,9 +10,7 @@
         android:layout_width="40dp"
         android:layout_height="55dp"
         android:layout_margin="7.5dp"
-        app:cardElevation="0dp"
-        app:cardCornerRadius="5dp"
-        app:cardBackgroundColor="@color/primary_light_color"
+        style="@style/DayCardStyle"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,14 +24,16 @@
 
             <TextView
                 android:id="@+id/tvDayOfWeek"
-                android:textColor="@color/white"
+                android:textAppearance="@style/TextSmallRegularStyle"
+                android:textColor="?attr/ig_lightTextColor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="DAY"/>
 
             <TextView
                 android:id="@+id/tvNumber"
-                android:textColor="@color/white"
+                android:textAppearance="@style/TextMediumRegularStyle"
+                android:textColor="?attr/ig_lightTextColor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="31"/>

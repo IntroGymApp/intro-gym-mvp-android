@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_color"
+    android:background="?attr/ig_backgroundColor"
     tools:context=".presentation.view.MainFragment">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
+        style="@style/DefaultCardStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -19,7 +19,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/background_block_color"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -42,29 +41,30 @@
 
                 <ImageButton
                     android:id="@+id/btnPrevWeek"
+                    android:backgroundTint="?attr/ig_cardBackgroundColor"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:padding="15dp"
                     android:src="@drawable/ic_arrow_left"
-                    app:tint="@color/black" />
+                    app:tint="?attr/ig_defaultTextColor" />
 
                 <TextView
                     android:id="@+id/tvCalendarCurrentMonthYear"
-                    android:layout_width="wrap_content"
+                    android:layout_width="120dp"
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:paddingStart="10dp"
                     android:paddingEnd="10dp"
-                    android:textSize="11sp"
+                    android:textAppearance="@style/TextMediumRegularStyle"
                     android:text="Апрель 2024" />
 
                 <ImageButton
                     android:id="@+id/btnNextWeek"
+                    android:backgroundTint="?attr/ig_cardBackgroundColor"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    app:tint="@color/black"
+                    app:tint="?attr/ig_defaultTextColor"
                     android:padding="15dp"
-
                     android:src="@drawable/ic_arrow_right" />
             </LinearLayout>
 
@@ -91,14 +91,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="Рады тебя видеть"
-                android:textSize="11sp" />
+                android:textAppearance="@style/TextSmallLightStyle"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="С возвращением, Имя!"
-                android:textStyle="bold"
-                android:textSize="16sp" />
+                android:textAppearance="@style/TextLargeSemiboldStyle" />
 
         </LinearLayout>
 
@@ -109,7 +108,7 @@
             android:background="@android:color/transparent"
             android:padding="10dp"
             android:src="@drawable/ic_add"
-            app:tint="@color/black" />
+            app:tint="?attr/ig_defaultTextColor" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -119,7 +118,9 @@
         android:layout_marginTop="30dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:listitem="@layout/workout_date_item"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="1.0"
+        tools:layout_editor_absoluteX="0dp"
+        tools:listitem="@layout/workout_date_item" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

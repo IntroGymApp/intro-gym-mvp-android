@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.color.MaterialColors
 import ru.lonelywh1te.introgymapp.R
 import ru.lonelywh1te.introgymapp.databinding.DayItemBinding
 
@@ -45,9 +46,9 @@ class CalendarViewHolder(private val binding: DayItemBinding): RecyclerView.View
         binding.tvNumber.text = item.dayOfMouth.toString()
 
         if (item.isSelected) {
-            binding.dayItemCard.setCardBackgroundColor(ContextCompat.getColor(binding.root.context, R.color.primary_color))
+            binding.dayItemCard.setCardBackgroundColor(MaterialColors.getColor(binding.dayItemCard, R.attr.ig_primaryColor))
         } else {
-            binding.dayItemCard.setCardBackgroundColor(ContextCompat.getColor(binding.root.context, R.color.primary_light_color))
+            binding.dayItemCard.setCardBackgroundColor(MaterialColors.getColor(binding.dayItemCard, R.attr.ig_primaryLightColor))
         }
     }
 }

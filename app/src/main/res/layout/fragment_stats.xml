@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_color"
+    android:background="?attr/ig_backgroundColor"
     tools:context=".presentation.view.StatsFragment">
 
     <LinearLayout
@@ -20,15 +20,15 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp">
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp">
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="Поднятый вес, кг"
-                android:textSize="16sp"/>
+                android:textAppearance="@style/TextLargeSemiboldStyle"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -36,9 +36,9 @@
                 android:drawablePadding="10dp"
                 android:text="Неделя"
                 android:gravity="center"
-                android:textSize="12sp"
+                android:textAppearance="@style/TextSmallRegularStyle"
                 app:drawableEndCompat="@drawable/ic_arrow_right"
-                app:drawableTint="@color/black" />
+                app:drawableTint="?attr/ig_defaultTextColor" />
         </LinearLayout>
 
         <androidx.cardview.widget.CardView

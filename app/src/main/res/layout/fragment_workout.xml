@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?attr/ig_backgroundColor"
     tools:context=".presentation.view.workout.WorkoutFragment">
 
     <LinearLayout
@@ -22,7 +23,7 @@
             android:text="Создать тренировку"
             android:layout_weight="1"
             android:gravity="center_vertical"
-            android:textSize="16sp" />
+            android:textAppearance="@style/TextLargeSemiboldStyle" />
 
         <ImageButton
             android:id="@+id/btnCreateWorkout"
@@ -31,7 +32,7 @@
             android:background="@android:color/transparent"
             android:padding="10dp"
             android:src="@drawable/ic_add"
-            app:tint="@color/black" />
+            app:tint="?attr/ig_defaultTextColor" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView

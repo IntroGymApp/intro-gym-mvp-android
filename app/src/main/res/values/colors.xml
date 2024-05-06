@@ -2,10 +2,18 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
     <color name="main_color">#1C1C1C</color>
     <color name="background_color">#F5FBF1</color>
     <color name="background_block_color">#ECEEE8</color>
     <color name="primary_color">#60B741</color>
     <color name="primary_light_color">#B1C178</color>
+
+    <color name="night_main_color">#FFF5F5</color>
+    <color name="night_background_color">#101010</color>
+    <color name="night_background_block_color">#212124</color>
+    <color name="night_primary_color">#B2D430</color>
+    <color name="night_primary_light_color">#B1C178</color>
+
     <color name="negative_color">#EB5F5F</color>
 </resources>

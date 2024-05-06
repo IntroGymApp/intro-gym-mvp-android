@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="ig_primaryColor" format="color"/>
+    <attr name="ig_primaryLightColor" format="color"/>
+    <attr name="ig_backgroundColor" format="color"/>
+    <attr name="ig_cardBackgroundColor" format="color"/>
+    <attr name="ig_errorColor" format="color"/>
+    <attr name="ig_defaultTextColor" format="color"/>
+    <attr name="ig_lightTextColor" format="color"/>
+</resources>

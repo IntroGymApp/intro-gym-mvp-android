@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".presentation.view.workout.CreateEditWorkoutFragment"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="?attr/ig_backgroundColor">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -31,14 +32,15 @@
                     android:paddingTop="10dp"
                     android:paddingBottom="10dp"
                     android:text="Название тренировки"
-                    android:textSize="16sp"/>
+                    android:textAppearance="@style/TextLargeSemiboldStyle"/>
 
                 <EditText
                     android:id="@+id/etWorkoutName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:maxLines="1"
-                    android:textSize="12sp"
+                    android:textAppearance="@style/TextMediumRegularStyle"
+                    android:textColor="?attr/ig_defaultTextColor"
                     android:hint="Введите название"/>
 
             </LinearLayout>
@@ -57,13 +59,14 @@
                     android:paddingTop="10dp"
                     android:paddingBottom="10dp"
                     android:text="Описание тренировки"
-                    android:textSize="16sp"/>
+                    android:textAppearance="@style/TextLargeSemiboldStyle"/>
 
                 <EditText
                     android:id="@+id/etWorkoutDescription"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="12sp"
+                    android:textAppearance="@style/TextMediumRegularStyle"
+                    android:textColor="?attr/ig_defaultTextColor"
                     android:hint="Введите описание"/>
 
             </LinearLayout>
@@ -82,7 +85,7 @@
                     android:text="Ваши упражнения"
                     android:paddingTop="10dp"
                     android:paddingBottom="10dp"
-                    android:textSize="16sp"/>
+                    android:textAppearance="@style/TextLargeSemiboldStyle"/>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvWorkoutExercises"
@@ -98,21 +101,21 @@
 
     <Button
         android:id="@+id/btnAddExercise"
+        style="@style/SecondaryButtonStyle"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_marginTop="15dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:backgroundTint="@color/primary_light_color"
         android:text="Добавить упражнение"/>
 
     <Button
         android:id="@+id/btnSaveWorkout"
+        style="@style/DefaultButtonStyle"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="15dp"
-        android:backgroundTint="@color/primary_color"
         android:text="Сохранить"/>
 </LinearLayout>

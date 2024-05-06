@@ -15,7 +15,7 @@
         android:layout_height="120dp"
         app:cardCornerRadius="10dp"
         app:cardElevation="0dp"
-        android:backgroundTint="@color/background_block_color"
+        android:backgroundTint="?attr/ig_cardBackgroundColor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -36,33 +36,38 @@
                 android:id="@+id/tvWorkoutName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center_vertical"
                 android:text="Название тренировки"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:padding="15dp"/>
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:textAppearance="@style/TextLargeSemiboldStyle"
+                android:paddingStart="15dp"
+                android:paddingTop="15dp"
+                android:paddingEnd="150dp"/>
 
             <TextView
                 android:id="@+id/tvWorkoutDescription"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
                 android:paddingStart="15dp"
                 android:paddingEnd="140dp"
                 android:maxLines="2"
                 android:ellipsize="end"
                 android:text="Какое-то описание которое пользователь сам написал"
-                android:textSize="11dp"/>
+                android:textAppearance="@style/TextSmallLightStyle"/>
 
             <TextView
                 android:id="@+id/tvExerciseCount"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_height="40dp"
                 android:paddingStart="15dp"
                 android:paddingEnd="150dp"
+                android:layout_gravity="bottom"
                 android:gravity="center_vertical"
                 android:text="Упражнений: 5"
-                android:textSize="11sp"
-                android:textColor="@color/primary_color"/>
+                android:textAppearance="@style/TextSmallLightStyle"
+                android:textColor="?attr/ig_primaryColor"/>
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
