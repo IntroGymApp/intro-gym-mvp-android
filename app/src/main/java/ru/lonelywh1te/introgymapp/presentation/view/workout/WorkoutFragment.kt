@@ -1,18 +1,25 @@
 package ru.lonelywh1te.introgymapp.presentation.view.workout
 
+import android.graphics.Canvas
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.color.MaterialColors
+import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.getViewModel
+import ru.lonelywh1te.introgymapp.R
 import ru.lonelywh1te.introgymapp.databinding.FragmentWorkoutBinding
 import ru.lonelywh1te.introgymapp.domain.model.Workout
 import ru.lonelywh1te.introgymapp.presentation.view.adapter.OnWorkoutItemClick
@@ -48,19 +55,47 @@ class WorkoutFragment : Fragment() {
             }
         })
 
-        workoutViewModel.workoutList.observe(viewLifecycleOwner) {
-            adapter.workoutList = it
-        }
-
         recycler = binding.rvWorkouts
         recycler.apply {
             this.adapter = adapter
             layoutManager = LinearLayoutManager(requireContext())
         }
 
+        val itemTouchHelperCallback = object: ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
+            override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean {
+                return true
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                workoutViewModel.deleteWorkout(adapter.workoutList[viewHolder.absoluteAdapterPosition])
+                Toast.makeText(requireContext(), "Тренировка удалена", Toast.LENGTH_SHORT).show()
+
+                workoutViewModel.getAllWorkouts()
+            }
+
+            override fun onChildDraw(c: Canvas, recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, dX: Float, dY: Float, actionState: Int, isCurrentlyActive: Boolean) {
+                RecyclerViewSwipeDecorator.Builder(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
+                    .addSwipeLeftLabel("Удалить")
+                    .addSwipeLeftBackgroundColor(ContextCompat.getColor(requireContext(), R.color.negative_color))
+                    .setSwipeLeftLabelColor(MaterialColors.getColor(viewHolder.itemView, R.attr.ig_defaultTextColor))
+                    .addSwipeLeftCornerRadius(1, 10f)
+                    .create()
+                    .decorate()
+
+                super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
+            }
+        }
+
+        val itemTouchHelper = ItemTouchHelper(itemTouchHelperCallback)
+        if (!args.pickMode) itemTouchHelper.attachToRecyclerView(recycler)
+
         binding.btnCreateWorkout.setOnClickListener {
             val action = WorkoutFragmentDirections.toCreateWorkout()
             findNavController().navigate(action)
+        }
+
+        workoutViewModel.workoutList.observe(viewLifecycleOwner) {
+            adapter.workoutList = it
         }
 
         return binding.root

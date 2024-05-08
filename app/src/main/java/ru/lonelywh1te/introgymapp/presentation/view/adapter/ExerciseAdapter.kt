@@ -64,7 +64,7 @@ class ExerciseAdapter(private val onExerciseItemClick: OnExerciseItemClick?): Re
             val oldItem = oldList[oldItemPosition]
             val newItem = newList[newItemPosition]
 
-            return oldItem.exercise == newItem.exercise && oldItem.exerciseInfo == newItem.exerciseInfo
+            return oldItem.exercise.id == newItem.exercise.id && oldItem.exerciseInfo == newItem.exerciseInfo
         }
     }
 }

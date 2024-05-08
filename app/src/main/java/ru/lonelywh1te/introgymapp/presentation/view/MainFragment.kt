@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.color.MaterialColors
 import com.google.android.material.snackbar.Snackbar
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator
 import org.koin.androidx.viewmodel.ext.android.getViewModel
@@ -71,6 +73,34 @@ class MainFragment : Fragment() {
             layoutManager = LinearLayoutManager(requireContext())
         }
 
+        val itemTouchHelperCallback = object: ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
+            override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean {
+                return true
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                workoutViewModel.deleteWorkout(workoutAdapter.workoutList[viewHolder.absoluteAdapterPosition])
+                Toast.makeText(requireContext(), "Тренировка удалена", Toast.LENGTH_SHORT).show()
+                
+                workoutViewModel.getAllWorkoutsByDate(weeklyCalendar.selectedDate.toEpochDay() * 86400000L)
+            }
+
+            override fun onChildDraw(c: Canvas, recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, dX: Float, dY: Float, actionState: Int, isCurrentlyActive: Boolean) {
+                RecyclerViewSwipeDecorator.Builder(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
+                    .addSwipeLeftLabel("Удалить")
+                    .addSwipeLeftBackgroundColor(ContextCompat.getColor(requireContext(), R.color.negative_color))
+                    .setSwipeLeftLabelColor(MaterialColors.getColor(viewHolder.itemView, R.attr.ig_defaultTextColor))
+                    .addSwipeLeftCornerRadius(1, 10f)
+                    .create()
+                    .decorate()
+
+                super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
+            }
+        }
+
+        val itemTouchHelper = ItemTouchHelper(itemTouchHelperCallback)
+        itemTouchHelper.attachToRecyclerView(workoutRecycler)
+
         binding.btnPrevWeek.setOnClickListener {
             weeklyCalendar.setPreviousWeek()
         }
@@ -94,6 +124,7 @@ class MainFragment : Fragment() {
 
         workoutViewModel.workoutList.observe(viewLifecycleOwner) {
             workoutAdapter.workoutList = it
+            Log.println(Log.DEBUG, "MainFragment", "${workoutAdapter.workoutList}")
         }
 
         return binding.root
