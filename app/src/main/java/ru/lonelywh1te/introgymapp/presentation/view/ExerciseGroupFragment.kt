@@ -18,19 +18,19 @@ import ru.lonelywh1te.introgymapp.domain.model.ExerciseInfo
 import ru.lonelywh1te.introgymapp.domain.model.ExerciseWithInfo
 import ru.lonelywh1te.introgymapp.presentation.view.adapter.ExerciseInfoAdapter
 import ru.lonelywh1te.introgymapp.presentation.view.adapter.OnExerciseInfoItemClick
-import ru.lonelywh1te.introgymapp.presentation.viewModel.ExerciseViewModel
+import ru.lonelywh1te.introgymapp.presentation.viewModel.ExerciseGroupFragmentViewModel
 
 class ExerciseGroupFragment : Fragment() {
     private lateinit var binding: FragmentExerciseGroupBinding
     private lateinit var recycler: RecyclerView
-    private lateinit var exerciseViewModel: ExerciseViewModel
+    private lateinit var viewModel: ExerciseGroupFragmentViewModel
 
     private val args: ExerciseGroupFragmentArgs by navArgs()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        exerciseViewModel = getViewModel()
-        exerciseViewModel.getAllExerciseInfoByGroup(args.groupId)
+        viewModel = getViewModel()
+        viewModel.getAllExerciseInfoByGroup(args.groupId)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -58,7 +58,7 @@ class ExerciseGroupFragment : Fragment() {
             layoutManager = LinearLayoutManager(requireContext())
         }
 
-        exerciseViewModel.exerciseInfoList.observe(viewLifecycleOwner) {
+        viewModel.exerciseInfoList.observe(viewLifecycleOwner) {
             adapter.exerciseInfoList = it
         }
 

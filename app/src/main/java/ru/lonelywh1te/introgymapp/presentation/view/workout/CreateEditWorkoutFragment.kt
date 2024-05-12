@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -16,7 +15,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.color.MaterialColors
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator
-import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 import ru.lonelywh1te.introgymapp.R
 import ru.lonelywh1te.introgymapp.databinding.FragmentCreateWorkoutBinding
@@ -24,13 +22,11 @@ import ru.lonelywh1te.introgymapp.domain.model.ExerciseWithInfo
 import ru.lonelywh1te.introgymapp.domain.model.Workout
 import ru.lonelywh1te.introgymapp.presentation.view.adapter.ExerciseAdapter
 import ru.lonelywh1te.introgymapp.presentation.view.adapter.OnExerciseItemClick
-import ru.lonelywh1te.introgymapp.presentation.viewModel.ExerciseViewModel
-import ru.lonelywh1te.introgymapp.presentation.viewModel.WorkoutViewModel
+import ru.lonelywh1te.introgymapp.presentation.viewModel.CreateEditWorkoutFragmentViewModel
 
 class CreateEditWorkoutFragment : Fragment() {
     private lateinit var binding: FragmentCreateWorkoutBinding
-    private lateinit var workoutViewModel: WorkoutViewModel
-    private lateinit var exerciseViewModel: ExerciseViewModel
+    private lateinit var viewModel: CreateEditWorkoutFragmentViewModel
     private lateinit var recycler: RecyclerView
     private val args: CreateEditWorkoutFragmentArgs by navArgs()
 
@@ -40,14 +36,13 @@ class CreateEditWorkoutFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        workoutViewModel = getViewModel()
-        exerciseViewModel = getViewModel()
+        viewModel = getViewModel()
 
         if (args.workoutId != 0) {
             editMode = true
 
-            workoutViewModel.getWorkoutById(args.workoutId)
-            exerciseViewModel.getAllExercisesWithInfoByWorkoutId(args.workoutId)
+            viewModel.getWorkoutById(args.workoutId)
+            viewModel.getExercisesWithInfoByWorkoutId(args.workoutId)
         }
     }
 
@@ -79,13 +74,13 @@ class CreateEditWorkoutFragment : Fragment() {
             }
         }
 
-        workoutViewModel.currentWorkout.observe(viewLifecycleOwner) {
+        viewModel.workout.observe(viewLifecycleOwner) {
             workout = it
             setWorkoutData(it)
         }
 
         if (exerciseList.isEmpty() && args.workoutId != 0) {
-            exerciseViewModel.exerciseWithInfoList.observe(viewLifecycleOwner) { list ->
+            viewModel.exerciseList.observe(viewLifecycleOwner) { list ->
                 exerciseList = list.toMutableList()
                 adapter.exerciseList = exerciseList.toList()
             }
@@ -153,10 +148,10 @@ class CreateEditWorkoutFragment : Fragment() {
         val updatedWorkout = workout!!.copy(name = binding.etWorkoutName.text.toString(), description = binding.etWorkoutDescription.text.toString(), exerciseCount = exerciseList.size)
         val exercises = exerciseList.map { it.exercise }
 
-        lifecycleScope.launch {
-            workoutViewModel.updateWorkout(updatedWorkout)
-            exerciseViewModel.updateExercises(updatedWorkout.id, exercises)
-            findNavController().popBackStack()
+        viewModel.updateWorkout(updatedWorkout, exercises)
+
+        viewModel.operationFinished.observe(viewLifecycleOwner) { isUpdated ->
+            if (isUpdated) findNavController().popBackStack()
         }
     }
 
@@ -169,11 +164,10 @@ class CreateEditWorkoutFragment : Fragment() {
         val workout = Workout(binding.etWorkoutName.text.toString(), binding.etWorkoutDescription.text.toString(), exerciseCount = exerciseList.size)
         val exercises = exerciseList.map { it.exercise }
 
-        lifecycleScope.launch {
-            workoutViewModel.createWorkout(workout)
-            val workoutId = workoutViewModel.getLastCreatedWorkout().id
-            exerciseViewModel.addExercises(workoutId, exercises)
-            findNavController().popBackStack()
+        viewModel.createWorkout(workout, exercises)
+
+        viewModel.operationFinished.observe(viewLifecycleOwner) { isCreated ->
+            if (isCreated) findNavController().popBackStack()
         }
     }
 

@@ -2,7 +2,6 @@ package ru.lonelywh1te.introgymapp.presentation.view
 
 import android.graphics.Canvas
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,24 +19,24 @@ import org.koin.androidx.viewmodel.ext.android.getViewModel
 import ru.lonelywh1te.introgymapp.R
 import ru.lonelywh1te.introgymapp.databinding.FragmentMainBinding
 import ru.lonelywh1te.introgymapp.domain.model.Workout
-import ru.lonelywh1te.introgymapp.presentation.calendar.CalendarAdapter
-import ru.lonelywh1te.introgymapp.presentation.calendar.Day
-import ru.lonelywh1te.introgymapp.presentation.calendar.OnItemClickListener
-import ru.lonelywh1te.introgymapp.presentation.calendar.WeeklyCalendar
+import ru.lonelywh1te.introgymapp.domain.calendar.CalendarAdapter
+import ru.lonelywh1te.introgymapp.domain.calendar.Day
+import ru.lonelywh1te.introgymapp.domain.calendar.OnItemClickListener
+import ru.lonelywh1te.introgymapp.domain.calendar.WeeklyCalendar
 import ru.lonelywh1te.introgymapp.presentation.view.adapter.OnWorkoutItemClick
 import ru.lonelywh1te.introgymapp.presentation.view.adapter.WorkoutDateAdapter
-import ru.lonelywh1te.introgymapp.presentation.viewModel.WorkoutViewModel
+import ru.lonelywh1te.introgymapp.presentation.viewModel.MainFragmentViewModel
 
 class MainFragment : Fragment() {
     private lateinit var binding: FragmentMainBinding
-    private lateinit var workoutViewModel: WorkoutViewModel
+    private lateinit var viewModel: MainFragmentViewModel
     private lateinit var calendarRecycler: RecyclerView
     private lateinit var workoutRecycler: RecyclerView
     private val weeklyCalendar = WeeklyCalendar()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        workoutViewModel = getViewModel()
+        viewModel = getViewModel()
     }
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentMainBinding.inflate(inflater, container, false)
@@ -45,7 +44,7 @@ class MainFragment : Fragment() {
         val calendarAdapter = CalendarAdapter(object : OnItemClickListener {
             override fun onDayItemClick(item: Day) {
                 weeklyCalendar.selectedDate = item.localDate
-                workoutViewModel.getAllWorkoutsByDate(item.date)
+                viewModel.getWorkoutsByDate(item.date)
             }
         })
 
@@ -74,10 +73,10 @@ class MainFragment : Fragment() {
             }
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                workoutViewModel.deleteWorkout(workoutAdapter.workoutList[viewHolder.absoluteAdapterPosition])
+                viewModel.deleteWorkout(workoutAdapter.workoutList[viewHolder.absoluteAdapterPosition])
                 Toast.makeText(requireContext(), "Тренировка удалена", Toast.LENGTH_SHORT).show()
-                
-                workoutViewModel.getAllWorkoutsByDate(weeklyCalendar.selectedDate.toEpochDay() * 86400000L)
+
+                viewModel.getWorkoutsByDate(weeklyCalendar.selectedDate.toEpochDay() * 86400000L)
             }
 
             override fun onChildDraw(c: Canvas, recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, dX: Float, dY: Float, actionState: Int, isCurrentlyActive: Boolean) {
@@ -117,9 +116,8 @@ class MainFragment : Fragment() {
             binding.tvCalendarCurrentMonthYear.text = "${it.first().dayOfMouth}-${it.last().dayOfMouth} $currentMonth $currentYear"
         }
 
-        workoutViewModel.workoutList.observe(viewLifecycleOwner) {
+        viewModel.workoutList.observe(viewLifecycleOwner) {
             workoutAdapter.workoutList = it
-            Log.println(Log.DEBUG, "MainFragment", "${workoutAdapter.workoutList}")
         }
 
         return binding.root
@@ -127,6 +125,6 @@ class MainFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        workoutViewModel.getAllWorkoutsByDate(weeklyCalendar.selectedDate.toEpochDay() * 86400000L)
+        viewModel.getWorkoutsByDate(weeklyCalendar.selectedDate.toEpochDay() * 86400000L)
     }
 }

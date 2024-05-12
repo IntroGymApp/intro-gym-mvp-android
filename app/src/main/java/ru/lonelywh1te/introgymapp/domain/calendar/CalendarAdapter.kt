@@ -1,4 +1,4 @@
-package ru.lonelywh1te.introgymapp.presentation.calendar
+package ru.lonelywh1te.introgymapp.domain.calendar
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

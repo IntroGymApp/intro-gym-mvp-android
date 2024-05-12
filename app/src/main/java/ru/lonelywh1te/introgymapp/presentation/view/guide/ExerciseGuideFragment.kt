@@ -14,17 +14,17 @@ import ru.lonelywh1te.introgymapp.databinding.FragmentExerciseGuideBinding
 import ru.lonelywh1te.introgymapp.domain.model.ExerciseGroup
 import ru.lonelywh1te.introgymapp.presentation.view.adapter.ExerciseGroupAdapter
 import ru.lonelywh1te.introgymapp.presentation.view.adapter.OnExerciseGroupItemClick
-import ru.lonelywh1te.introgymapp.presentation.viewModel.ExerciseViewModel
+import ru.lonelywh1te.introgymapp.presentation.viewModel.ExerciseGuideFragmentViewModel
 
 
 class ExerciseGuideFragment : Fragment() {
     private lateinit var binding: FragmentExerciseGuideBinding
-    private lateinit var exerciseViewModel: ExerciseViewModel
+    private lateinit var viewModel: ExerciseGuideFragmentViewModel
     private lateinit var recycler: RecyclerView
     private val args: ExerciseGuideFragmentArgs by navArgs()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        exerciseViewModel = getViewModel()
+        viewModel = getViewModel()
 
         binding = FragmentExerciseGuideBinding.inflate(inflater, container, false)
         val adapter = ExerciseGroupAdapter(object : OnExerciseGroupItemClick {
@@ -40,7 +40,7 @@ class ExerciseGuideFragment : Fragment() {
             layoutManager = LinearLayoutManager(requireContext())
         }
 
-        exerciseViewModel.exerciseGroupList.observe(viewLifecycleOwner) {
+        viewModel.exerciseGroupList.observe(viewLifecycleOwner) {
             adapter.exerciseGroupList = it
         }
 
@@ -49,6 +49,6 @@ class ExerciseGuideFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        exerciseViewModel.getAllExerciseGroup()
+        viewModel.getExerciseGroups()
     }
 }

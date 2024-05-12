@@ -23,19 +23,19 @@ import ru.lonelywh1te.introgymapp.domain.AssetsPath
 import ru.lonelywh1te.introgymapp.domain.model.ExerciseHistory
 import ru.lonelywh1te.introgymapp.domain.model.ExerciseWithInfo
 import ru.lonelywh1te.introgymapp.presentation.view.adapter.ExerciseHistoryAdapter
-import ru.lonelywh1te.introgymapp.presentation.viewModel.ExerciseViewModel
+import ru.lonelywh1te.introgymapp.presentation.viewModel.ExerciseExecuteFragmentViewModel
 
 class ExerciseExecuteFragment : Fragment() {
     private lateinit var binding: FragmentExerciseExecuteBinding
     private lateinit var exerciseWithInfo: ExerciseWithInfo
-    private lateinit var exerciseViewModel: ExerciseViewModel
+    private lateinit var viewModel: ExerciseExecuteFragmentViewModel
     private lateinit var recycler: RecyclerView
     private val args: ExerciseExecuteFragmentArgs by navArgs()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         exerciseWithInfo = args.exerciseWithInfo
-        exerciseViewModel = getViewModel()
+        viewModel = getViewModel()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -51,13 +51,10 @@ class ExerciseExecuteFragment : Fragment() {
 
         binding.ibAddExerciseHistory.setOnClickListener {
             addExerciseSet()
-
             hideKeyboard(it)
         }
 
-        setExerciseData()
-
-        exerciseViewModel.exerciseHistoryList.observe(viewLifecycleOwner) {
+        viewModel.exerciseHistory.observe(viewLifecycleOwner) {
             adapter.exerciseHistory = it.toMutableList()
 
             binding.tvExerciseSets.text = "${it.size} / ${exerciseWithInfo.exercise.sets}"
@@ -69,12 +66,13 @@ class ExerciseExecuteFragment : Fragment() {
             }
         }
 
+        setExerciseData()
         return binding.root
     }
 
     override fun onResume() {
         super.onResume()
-        exerciseViewModel.getAllExerciseHistoryById(exerciseWithInfo.exercise.id)
+        viewModel.getExerciseHistoryById(exerciseWithInfo.exercise.id)
     }
 
     private fun setExerciseData() {
@@ -110,7 +108,8 @@ class ExerciseExecuteFragment : Fragment() {
 
         val exerciseHistory = ExerciseHistory(exerciseId, reps, weight, data)
 
-        exerciseViewModel.addExerciseHistory(exerciseHistory, exerciseId)
+        viewModel.addExerciseHistory(exerciseHistory)
+
 
         binding.etCompletedReps.setText("")
         binding.etCompletedWeight.setText("")

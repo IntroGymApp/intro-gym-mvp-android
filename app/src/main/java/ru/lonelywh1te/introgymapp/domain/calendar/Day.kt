@@ -1,4 +1,4 @@
-package ru.lonelywh1te.introgymapp.presentation.calendar
+package ru.lonelywh1te.introgymapp.domain.calendar
 
 import java.time.LocalDate
 import java.time.format.TextStyle

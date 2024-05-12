@@ -21,23 +21,19 @@ import ru.lonelywh1te.introgymapp.domain.model.ExerciseWithInfo
 import ru.lonelywh1te.introgymapp.domain.model.Workout
 import ru.lonelywh1te.introgymapp.presentation.view.adapter.ExerciseAdapter
 import ru.lonelywh1te.introgymapp.presentation.view.adapter.OnExerciseItemClick
-import ru.lonelywh1te.introgymapp.presentation.viewModel.ExerciseViewModel
-import ru.lonelywh1te.introgymapp.presentation.viewModel.WorkoutViewModel
+import ru.lonelywh1te.introgymapp.presentation.viewModel.WorkoutViewFragmentViewModel
 
 class WorkoutViewFragment : Fragment(), MenuProvider {
     private lateinit var binding: FragmentWorkoutViewBinding
     private lateinit var recycler: RecyclerView
-    private lateinit var exerciseViewModel: ExerciseViewModel
-    private lateinit var workoutViewModel: WorkoutViewModel
+    private lateinit var viewModel: WorkoutViewFragmentViewModel
     private val args: WorkoutViewFragmentArgs by navArgs()
 
     private var workout: Workout? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        workoutViewModel = getViewModel()
-        exerciseViewModel = getViewModel()
+        viewModel = getViewModel()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -57,12 +53,12 @@ class WorkoutViewFragment : Fragment(), MenuProvider {
             layoutManager = LinearLayoutManager(requireContext())
         }
 
-        workoutViewModel.currentWorkout.observe(viewLifecycleOwner) {
+        viewModel.workout.observe(viewLifecycleOwner) {
             workout = it
             setWorkoutData()
         }
 
-        exerciseViewModel.exerciseWithInfoList.observe(viewLifecycleOwner) {
+        viewModel.exerciseList.observe(viewLifecycleOwner) {
             adapter.exerciseList = it
         }
 
@@ -71,8 +67,8 @@ class WorkoutViewFragment : Fragment(), MenuProvider {
 
     override fun onResume() {
         super.onResume()
-        workoutViewModel.getWorkoutById(args.workoutId)
-        exerciseViewModel.getAllExercisesWithInfoByWorkoutId(args.workoutId)
+        viewModel.getWorkoutById(args.workoutId)
+        viewModel.getExercisesWithInfoByWorkoutId(args.workoutId)
     }
 
     override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
@@ -97,7 +93,7 @@ class WorkoutViewFragment : Fragment(), MenuProvider {
 
     private fun deleteWorkout() {
         workout?.let {
-            workoutViewModel.deleteWorkout(it)
+            viewModel.deleteWorkout(it)
             findNavController().popBackStack()
         }
     }
