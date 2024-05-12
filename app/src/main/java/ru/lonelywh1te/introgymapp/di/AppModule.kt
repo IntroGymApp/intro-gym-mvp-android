@@ -28,7 +28,8 @@ val appModule = module {
             getAllExercisesByWorkoutIdUseCase = get(),
             getAllExercisesWithInfoByWorkoutIdUseCase = get(),
             getAllExerciseHistoryByIdUseCase = get(),
-            getAllExerciseGroupUseCase = get()
+            getAllExerciseGroupUseCase = get(),
+            deleteAllExercisesByWorkoutIdUseCase = get()
         )
     }
 }

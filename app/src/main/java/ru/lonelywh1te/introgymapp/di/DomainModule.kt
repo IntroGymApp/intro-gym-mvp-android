@@ -3,6 +3,7 @@ package ru.lonelywh1te.introgymapp.di
 import org.koin.dsl.module
 import ru.lonelywh1te.introgymapp.domain.usecase.exercise.AddExerciseHistoryUseCase
 import ru.lonelywh1te.introgymapp.domain.usecase.exercise.AddExerciseUseCase
+import ru.lonelywh1te.introgymapp.domain.usecase.exercise.DeleteAllExercisesByWorkoutIdUseCase
 import ru.lonelywh1te.introgymapp.domain.usecase.exercise.DeleteExerciseHistoryUseCase
 import ru.lonelywh1te.introgymapp.domain.usecase.exercise.GetAllExerciseGroupUseCase
 import ru.lonelywh1te.introgymapp.domain.usecase.exercise.GetAllExerciseHistoryByIdUseCase
@@ -28,6 +29,7 @@ val domainModule = module {
     factory<GetAllExercisesWithInfoByWorkoutIdUseCase> { GetAllExercisesWithInfoByWorkoutIdUseCase(get()) }
     factory<GetAllExerciseHistoryByIdUseCase> { GetAllExerciseHistoryByIdUseCase(get()) }
     factory<GetAllExerciseGroupUseCase> { GetAllExerciseGroupUseCase(get()) }
+    factory<DeleteAllExercisesByWorkoutIdUseCase> { DeleteAllExercisesByWorkoutIdUseCase(get()) }
 
     factory<CreateWorkoutUseCase> { CreateWorkoutUseCase(get()) }
     factory<DeleteWorkoutUseCase> { DeleteWorkoutUseCase(get()) }

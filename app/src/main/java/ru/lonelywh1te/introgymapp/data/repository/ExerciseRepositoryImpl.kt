@@ -25,6 +25,10 @@ class ExerciseRepositoryImpl(private val exerciseDao: ExerciseDao): ExerciseRepo
         exerciseDao.deleteExerciseHistory(exerciseHistory)
     }
 
+    override suspend fun deleteAllExercisesByWorkoutId(id: Int) {
+        exerciseDao.deleteAllExercisesByWorkoutId(id)
+    }
+
     override suspend fun getAllExercisesInfoByGroup(group: String): List<ExerciseInfo> {
         return exerciseDao.getAllExercisesInfoByGroup(group)
     }

@@ -1,7 +1,6 @@
 package ru.lonelywh1te.introgymapp.presentation.view.workout
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
@@ -10,7 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.MenuProvider
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -36,7 +35,7 @@ class WorkoutViewFragment : Fragment(), MenuProvider {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        workout = args.workout
+
         workoutViewModel = getViewModel()
         exerciseViewModel = getViewModel()
     }
@@ -47,7 +46,7 @@ class WorkoutViewFragment : Fragment(), MenuProvider {
 
         val adapter = ExerciseAdapter(if (!args.executionMode) null else object: OnExerciseItemClick {
             override fun onClick(item: ExerciseWithInfo, itemIndex: Int) {
-                val action = WorkoutViewFragmentDirections.toExerciseExecuteFragment(item)
+                val action = WorkoutViewFragmentDirections.toExerciseExecuteFragment(item, item.exerciseInfo.name)
                 findNavController().navigate(action)
             }
         })
@@ -67,14 +66,13 @@ class WorkoutViewFragment : Fragment(), MenuProvider {
             adapter.exerciseList = it
         }
 
-        setWorkoutData()
         return binding.root
     }
 
     override fun onResume() {
         super.onResume()
-        workoutViewModel.getWorkoutById(args.workout.id)
-        exerciseViewModel.getAllExercisesWithInfoByWorkoutId(args.workout.id)
+        workoutViewModel.getWorkoutById(args.workoutId)
+        exerciseViewModel.getAllExercisesWithInfoByWorkoutId(args.workoutId)
     }
 
     override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
@@ -92,10 +90,9 @@ class WorkoutViewFragment : Fragment(), MenuProvider {
     }
 
     private fun editWorkout() {
-        workout?.let {
-            val action = WorkoutViewFragmentDirections.toCreateEditWorkoutFragment(it)
-            findNavController().navigate(action)
-        }
+        val action = WorkoutViewFragmentDirections.toCreateEditWorkoutFragment(workout?.id ?: 0)
+        findNavController().navigate(action)
+
     }
 
     private fun deleteWorkout() {

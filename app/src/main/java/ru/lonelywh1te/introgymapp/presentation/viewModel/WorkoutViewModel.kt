@@ -1,13 +1,9 @@
 package ru.lonelywh1te.introgymapp.presentation.viewModel
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
-import ru.lonelywh1te.introgymapp.data.MainDatabase
-import ru.lonelywh1te.introgymapp.domain.model.Exercise
 import ru.lonelywh1te.introgymapp.domain.model.Workout
 import ru.lonelywh1te.introgymapp.domain.usecase.workout.CreateWorkoutUseCase
 import ru.lonelywh1te.introgymapp.domain.usecase.workout.DeleteWorkoutUseCase

@@ -4,10 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import ru.lonelywh1te.introgymapp.databinding.ExerciseItemBinding
-import ru.lonelywh1te.introgymapp.databinding.WorkoutDateItemBinding
 import ru.lonelywh1te.introgymapp.databinding.WorkoutItemBinding
-import ru.lonelywh1te.introgymapp.domain.model.ExerciseInfo
 import ru.lonelywh1te.introgymapp.domain.model.Workout
 
 interface OnWorkoutItemClick {
@@ -31,7 +28,6 @@ class WorkoutAdapter(private val onWorkoutItemClick: OnWorkoutItemClick): Recycl
     }
 
     override fun getItemCount(): Int = workoutList.size
-
 
     override fun onBindViewHolder(holder: WorkoutViewHolder, position: Int) {
         val item = workoutList[position]

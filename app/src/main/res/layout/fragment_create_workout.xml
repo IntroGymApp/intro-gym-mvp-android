@@ -3,112 +3,103 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.view.workout.CreateEditWorkoutFragment"
+    android:background="?attr/ig_backgroundColor"
     android:orientation="vertical"
-    android:background="?attr/ig_backgroundColor">
+    tools:context=".presentation.view.workout.CreateEditWorkoutFragment">
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:scrollbars="none"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:orientation="vertical"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="Название тренировки"
+                android:textAppearance="@style/TextLargeSemiboldStyle" />
+
+            <EditText
+                android:id="@+id/etWorkoutName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Введите название"
+                android:maxLines="1"
+                android:textAppearance="@style/TextMediumRegularStyle"
+                android:textColor="?attr/ig_defaultTextColor" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:orientation="vertical"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="Описание тренировки"
+                android:textAppearance="@style/TextLargeSemiboldStyle" />
+
+            <EditText
+                android:id="@+id/etWorkoutDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Введите описание"
+                android:textAppearance="@style/TextMediumRegularStyle"
+                android:textColor="?attr/ig_defaultTextColor" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <LinearLayout
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:paddingStart="20dp"
+                android:paddingTop="10dp"
                 android:paddingEnd="20dp"
-                android:layout_marginBottom="20dp">
+                android:paddingBottom="10dp"
+                android:text="Ваши упражнения"
+                android:textAppearance="@style/TextLargeSemiboldStyle" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
-                    android:text="Название тренировки"
-                    android:textAppearance="@style/TextLargeSemiboldStyle"/>
-
-                <EditText
-                    android:id="@+id/etWorkoutName"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:maxLines="1"
-                    android:textAppearance="@style/TextMediumRegularStyle"
-                    android:textColor="?attr/ig_defaultTextColor"
-                    android:hint="Введите название"/>
-
-            </LinearLayout>
-
-            <LinearLayout
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvWorkoutExercises"
+                android:overScrollMode="never"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingStart="20dp"
-                android:paddingEnd="20dp"
-                android:layout_marginBottom="20dp">
+                android:layout_height="match_parent"
+                tools:listitem="@layout/exercise_item" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
-                    android:text="Описание тренировки"
-                    android:textAppearance="@style/TextLargeSemiboldStyle"/>
-
-                <EditText
-                    android:id="@+id/etWorkoutDescription"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="@style/TextMediumRegularStyle"
-                    android:textColor="?attr/ig_defaultTextColor"
-                    android:hint="Введите описание"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Ваши упражнения"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
-                    android:paddingStart="20dp"
-                    android:paddingEnd="20dp"
-                    android:textAppearance="@style/TextLargeSemiboldStyle"/>
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvWorkoutExercises"
-                    android:overScrollMode="never"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    tools:listitem="@layout/exercise_item"/>
-
-            </LinearLayout>
         </LinearLayout>
-    </ScrollView>
-
+    </LinearLayout>
 
     <Button
         android:id="@+id/btnAddExercise"
         style="@style/SecondaryButtonStyle"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_marginTop="15dp"
         android:layout_marginStart="20dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="20dp"
-        android:text="Добавить упражнение"/>
+        android:text="Добавить упражнение" />
 
     <Button
         android:id="@+id/btnSaveWorkout"
@@ -118,5 +109,6 @@
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="15dp"
-        android:text="Сохранить"/>
+        android:text="Сохранить" />
+
 </LinearLayout>

@@ -12,6 +12,7 @@ import ru.lonelywh1te.introgymapp.domain.model.ExerciseInfo
 import ru.lonelywh1te.introgymapp.domain.model.ExerciseWithInfo
 import ru.lonelywh1te.introgymapp.domain.usecase.exercise.AddExerciseHistoryUseCase
 import ru.lonelywh1te.introgymapp.domain.usecase.exercise.AddExerciseUseCase
+import ru.lonelywh1te.introgymapp.domain.usecase.exercise.DeleteAllExercisesByWorkoutIdUseCase
 import ru.lonelywh1te.introgymapp.domain.usecase.exercise.DeleteExerciseHistoryUseCase
 import ru.lonelywh1te.introgymapp.domain.usecase.exercise.GetAllExerciseGroupUseCase
 import ru.lonelywh1te.introgymapp.domain.usecase.exercise.GetAllExerciseHistoryByIdUseCase
@@ -25,6 +26,7 @@ class ExerciseViewModel(
     private val addExerciseHistoryUseCase: AddExerciseHistoryUseCase,
     private val updateExerciseUseCase: UpdateExerciseUseCase,
     private val deleteExerciseHistoryUseCase: DeleteExerciseHistoryUseCase,
+    private val deleteAllExercisesByWorkoutIdUseCase: DeleteAllExercisesByWorkoutIdUseCase,
     private val getAllExerciseInfoByGroupUseCase: GetAllExerciseInfoByGroupUseCase,
     private val getAllExercisesByWorkoutIdUseCase: GetAllExercisesByWorkoutIdUseCase,
     private val getAllExercisesWithInfoByWorkoutIdUseCase: GetAllExercisesWithInfoByWorkoutIdUseCase,
@@ -71,13 +73,19 @@ class ExerciseViewModel(
     }
 
     suspend fun updateExercises(workoutId: Int, exercises: List<Exercise>) {
-        for (exercise in exercises) {
-            if (exercise.id != 0) {
-                val workoutExercise = Exercise(workoutId, exercise.exerciseInfoId, exercise.sets, exercise.reps, exercise.weight, exercise.note, exercise.id)
-                updateExerciseUseCase.execute(workoutExercise)
-            } else {
-                val workoutExercise = Exercise(workoutId, exercise.exerciseInfoId, exercise.sets, exercise.reps, exercise.weight, exercise.note)
-                addExerciseUseCase.execute(workoutExercise)
+        // TODO: переписать метод
+        if (getAllExercisesByWorkoutId(workoutId).size != exercises.size) {
+            deleteAllExercisesByWorkoutIdUseCase.execute(workoutId)
+            addExercises(workoutId, exercises)
+        } else {
+            for (exercise in exercises) {
+                if (exercise.id != 0) {
+                    val workoutExercise = Exercise(workoutId, exercise.exerciseInfoId, exercise.sets, exercise.reps, exercise.weight, exercise.note, exercise.id)
+                    updateExerciseUseCase.execute(workoutExercise)
+                } else {
+                    val workoutExercise = Exercise(workoutId, exercise.exerciseInfoId, exercise.sets, exercise.reps, exercise.weight, exercise.note)
+                    addExerciseUseCase.execute(workoutExercise)
+                }
             }
         }
     }

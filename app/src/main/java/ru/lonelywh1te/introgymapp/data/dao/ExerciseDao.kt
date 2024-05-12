@@ -3,11 +3,9 @@ package ru.lonelywh1te.introgymapp.data.dao
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
-import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Transaction
 import androidx.room.Update
-import androidx.room.Upsert
 import ru.lonelywh1te.introgymapp.domain.model.Exercise
 import ru.lonelywh1te.introgymapp.domain.model.ExerciseGroup
 import ru.lonelywh1te.introgymapp.domain.model.ExerciseHistory
@@ -44,4 +42,7 @@ interface ExerciseDao {
 
     @Query("SELECT * FROM exercise_group ORDER BY name ASC")
     suspend fun getAllExerciseGroup(): List<ExerciseGroup>
+
+    @Query("DELETE FROM exercise WHERE workout_id=:id")
+    suspend fun deleteAllExercisesByWorkoutId(id: Int)
 }

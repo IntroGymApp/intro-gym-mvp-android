@@ -3,35 +3,30 @@ package ru.lonelywh1te.introgymapp.presentation.view
 import android.graphics.Canvas
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.color.MaterialColors
-import com.google.android.material.snackbar.Snackbar
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 import ru.lonelywh1te.introgymapp.R
 import ru.lonelywh1te.introgymapp.databinding.FragmentMainBinding
-import ru.lonelywh1te.introgymapp.domain.model.Exercise
 import ru.lonelywh1te.introgymapp.domain.model.Workout
 import ru.lonelywh1te.introgymapp.presentation.calendar.CalendarAdapter
 import ru.lonelywh1te.introgymapp.presentation.calendar.Day
 import ru.lonelywh1te.introgymapp.presentation.calendar.OnItemClickListener
 import ru.lonelywh1te.introgymapp.presentation.calendar.WeeklyCalendar
 import ru.lonelywh1te.introgymapp.presentation.view.adapter.OnWorkoutItemClick
-import ru.lonelywh1te.introgymapp.presentation.view.adapter.WorkoutAdapter
 import ru.lonelywh1te.introgymapp.presentation.view.adapter.WorkoutDateAdapter
 import ru.lonelywh1te.introgymapp.presentation.viewModel.WorkoutViewModel
-import java.time.LocalDate
 
 class MainFragment : Fragment() {
     private lateinit var binding: FragmentMainBinding
@@ -56,7 +51,7 @@ class MainFragment : Fragment() {
 
         val workoutAdapter = WorkoutDateAdapter(object: OnWorkoutItemClick {
             override fun onClick(item: Workout) {
-                val action = MainFragmentDirections.toWorkoutViewFragment(item, true)
+                val action = MainFragmentDirections.toWorkoutViewFragment(item.id, item.name.toString(), true)
                 findNavController().navigate(action)
             }
         })

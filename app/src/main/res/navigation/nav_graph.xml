@@ -103,10 +103,9 @@
             android:id="@+id/toPlanExerciseFragment"
             app:destination="@id/planExerciseFragment" />
         <argument
-            android:name="workout"
-            app:argType="ru.lonelywh1te.introgymapp.domain.model.Workout"
-            app:nullable="true"
-            android:defaultValue="@null" />
+            android:name="workoutId"
+            app:argType="integer"
+            android:defaultValue="0" />
     </fragment>
     <fragment
         android:id="@+id/guideFragment"
@@ -120,7 +119,7 @@
     <fragment
         android:id="@+id/planExerciseFragment"
         android:name="ru.lonelywh1te.introgymapp.presentation.view.PlanExerciseFragment"
-        android:label="fragment_plan_exercise"
+        android:label="{title}"
         tools:layout="@layout/fragment_plan_exercise" >
         <argument
             android:name="exerciseWithInfo"
@@ -129,14 +128,18 @@
             android:name="index"
             app:argType="integer"
             android:defaultValue="0" />
+        <argument
+            android:name="title"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/workoutViewFragment"
         android:name="ru.lonelywh1te.introgymapp.presentation.view.workout.WorkoutViewFragment"
+        android:label="{title}"
         tools:layout="@layout/fragment_workout_view" >
         <argument
-            android:name="workout"
-            app:argType="ru.lonelywh1te.introgymapp.domain.model.Workout" />
+            android:name="workoutId"
+            app:argType="integer" />
         <action
             android:id="@+id/toCreateEditWorkoutFragment"
             app:destination="@id/createEditWorkoutFragment" />
@@ -147,14 +150,20 @@
         <action
             android:id="@+id/toExerciseExecuteFragment"
             app:destination="@id/exerciseExecuteFragment" />
+        <argument
+            android:name="title"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/exerciseExecuteFragment"
         android:name="ru.lonelywh1te.introgymapp.presentation.view.ExerciseExecuteFragment"
-        android:label="fragment_exercise_execute"
+        android:label="{title}"
         tools:layout="@layout/fragment_exercise_execute" >
         <argument
             android:name="exerciseWithInfo"
             app:argType="ru.lonelywh1te.introgymapp.domain.model.ExerciseWithInfo" />
+        <argument
+            android:name="title"
+            app:argType="string" />
     </fragment>
 </navigation>

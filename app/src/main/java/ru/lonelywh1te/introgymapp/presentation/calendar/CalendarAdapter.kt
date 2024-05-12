@@ -1,9 +1,7 @@
 package ru.lonelywh1te.introgymapp.presentation.calendar
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.color.MaterialColors
 import ru.lonelywh1te.introgymapp.R

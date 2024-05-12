@@ -13,7 +13,6 @@ import ru.lonelywh1te.introgymapp.R
 import ru.lonelywh1te.introgymapp.databinding.ExerciseInfoItemBinding
 import ru.lonelywh1te.introgymapp.domain.AssetsPath
 import ru.lonelywh1te.introgymapp.domain.model.ExerciseInfo
-import ru.lonelywh1te.introgymapp.domain.model.ExerciseWithInfo
 
 interface OnExerciseInfoItemClick {
     fun onClick(item: ExerciseInfo)

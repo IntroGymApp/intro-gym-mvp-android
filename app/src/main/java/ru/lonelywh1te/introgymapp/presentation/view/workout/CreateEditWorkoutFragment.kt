@@ -2,15 +2,12 @@ package ru.lonelywh1te.introgymapp.presentation.view.workout
 
 import android.graphics.Canvas
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -46,20 +43,20 @@ class CreateEditWorkoutFragment : Fragment() {
         workoutViewModel = getViewModel()
         exerciseViewModel = getViewModel()
 
-        args.workout?.let {
+        if (args.workoutId != 0) {
             editMode = true
-            workout = it
-            exerciseViewModel.getAllExercisesWithInfoByWorkoutId(it.id)
+
+            workoutViewModel.getWorkoutById(args.workoutId)
+            exerciseViewModel.getAllExercisesWithInfoByWorkoutId(args.workoutId)
         }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentCreateWorkoutBinding.inflate(layoutInflater, container, false)
-        workout?.let { setWorkoutData(it) }
 
         val adapter = ExerciseAdapter(object: OnExerciseItemClick {
             override fun onClick(item: ExerciseWithInfo, itemIndex: Int) {
-                val action = CreateEditWorkoutFragmentDirections.toPlanExerciseFragment(item, itemIndex)
+                val action = CreateEditWorkoutFragmentDirections.toPlanExerciseFragment(item, item.exerciseInfo.name, itemIndex)
                 findNavController().navigate(action)
             }
         })
@@ -82,10 +79,22 @@ class CreateEditWorkoutFragment : Fragment() {
             }
         }
 
+        workoutViewModel.currentWorkout.observe(viewLifecycleOwner) {
+            workout = it
+            setWorkoutData(it)
+        }
+
+        if (exerciseList.isEmpty() && args.workoutId != 0) {
+            exerciseViewModel.exerciseWithInfoList.observe(viewLifecycleOwner) { list ->
+                exerciseList = list.toMutableList()
+                adapter.exerciseList = exerciseList.toList()
+            }
+        }
+
         setFragmentResultListener("ADD_EXERCISE") {_, bundle ->
             bundle.getParcelable<ExerciseWithInfo>("exercise")?.let {
                 exerciseList.add(it)
-                adapter.exerciseList = exerciseList
+                adapter.exerciseList = exerciseList.toList()
             }
         }
 
@@ -93,16 +102,11 @@ class CreateEditWorkoutFragment : Fragment() {
             val index = bundle.getInt("exerciseIndex")
             bundle.getParcelable<ExerciseWithInfo>("exercise")?.let {changedExercise ->
                 exerciseList[index] = changedExercise
-                adapter.exerciseList = exerciseList
+                adapter.exerciseList = exerciseList.toList()
             }
         }
 
-        if (exerciseList.isEmpty() && workout != null) {
-            exerciseViewModel.exerciseWithInfoList.observe(viewLifecycleOwner) { list ->
-                exerciseList = list.toMutableList()
-                adapter.exerciseList = exerciseList
-            }
-        }
+
 
         val itemTouchHelperCallback = object: ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
             override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean {
@@ -112,8 +116,7 @@ class CreateEditWorkoutFragment : Fragment() {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 // TODO: не работает
                 exerciseList.removeAt(viewHolder.absoluteAdapterPosition)
-                Log.println(Log.DEBUG, "CreateEdit", "$exerciseList")
-                adapter.exerciseList = exerciseList
+                adapter.exerciseList = exerciseList.toList()
             }
 
             override fun onChildDraw(c: Canvas, recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, dX: Float, dY: Float, actionState: Int, isCurrentlyActive: Boolean) {
@@ -132,7 +135,7 @@ class CreateEditWorkoutFragment : Fragment() {
         val itemTouchHelper = ItemTouchHelper(itemTouchHelperCallback)
         itemTouchHelper.attachToRecyclerView(recycler)
 
-        adapter.exerciseList = exerciseList
+        adapter.exerciseList = exerciseList.toList()
         return binding.root
     }
 

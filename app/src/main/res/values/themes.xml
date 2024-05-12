@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <style name="Theme.IntroGymApp" parent="Base.Theme.IntroGymApp" />
 
     <style name="Base.Theme.IntroGymApp" parent="Theme.Material3.Light.NoActionBar">

@@ -1,13 +1,7 @@
 package ru.lonelywh1te.introgymapp.presentation.view
 
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.util.Log
-import android.view.View
-import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
-import androidx.core.content.ContextCompat
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
@@ -36,17 +30,6 @@ class MainActivity : AppCompatActivity() {
             R.id.statsFragment,
             R.id.profileFragment
         ))
-
-//        navController.addOnDestinationChangedListener { _, destination, _ ->
-//            when(destination.id) {
-//                R.id.mainFragment -> {
-//                    binding.mainToolbar.setBackgroundColor(ContextCompat.getColor(this, R.color.background_block_color))
-//                }
-//                else -> {
-//                    binding.mainToolbar.setBackgroundColor(ContextCompat.getColor(this, R.color.background_color))
-//                }
-//            }
-//        }
 
         binding.bottomMenu.setupWithNavController(navController)
         setupActionBarWithNavController(navController, appBarConfiguration)

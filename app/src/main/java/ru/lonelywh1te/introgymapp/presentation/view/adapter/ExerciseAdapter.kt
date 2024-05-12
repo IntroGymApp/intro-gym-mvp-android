@@ -11,7 +11,6 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import ru.lonelywh1te.introgymapp.databinding.ExerciseItemBinding
 import ru.lonelywh1te.introgymapp.domain.AssetsPath
-import ru.lonelywh1te.introgymapp.domain.model.ExerciseHistory
 import ru.lonelywh1te.introgymapp.domain.model.ExerciseWithInfo
 
 interface OnExerciseItemClick {
@@ -61,10 +60,10 @@ class ExerciseAdapter(private val onExerciseItemClick: OnExerciseItemClick?): Re
         }
 
         override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-            val oldItem = oldList[oldItemPosition]
-            val newItem = newList[newItemPosition]
+            val oldItem = oldList[oldItemPosition].exercise
+            val newItem = newList[newItemPosition].exercise
 
-            return oldItem.exercise.id == newItem.exercise.id && oldItem.exerciseInfo == newItem.exerciseInfo
+            return oldItem == newItem
         }
     }
 }
