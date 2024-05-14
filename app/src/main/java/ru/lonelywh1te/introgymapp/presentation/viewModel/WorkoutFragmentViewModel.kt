@@ -32,7 +32,7 @@ class WorkoutFragmentViewModel(
 
     fun addWorkoutByDate(workout: Workout, date: Long) {
         viewModelScope.launch {
-            createWorkoutUseCase.execute(workout.copy(date = date))
+            createWorkoutUseCase.execute(workout.copy(id = 0, date = date))
             val workoutId = getLastCreatedWorkoutUseCase.execute().id
             val exercises = getAllExercisesByWorkoutIdUseCase.execute(workout.id)
             addExercisesByWorkoutId(workoutId, exercises)

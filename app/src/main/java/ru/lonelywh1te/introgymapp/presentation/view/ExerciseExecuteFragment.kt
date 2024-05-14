@@ -104,9 +104,9 @@ class ExerciseExecuteFragment : Fragment() {
         val exerciseId = exerciseWithInfo.exercise.id
         val reps = binding.etCompletedReps.text.toString().toInt()
         val weight = binding.etCompletedWeight.text.toString().toInt()
-        val data = 0L
+        val date = args.date
 
-        val exerciseHistory = ExerciseHistory(exerciseId, reps, weight, data)
+        val exerciseHistory = ExerciseHistory(exerciseId, reps, weight, date)
 
         viewModel.addExerciseHistory(exerciseHistory)
 

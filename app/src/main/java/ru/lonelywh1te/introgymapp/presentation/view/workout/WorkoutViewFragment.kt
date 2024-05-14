@@ -42,7 +42,7 @@ class WorkoutViewFragment : Fragment(), MenuProvider {
 
         val adapter = ExerciseAdapter(if (!args.executionMode) null else object: OnExerciseItemClick {
             override fun onClick(item: ExerciseWithInfo, itemIndex: Int) {
-                val action = WorkoutViewFragmentDirections.toExerciseExecuteFragment(item, item.exerciseInfo.name)
+                val action = WorkoutViewFragmentDirections.toExerciseExecuteFragment(item, item.exerciseInfo.name, workout?.date ?: 0L)
                 findNavController().navigate(action)
             }
         })

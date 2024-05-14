@@ -165,5 +165,9 @@
         <argument
             android:name="title"
             app:argType="string" />
+        <argument
+            android:name="date"
+            app:argType="long"
+            android:defaultValue="0L" />
     </fragment>
 </navigation>

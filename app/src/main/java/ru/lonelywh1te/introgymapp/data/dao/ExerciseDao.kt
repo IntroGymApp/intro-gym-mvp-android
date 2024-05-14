@@ -40,6 +40,9 @@ interface ExerciseDao {
     @Query("SELECT * FROM exercise_history WHERE exercise_id=:id ORDER BY id DESC")
     suspend fun getAllExerciseHistoryById(id: Int): List<ExerciseHistory>
 
+    @Query("SELECT * FROM exercise_history WHERE date BETWEEN :firstDate AND :lastDate")
+    suspend fun getAllExerciseHistoryByPeriod(firstDate: Long, lastDate: Long): List<ExerciseHistory>
+
     @Query("SELECT * FROM exercise_group ORDER BY name ASC")
     suspend fun getAllExerciseGroup(): List<ExerciseGroup>
 

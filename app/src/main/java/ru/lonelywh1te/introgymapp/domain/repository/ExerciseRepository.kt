@@ -16,5 +16,6 @@ interface ExerciseRepository {
     suspend fun getAllExercisesWithInfoByWorkoutId(id: Int): List<ExerciseWithInfo>
     suspend fun getAllExercisesByWorkoutId(id: Int): List<Exercise>
     suspend fun getAllExerciseHistoryByExerciseId(id: Int): List<ExerciseHistory>
+    suspend fun getAllExerciseHistoryByPeriod(firstDate: Long, lastDate: Long): List<ExerciseHistory>
     suspend fun getAllExerciseGroup(): List<ExerciseGroup>
 }

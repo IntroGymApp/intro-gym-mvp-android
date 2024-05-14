@@ -45,6 +45,10 @@ class ExerciseRepositoryImpl(private val exerciseDao: ExerciseDao): ExerciseRepo
         return exerciseDao.getAllExerciseHistoryById(id)
     }
 
+    override suspend fun getAllExerciseHistoryByPeriod(firstDate: Long, lastDate: Long): List<ExerciseHistory> {
+        return exerciseDao.getAllExerciseHistoryByPeriod(firstDate, lastDate)
+    }
+
     override suspend fun getAllExerciseGroup(): List<ExerciseGroup> {
         return exerciseDao.getAllExerciseGroup()
     }
