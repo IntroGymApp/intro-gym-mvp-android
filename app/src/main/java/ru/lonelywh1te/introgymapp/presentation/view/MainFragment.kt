@@ -117,6 +117,8 @@ class MainFragment : Fragment() {
         }
 
         viewModel.workoutList.observe(viewLifecycleOwner) {
+            binding.noWorkoutsLayout.visibility = if (it.isEmpty()) View.VISIBLE else View.GONE
+
             workoutAdapter.workoutList = it
         }
 

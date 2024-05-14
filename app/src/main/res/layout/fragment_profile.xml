@@ -392,27 +392,24 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="15dp"
-        android:paddingBottom="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+
         app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Тема приложения"
-            android:textAppearance="@style/TextLargeSemiboldStyle"/>
+            android:text="Тёмная тема"
+            android:gravity="center_vertical"
+            android:textAppearance="@style/TextLargeSemiboldStyle" />
 
-        <TextView
-            android:id="@+id/tvThemeSettings"
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/themeSwitcher"
+            style="@style/SwitchStyle"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:drawablePadding="10dp"
-            android:text="Светлая"
-            android:gravity="center"
-            android:textAppearance="@style/TextSmallRegularStyle"
-            app:drawableEndCompat="@drawable/ic_arrow_right"
-            app:drawableTint="?attr/ig_defaultTextColor" />
+            android:layout_height="match_parent"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

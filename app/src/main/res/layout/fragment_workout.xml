@@ -28,9 +28,9 @@
         <ImageButton
             android:id="@+id/btnCreateWorkout"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:background="@android:color/transparent"
-            android:padding="10dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="?attr/ig_backgroundColor"
+            android:padding="15dp"
             android:src="@drawable/ic_add"
             app:tint="?attr/ig_defaultTextColor" />
     </LinearLayout>

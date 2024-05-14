@@ -26,6 +26,7 @@
                 android:id="@+id/rvCalendar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:overScrollMode="never"
                 android:orientation="horizontal"
                 android:padding="5dp"
                 tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -36,8 +37,7 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="10dp">
+                android:orientation="horizontal">
 
                 <ImageButton
                     android:id="@+id/btnPrevWeek"
@@ -50,7 +50,7 @@
 
                 <TextView
                     android:id="@+id/tvCalendarCurrentMonthYear"
-                    android:layout_width="120dp"
+                    android:layout_width="150dp"
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:paddingStart="10dp"
@@ -75,10 +75,11 @@
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="15dp"
         android:orientation="horizontal"
         android:paddingStart="20dp"
         android:paddingEnd="20dp"
+        android:gravity="center_vertical"
         app:layout_constraintTop_toBottomOf="@+id/cardView">
 
         <LinearLayout
@@ -104,10 +105,10 @@
         <ImageButton
             android:id="@+id/ibAddWorkoutToDate"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:background="@android:color/transparent"
-            android:padding="10dp"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
             android:src="@drawable/ic_add"
+            android:backgroundTint="?attr/ig_backgroundColor"
             app:tint="?attr/ig_defaultTextColor" />
     </LinearLayout>
 
@@ -115,12 +116,37 @@
         android:id="@+id/rvTrainingAtDay"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="15dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="1.0"
-        tools:layout_editor_absoluteX="0dp"
+        android:overScrollMode="never"
         tools:listitem="@layout/workout_date_item" />
+
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/noWorkoutsLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_dumbell"
+            android:padding="15dp"
+            app:tint="?attr/ig_primaryColor" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextMediumRegularStyle"
+            android:text="На этот день планов нет"/>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

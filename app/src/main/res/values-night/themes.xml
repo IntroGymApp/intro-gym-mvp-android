@@ -1,6 +1,7 @@
 <resources>
     <style name="Base.Theme.IntroGymApp" parent="Theme.Material3.Dark.NoActionBar">
         <item name="android:statusBarColor">@color/night_background_color</item>
+
         <item name="ig_primaryColor">@color/night_primary_color</item>
         <item name="ig_primaryLightColor">@color/night_primary_light_color</item>
         <item name="ig_backgroundColor">@color/night_background_color</item>

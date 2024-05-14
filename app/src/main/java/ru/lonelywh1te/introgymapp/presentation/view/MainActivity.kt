@@ -2,6 +2,7 @@ package ru.lonelywh1te.introgymapp.presentation.view
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
@@ -16,10 +17,11 @@ class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        setTheme()
         super.onCreate(savedInstanceState)
+
         binding = ActivityMainBinding.inflate(layoutInflater)
 
-        setContentView(binding.root)
         setSupportActionBar(binding.mainToolbar)
 
         navController = binding.fragmentContainer.getFragment<NavHostFragment>().navController
@@ -39,9 +41,23 @@ class MainActivity : AppCompatActivity() {
 
         // binding.bottomMenu.setupWithNavController(navController)
         setupActionBarWithNavController(navController, appBarConfiguration)
+
+
+        setContentView(binding.root)
     }
 
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp() || super.onSupportNavigateUp()
+    }
+
+    private fun setTheme() {
+        val settings = getSharedPreferences("APP_SETTINGS", MODE_PRIVATE)
+        val nightTheme: Boolean = settings.getBoolean("NIGHT_THEME", false)
+
+        if (nightTheme) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        }
     }
 }

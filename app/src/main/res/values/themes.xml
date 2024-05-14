@@ -1,8 +1,11 @@
 <resources>
-    <style name="Theme.IntroGymApp" parent="Base.Theme.IntroGymApp" />
+    <style name="Theme.IntroGymApp" parent="Base.Theme.IntroGymApp">
+        <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
+    </style>
 
     <style name="Base.Theme.IntroGymApp" parent="Theme.Material3.Light.NoActionBar">
         <item name="android:statusBarColor">@color/background_color</item>
+
         <item name="ig_primaryColor">@color/primary_color</item>
         <item name="ig_primaryLightColor">@color/primary_light_color</item>
         <item name="ig_backgroundColor">@color/background_color</item>
@@ -11,4 +14,6 @@
         <item name="ig_lightTextColor">@color/background_color</item>
         <item name="ig_errorColor">@color/negative_color</item>
     </style>
+
+
 </resources>

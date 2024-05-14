@@ -12,6 +12,7 @@
         android:layout_height="match_parent"
         android:paddingTop="15dp"
         android:paddingBottom="15dp"
+        android:overScrollMode="never"
         tools:listitem="@layout/exercise_info_item"/>
 
 </FrameLayout>
