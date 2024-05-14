@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import ru.lonelywh1te.introgymapp.R
@@ -31,7 +32,12 @@ class MainActivity : AppCompatActivity() {
             R.id.profileFragment
         ))
 
-        binding.bottomMenu.setupWithNavController(navController)
+        binding.bottomMenu.setOnItemSelectedListener { item ->
+            NavigationUI.onNavDestinationSelected(item, navController)
+            return@setOnItemSelectedListener true
+        }
+
+        // binding.bottomMenu.setupWithNavController(navController)
         setupActionBarWithNavController(navController, appBarConfiguration)
     }
 
