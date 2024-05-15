@@ -110,9 +110,8 @@ class ExerciseExecuteFragment : Fragment() {
 
         viewModel.addExerciseHistory(exerciseHistory)
 
-
-        binding.etCompletedReps.setText("")
-        binding.etCompletedWeight.setText("")
+//        binding.etCompletedReps.setText("")
+//        binding.etCompletedWeight.setText("")
     }
 
     private fun hideKeyboard(view: View) {

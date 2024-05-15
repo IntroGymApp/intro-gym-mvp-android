@@ -23,10 +23,10 @@ class PlanExerciseFragment : Fragment() {
         setExerciseData(exerciseWithInfo)
 
         binding.btnSaveExercise.setOnClickListener {
-            val sets = if (binding.etSets.text.toString().isNotEmpty()) binding.etSets.text.toString().toInt() else 0
-            val reps = if (binding.etReps.text.toString().isNotEmpty()) binding.etReps.text.toString().toInt() else 0
-            val weight = if (binding.etWeight.text.toString().isNotEmpty()) binding.etWeight.text.toString().toFloat() else 0f
-            val note = binding.etNote.text.toString()
+            val sets = if (binding.etSets.text.toString().isNotEmpty()) binding.etSets.text.toString().toInt() else exerciseWithInfo.exercise.sets
+            val reps = if (binding.etReps.text.toString().isNotEmpty()) binding.etReps.text.toString().toInt() else exerciseWithInfo.exercise.reps
+            val weight = if (binding.etWeight.text.toString().isNotEmpty()) binding.etWeight.text.toString().toFloat() else exerciseWithInfo.exercise.weight
+            val note = binding.etNote.text.toString().ifEmpty { exerciseWithInfo.exercise.note.toString() }
 
             val exercise = exerciseWithInfo.exercise.copy(sets = sets, reps = reps, weight = weight, note = note)
             exerciseWithInfo = exerciseWithInfo.copy(exercise = exercise, exerciseInfo = exerciseWithInfo.exerciseInfo)
@@ -44,9 +44,9 @@ class PlanExerciseFragment : Fragment() {
     }
 
     private fun setExerciseData(exerciseWithInfo: ExerciseWithInfo) {
-        binding.etSets.setText(exerciseWithInfo.exercise.sets.toString())
-        binding.etReps.setText(exerciseWithInfo.exercise.reps.toString())
-        binding.etWeight.setText(exerciseWithInfo.exercise.weight.toString())
-        binding.etNote.setText(exerciseWithInfo.exercise.note)
+        binding.etSets.setHint(exerciseWithInfo.exercise.sets.toString())
+        binding.etReps.setHint(exerciseWithInfo.exercise.reps.toString())
+        binding.etWeight.setHint(exerciseWithInfo.exercise.weight.toString())
+        binding.etNote.setHint(exerciseWithInfo.exercise.note)
     }
 }

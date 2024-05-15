@@ -1,6 +1,8 @@
 package ru.lonelywh1te.introgymapp.presentation.view
 
 import android.os.Bundle
+import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.navigation.NavController
@@ -42,6 +44,14 @@ class MainActivity : AppCompatActivity() {
 
             setOnItemReselectedListener {
                 navController.popBackStack(destinationId = it.itemId, inclusive = false)
+            }
+        }
+
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            if (destination.id == R.id.exerciseExecuteFragment) {
+                binding.bottomMenu.visibility = View.GONE
+            } else {
+                binding.bottomMenu.visibility = View.VISIBLE
             }
         }
 

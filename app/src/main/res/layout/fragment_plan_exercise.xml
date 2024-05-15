@@ -152,6 +152,7 @@
                             android:layout_height="30dp"
                             android:hint="0"
                             style="@style/NumberEditTextStyle"
+                            android:inputType="numberDecimal"
                             android:layout_marginTop="5dp"
                             android:gravity="start|center_vertical"
                             android:paddingStart="10dp"
@@ -203,8 +204,7 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:text="Сохранить"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="20dp" />
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

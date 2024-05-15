@@ -90,7 +90,6 @@
         <item name="android:maxLength">6</item>
         <item name="android:background">@drawable/shape_edit_text_background</item>
         <item name="android:gravity">center</item>
-        <item name="android:textColorHint">?attr/ig_defaultTextColor</item>
         <item name="android:textAppearance">@style/TextMediumSemiboldStyle</item>
     </style>
 
