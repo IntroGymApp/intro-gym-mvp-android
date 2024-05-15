@@ -1,5 +1,6 @@
 package ru.lonelywh1te.introgymapp.presentation.viewModel
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -97,7 +98,9 @@ class CreateEditWorkoutFragmentViewModel(
     }
 
     private suspend fun addExercisesByWorkoutId(workoutId: Int, exercises: List<Exercise>) {
-        for (exercise in exercises) {
+        for (index in exercises.indices) {
+            val exercise = exercises[index]
+            Log.println(Log.DEBUG, "CreateEditVM", "$exercise")
             val workoutExercise = Exercise(workoutId, exercise.exerciseInfoId, exercise.sets, exercise.reps, exercise.weight, exercise.note)
             addExerciseUseCase.execute(workoutExercise)
         }

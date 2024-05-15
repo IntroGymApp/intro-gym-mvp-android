@@ -67,6 +67,8 @@ class CreateEditWorkoutFragment : Fragment() {
         }
 
         binding.btnSaveWorkout.setOnClickListener {
+            viewModel.exerciseList.value = adapter.getList()
+
             if (!editMode) {
                 createWorkout()
             } else {
@@ -80,7 +82,7 @@ class CreateEditWorkoutFragment : Fragment() {
         }
 
         viewModel.exerciseList.observe(viewLifecycleOwner) { list ->
-            adapter.exerciseList = list
+            adapter.submitList(list)
         }
 
         setFragmentResultListener("ADD_EXERCISE") {_, bundle ->
@@ -96,8 +98,14 @@ class CreateEditWorkoutFragment : Fragment() {
             }
         }
 
-        val itemTouchHelperCallback = object: ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
+        val itemTouchHelperCallback = object: ItemTouchHelper.SimpleCallback((ItemTouchHelper.UP or ItemTouchHelper.DOWN), ItemTouchHelper.LEFT) {
             override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean {
+                val fromPosition = viewHolder.absoluteAdapterPosition
+                val toPosition = target.absoluteAdapterPosition
+
+                adapter.onItemMove(fromPosition, toPosition)
+                adapter.notifyItemMoved(fromPosition,toPosition)
+
                 return true
             }
 

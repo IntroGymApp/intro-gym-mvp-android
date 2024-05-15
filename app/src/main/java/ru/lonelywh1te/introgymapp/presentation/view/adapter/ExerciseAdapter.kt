@@ -1,6 +1,7 @@
 package ru.lonelywh1te.introgymapp.presentation.view.adapter
 
 import android.net.Uri
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,22 +12,18 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import ru.lonelywh1te.introgymapp.databinding.ExerciseItemBinding
 import ru.lonelywh1te.introgymapp.domain.AssetsPath
+import ru.lonelywh1te.introgymapp.domain.model.Exercise
 import ru.lonelywh1te.introgymapp.domain.model.ExerciseWithInfo
+import java.util.Collections
+
+
 
 interface OnExerciseItemClick {
     fun onClick(item: ExerciseWithInfo, itemIndex: Int)
 }
 
 class ExerciseAdapter(private val onExerciseItemClick: OnExerciseItemClick?): RecyclerView.Adapter<ExerciseViewHolder>() {
-    var exerciseList = listOf<ExerciseWithInfo>()
-        set(newList) {
-            val diffCallback = ExerciseCallback(exerciseList, newList)
-            val diffExercise = DiffUtil.calculateDiff(diffCallback)
-
-            field = newList
-
-            diffExercise.dispatchUpdatesTo(this)
-        }
+    private var exerciseList = listOf<ExerciseWithInfo>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExerciseViewHolder {
         val binding = ExerciseItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -47,6 +44,31 @@ class ExerciseAdapter(private val onExerciseItemClick: OnExerciseItemClick?): Re
 
         holder.bind(item)
     }
+
+    fun onItemMove(fromPosition: Int, toPosition: Int) {
+        val list = exerciseList.toMutableList()
+        Log.println(Log.DEBUG, "CreateEditVM", "$fromPosition to $toPosition")
+        Log.println(Log.DEBUG, "CreateEditVM", "${list.map { it.exerciseInfo.id }}")
+
+        val fromItem = list[fromPosition]
+
+        list.removeAt(fromPosition)
+        list.add(toPosition, fromItem)
+
+        exerciseList = list
+        Log.println(Log.DEBUG, "CreateEditVM", "${list.map { it.exerciseInfo.id }}")
+    }
+
+    fun submitList(list: List<ExerciseWithInfo>) {
+        val diffCallback = ExerciseCallback(exerciseList, list)
+        val diffExercise = DiffUtil.calculateDiff(diffCallback)
+
+        exerciseList = list
+
+        diffExercise.dispatchUpdatesTo(this)
+    }
+
+    fun getList() = exerciseList
 
     class ExerciseCallback(private val oldList: List<ExerciseWithInfo>, private val newList: List<ExerciseWithInfo>): DiffUtil.Callback(){
         override fun getOldListSize(): Int = oldList.size

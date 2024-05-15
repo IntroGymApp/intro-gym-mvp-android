@@ -59,7 +59,7 @@ class WorkoutViewFragment : Fragment(), MenuProvider {
         }
 
         viewModel.exerciseList.observe(viewLifecycleOwner) {
-            adapter.exerciseList = it
+            adapter.submitList(it)
         }
 
         return binding.root

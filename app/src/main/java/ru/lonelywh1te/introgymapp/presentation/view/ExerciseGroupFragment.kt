@@ -1,6 +1,7 @@
 package ru.lonelywh1te.introgymapp.presentation.view
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,18 +19,21 @@ import ru.lonelywh1te.introgymapp.domain.model.ExerciseInfo
 import ru.lonelywh1te.introgymapp.domain.model.ExerciseWithInfo
 import ru.lonelywh1te.introgymapp.presentation.view.adapter.ExerciseInfoAdapter
 import ru.lonelywh1te.introgymapp.presentation.view.adapter.OnExerciseInfoItemClick
+import ru.lonelywh1te.introgymapp.presentation.viewModel.CreateEditWorkoutFragmentViewModel
 import ru.lonelywh1te.introgymapp.presentation.viewModel.ExerciseGroupFragmentViewModel
 
 class ExerciseGroupFragment : Fragment() {
     private lateinit var binding: FragmentExerciseGroupBinding
     private lateinit var recycler: RecyclerView
     private lateinit var viewModel: ExerciseGroupFragmentViewModel
+    private lateinit var parentViewModel: CreateEditWorkoutFragmentViewModel
 
     private val args: ExerciseGroupFragmentArgs by navArgs()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = getViewModel()
+
         viewModel.getAllExerciseInfoByGroup(args.groupId)
     }
 
