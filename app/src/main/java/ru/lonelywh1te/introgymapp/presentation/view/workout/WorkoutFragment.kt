@@ -37,6 +37,7 @@ class WorkoutFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentWorkoutBinding.inflate(inflater, container, false)
+        binding.createWorkoutLayout.visibility = if (args.pickMode) View.GONE else View.VISIBLE
 
         val adapter = WorkoutAdapter(object: OnWorkoutItemClick {
             override fun onClick(item: Workout) {

@@ -30,7 +30,13 @@ class CreateEditWorkoutFragmentViewModel(
     val exerciseList = MutableLiveData<List<ExerciseWithInfo>>()
     val operationFinished = MutableLiveData<Boolean>()
 
-    fun createWorkout(workout: Workout, exercises: List<Exercise>) {
+    init {
+        exerciseList.value = emptyList()
+    }
+
+    fun createWorkout(workout: Workout) {
+        val exercises = exerciseList.value!!.map { it.exercise }
+
         viewModelScope.launch {
             createWorkoutUseCase.execute(workout)
 
@@ -41,8 +47,10 @@ class CreateEditWorkoutFragmentViewModel(
         }
     }
 
-    fun updateWorkout(workout: Workout, exercises: List<Exercise>) {
+    fun updateWorkout(workout: Workout) {
         // TODO: неэффективный метод
+        val exercises = exerciseList.value!!.map { it.exercise }
+
         viewModelScope.launch {
             updateWorkoutUseCase.execute(workout)
             deleteAllExercisesByWorkoutId(workout.id)
@@ -64,6 +72,25 @@ class CreateEditWorkoutFragmentViewModel(
         }
     }
 
+    fun addExerciseToList(exerciseWithInfo: ExerciseWithInfo) {
+        val newList = exerciseList.value!!.toMutableList()
+        newList.add(exerciseWithInfo)
+        exerciseList.value = newList
+    }
+
+    fun deleteExerciseAtList(index: Int) {
+        val newList = exerciseList.value!!.toMutableList()
+        newList.removeAt(index)
+        exerciseList.value = newList
+    }
+
+    fun changeExerciseAtList(index: Int, exerciseWithInfo: ExerciseWithInfo){
+        val newList = exerciseList.value!!.toMutableList()
+        newList[index] = exerciseWithInfo
+        exerciseList.value = newList
+    }
+
+    fun getExerciseListSize(): Int = exerciseList.value!!.size
 
     private suspend fun deleteAllExercisesByWorkoutId(id: Int) {
         deleteAllExercisesByWorkoutIdUseCase.execute(id)

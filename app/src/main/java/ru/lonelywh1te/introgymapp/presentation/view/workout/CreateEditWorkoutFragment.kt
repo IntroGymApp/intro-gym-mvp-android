@@ -2,6 +2,7 @@ package ru.lonelywh1te.introgymapp.presentation.view.workout
 
 import android.graphics.Canvas
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,7 +33,6 @@ class CreateEditWorkoutFragment : Fragment() {
 
     private var editMode = false
     private var workout: Workout? = null
-    private var exerciseList = mutableListOf<ExerciseWithInfo>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -79,29 +79,22 @@ class CreateEditWorkoutFragment : Fragment() {
             setWorkoutData(it)
         }
 
-        if (exerciseList.isEmpty() && args.workoutId != 0) {
-            viewModel.exerciseList.observe(viewLifecycleOwner) { list ->
-                exerciseList = list.toMutableList()
-                adapter.exerciseList = exerciseList.toList()
-            }
+        viewModel.exerciseList.observe(viewLifecycleOwner) { list ->
+            adapter.exerciseList = list
         }
 
         setFragmentResultListener("ADD_EXERCISE") {_, bundle ->
             bundle.getParcelable<ExerciseWithInfo>("exercise")?.let {
-                exerciseList.add(it)
-                adapter.exerciseList = exerciseList.toList()
+                viewModel.addExerciseToList(it)
             }
         }
 
         setFragmentResultListener("CONFIG_EXERCISE") {_, bundle ->
             val index = bundle.getInt("exerciseIndex")
             bundle.getParcelable<ExerciseWithInfo>("exercise")?.let {changedExercise ->
-                exerciseList[index] = changedExercise
-                adapter.exerciseList = exerciseList.toList()
+                viewModel.changeExerciseAtList(index, changedExercise)
             }
         }
-
-
 
         val itemTouchHelperCallback = object: ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
             override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean {
@@ -109,9 +102,7 @@ class CreateEditWorkoutFragment : Fragment() {
             }
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                // TODO: не работает
-                exerciseList.removeAt(viewHolder.absoluteAdapterPosition)
-                adapter.exerciseList = exerciseList.toList()
+                viewModel.deleteExerciseAtList(viewHolder.absoluteAdapterPosition)
             }
 
             override fun onChildDraw(c: Canvas, recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, dX: Float, dY: Float, actionState: Int, isCurrentlyActive: Boolean) {
@@ -130,7 +121,6 @@ class CreateEditWorkoutFragment : Fragment() {
         val itemTouchHelper = ItemTouchHelper(itemTouchHelperCallback)
         itemTouchHelper.attachToRecyclerView(recycler)
 
-        adapter.exerciseList = exerciseList.toList()
         return binding.root
     }
 
@@ -145,10 +135,8 @@ class CreateEditWorkoutFragment : Fragment() {
             return
         }
 
-        val updatedWorkout = workout!!.copy(name = binding.etWorkoutName.text.toString(), description = binding.etWorkoutDescription.text.toString(), exerciseCount = exerciseList.size)
-        val exercises = exerciseList.map { it.exercise }
-
-        viewModel.updateWorkout(updatedWorkout, exercises)
+        val updatedWorkout = workout!!.copy(name = binding.etWorkoutName.text.toString(), description = binding.etWorkoutDescription.text.toString(), exerciseCount = viewModel.getExerciseListSize())
+        viewModel.updateWorkout(updatedWorkout)
 
         viewModel.operationFinished.observe(viewLifecycleOwner) { isUpdated ->
             if (isUpdated) findNavController().popBackStack()
@@ -161,10 +149,8 @@ class CreateEditWorkoutFragment : Fragment() {
             return
         }
 
-        val workout = Workout(binding.etWorkoutName.text.toString(), binding.etWorkoutDescription.text.toString(), exerciseCount = exerciseList.size)
-        val exercises = exerciseList.map { it.exercise }
-
-        viewModel.createWorkout(workout, exercises)
+        val workout = Workout(binding.etWorkoutName.text.toString(), binding.etWorkoutDescription.text.toString(), exerciseCount = viewModel.getExerciseListSize())
+        viewModel.createWorkout(workout)
 
         viewModel.operationFinished.observe(viewLifecycleOwner) { isCreated ->
             if (isCreated) findNavController().popBackStack()

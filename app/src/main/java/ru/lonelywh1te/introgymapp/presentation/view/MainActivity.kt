@@ -34,15 +34,18 @@ class MainActivity : AppCompatActivity() {
             R.id.profileFragment
         ))
 
-        binding.bottomMenu.setOnItemSelectedListener { item ->
-            NavigationUI.onNavDestinationSelected(item, navController)
-            return@setOnItemSelectedListener true
+        binding.bottomMenu.apply {
+            setOnItemSelectedListener { item ->
+                NavigationUI.onNavDestinationSelected(item, navController)
+                return@setOnItemSelectedListener true
+            }
+
+            setOnItemReselectedListener {
+                navController.popBackStack(destinationId = it.itemId, inclusive = false)
+            }
         }
 
-        // binding.bottomMenu.setupWithNavController(navController)
         setupActionBarWithNavController(navController, appBarConfiguration)
-
-
         setContentView(binding.root)
     }
 

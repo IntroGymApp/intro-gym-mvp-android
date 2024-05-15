@@ -8,7 +8,7 @@
     tools:context=".presentation.view.workout.WorkoutFragment">
 
     <LinearLayout
-        android:id="@+id/linearLayout"
+        android:id="@+id/createWorkoutLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -43,6 +43,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:listitem="@layout/workout_item"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/createWorkoutLayout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
