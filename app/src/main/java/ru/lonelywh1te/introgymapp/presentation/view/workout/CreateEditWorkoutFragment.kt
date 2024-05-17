@@ -110,7 +110,9 @@ class CreateEditWorkoutFragment : Fragment() {
             }
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                viewModel.deleteExerciseAtList(viewHolder.absoluteAdapterPosition)
+                val list = adapter.getList().toMutableList()
+                list.removeAt(viewHolder.absoluteAdapterPosition)
+                adapter.submitList(list.toList())
             }
 
             override fun onChildDraw(c: Canvas, recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, dX: Float, dY: Float, actionState: Int, isCurrentlyActive: Boolean) {

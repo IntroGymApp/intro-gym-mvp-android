@@ -50,7 +50,6 @@
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
                 android:orientation="vertical"
-                android:padding="20dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/ivExerciseInfoSelect"
                 app:layout_constraintStart_toEndOf="@+id/materialCardView"
@@ -60,13 +59,20 @@
                     android:id="@+id/tvExerciseInfoName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:gravity="center_vertical|bottom"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
                     android:textAppearance="@style/TextMediumSemiboldStyle"
-                    android:text="Название упражнения" />
+                    android:text="Название упражнения"
+                    android:maxLines="2"
+                    android:ellipsize="end"/>
 
                 <TextView
                     android:id="@+id/tvExercisePlan"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
                     android:textAppearance="@style/TextSmallRegularStyle"
                     android:textColor="?attr/ig_primaryColor"
                     android:text="3x10x15кг" />

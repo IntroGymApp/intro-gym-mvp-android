@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/welcome_nav_graph"
+    app:startDestination="@id/helloFragment">
+    <fragment
+        android:id="@+id/helloFragment"
+        android:name="ru.lonelywh1te.introgymapp.presentation.view.welcome.HelloFragment"
+        android:label="fragment_hello"
+        tools:layout="@layout/fragment_hello" >
+        <action
+            android:id="@+id/action_helloFragment_to_getNameFragment"
+            app:destination="@id/getNameFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/getNameFragment"
+        android:name="ru.lonelywh1te.introgymapp.presentation.view.welcome.GetNameFragment"
+        android:label="fragment_get_name"
+        tools:layout="@layout/fragment_get_name" >
+        <action
+            android:id="@+id/action_getNameFragment_to_getWeightFragment"
+            app:destination="@id/getWeightFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/getWeightFragment"
+        android:name="ru.lonelywh1te.introgymapp.presentation.view.welcome.GetWeightFragment"
+        android:label="fragment_get_weight"
+        tools:layout="@layout/fragment_get_weight" >
+        <action
+            android:id="@+id/action_getWeightFragment_to_getGoalFragment"
+            app:destination="@id/getGoalFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/getGoalFragment"
+        android:name="ru.lonelywh1te.introgymapp.presentation.view.welcome.GetGoalFragment"
+        android:label="fragment_get_goal"
+        tools:layout="@layout/fragment_get_goal" >
+        <action
+            android:id="@+id/action_getGoalFragment_to_getBirthdayFragment"
+            app:destination="@id/getBirthdayFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/getBirthdayFragment"
+        android:name="ru.lonelywh1te.introgymapp.presentation.view.welcome.GetBirthdayFragment"
+        android:label="fragment_get_birthday"
+        tools:layout="@layout/fragment_get_birthday" >
+        <action
+            android:id="@+id/action_getBirthdayFragment_to_finishFragment"
+            app:destination="@id/finishFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/finishFragment"
+        android:name="ru.lonelywh1te.introgymapp.presentation.view.welcome.FinishFragment"
+        android:label="fragment_finish"
+        tools:layout="@layout/fragment_finish" />
+</navigation>

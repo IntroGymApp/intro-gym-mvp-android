@@ -5,49 +5,49 @@
 
     <style name="TextSmallLightStyle" parent="Widget.AppCompat.TextView">
         <item name="android:fontFamily">@font/sf_pro_display_light</item>
-        <item name="android:textSize">11sp</item>
+        <item name="android:textSize">14sp</item>
         <item name="android:textColor">?attr/ig_defaultTextColor</item>
     </style>
 
     <style name="TextSmallRegularStyle" parent="Widget.AppCompat.TextView">
         <item name="android:fontFamily">@font/sf_pro_display_regular</item>
-        <item name="android:textSize">11sp</item>
+        <item name="android:textSize">14sp</item>
         <item name="android:textColor">?attr/ig_defaultTextColor</item>
     </style>
 
     <style name="TextMediumRegularStyle" parent="Widget.AppCompat.TextView">
         <item name="android:fontFamily">@font/sf_pro_display_regular</item>
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">16sp</item>
         <item name="android:textColor">?attr/ig_defaultTextColor</item>
     </style>
 
     <style name="TextMediumSemiboldStyle" parent="Widget.AppCompat.TextView">
         <item name="android:fontFamily">@font/sf_pro_display_semibold</item>
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">16sp</item>
         <item name="android:textColor">?attr/ig_defaultTextColor</item>
     </style>
 
     <style name="TextLargeSemiboldStyle" parent="Widget.AppCompat.TextView">
         <item name="android:fontFamily">@font/sf_pro_display_semibold</item>
-        <item name="android:textSize">16sp</item>
+        <item name="android:textSize">18sp</item>
         <item name="android:textColor">?attr/ig_defaultTextColor</item>
     </style>
 
     <style name="TextHeader3SemiboldStyle" parent="Widget.AppCompat.TextView">
         <item name="android:fontFamily">@font/sf_pro_display_semibold</item>
-        <item name="android:textSize">20sp</item>
+        <item name="android:textSize">22sp</item>
         <item name="android:textColor">?attr/ig_defaultTextColor</item>
     </style>
 
     <style name="TextHeader2SemiboldStyle" parent="Widget.AppCompat.TextView">
         <item name="android:fontFamily">@font/sf_pro_display_semibold</item>
-        <item name="android:textSize">24sp</item>
+        <item name="android:textSize">26sp</item>
         <item name="android:textColor">?attr/ig_defaultTextColor</item>
     </style>
 
     <style name="TextHeader1BoldStyle" parent="Widget.AppCompat.TextView">
         <item name="android:fontFamily">@font/sf_pro_display_bold</item>
-        <item name="android:textSize">32sp</item>
+        <item name="android:textSize">34sp</item>
         <item name="android:textColor">?attr/ig_defaultTextColor</item>
     </style>
 
@@ -101,8 +101,8 @@
         <item name="itemIconTint">@color/selector_bottom_nav_bar</item>
         <item name="itemTextColor">?attr/ig_primaryColor</item>
         <item name="itemIconSize">16dp</item>
-        <item name="itemPaddingBottom">12dp</item>
-        <item name="itemPaddingTop">12dp</item>
+        <item name="itemPaddingBottom">10dp</item>
+        <item name="itemPaddingTop">10dp</item>
     </style>
 
     <!-- SWITCH STYLE -->

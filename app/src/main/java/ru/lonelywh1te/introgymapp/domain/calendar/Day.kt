@@ -13,4 +13,5 @@ data class Day (
     val year: Int = localDate.year,
     val date: Long = localDate.toEpochDay() * 86400000L,
     val isSelected: Boolean = false,
+    val isWorkoutDay: Boolean = false,
 )

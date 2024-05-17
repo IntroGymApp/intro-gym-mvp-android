@@ -1,4 +1,5 @@
 <resources>
+
     <style name="Base.Theme.IntroGymApp" parent="Theme.Material3.Dark.NoActionBar">
         <item name="android:statusBarColor">@color/night_background_color</item>
 

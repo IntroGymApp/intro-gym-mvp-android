@@ -22,6 +22,15 @@
             android:gravity="center"
             android:orientation="vertical">
 
+<!--            <ImageView-->
+<!--                android:id="@+id/ivWorkoutIndicator"-->
+<!--                android:visibility="visible"-->
+<!--                android:layout_width="10dp"-->
+<!--                android:layout_height="10dp"-->
+<!--                android:padding="1dp"-->
+<!--                android:src="@drawable/ic_dumbell"-->
+<!--                app:tint="?attr/ig_cardBackgroundColor"/>-->
+
             <TextView
                 android:id="@+id/tvDayOfWeek"
                 android:textAppearance="@style/TextSmallRegularStyle"

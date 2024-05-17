@@ -52,22 +52,11 @@ class WeeklyCalendar {
 
     fun getMonthNameOfWeek(week: List<Day>): String {
         val months = week.map { it.month }.distinct()
-
-        if (months.size == 1) return months[0]
-
-        val countFirst = week.filter { it.month == months[0] }.size
-        val countSecond =  week.filter { it.month == months[1] }.size
-
-        return if (countFirst > countSecond) months[0] else months[1]
+        return if (months.size == 1) months[0] else months[1]
     }
 
     fun getYearOfWeek(week: List<Day>): Int {
         val months = week.map { it.year }.distinct()
-        if (months.size == 1) return months[0]
-
-        val countFirst = week.filter { it.year == months[0] }.size
-        val countSecond =  week.filter { it.year == months[1] }.size
-
-        return if (countFirst > countSecond) months[0] else months[1]
+        return if (months.size == 1) months[0] else months[1]
     }
 }
