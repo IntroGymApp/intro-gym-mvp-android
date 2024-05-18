@@ -95,6 +95,7 @@
                 android:textAppearance="@style/TextSmallLightStyle"/>
 
             <TextView
+                android:id="@+id/tvHelloUser"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="С возвращением, Имя!"

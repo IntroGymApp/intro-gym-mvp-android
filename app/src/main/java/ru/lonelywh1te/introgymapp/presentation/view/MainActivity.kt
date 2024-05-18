@@ -1,5 +1,6 @@
 package ru.lonelywh1te.introgymapp.presentation.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -11,8 +12,10 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import ru.lonelywh1te.introgymapp.Constants
 import ru.lonelywh1te.introgymapp.R
 import ru.lonelywh1te.introgymapp.databinding.ActivityMainBinding
+import ru.lonelywh1te.introgymapp.presentation.view.welcome.WelcomeActivity
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -20,12 +23,15 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme()
+        if (isFirstLaunch()) {
+            startActivity(Intent(this, WelcomeActivity::class.java))
+            finish()
+        }
+
         super.onCreate(savedInstanceState)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
-
         setSupportActionBar(binding.mainToolbar)
-
         navController = binding.fragmentContainer.getFragment<NavHostFragment>().navController
 
         val appBarConfiguration = AppBarConfiguration(setOf(
@@ -64,13 +70,18 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setTheme() {
-        val settings = getSharedPreferences("APP_SETTINGS", MODE_PRIVATE)
-        val nightTheme: Boolean = settings.getBoolean("NIGHT_THEME", false)
+        val settings = getSharedPreferences(Constants.APP_CONFIG_NAME, MODE_PRIVATE)
+        val nightTheme: Boolean = settings.getBoolean(Constants.NIGHT_THEME_KEY, false)
 
         if (nightTheme) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
         } else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         }
+    }
+
+    private fun isFirstLaunch(): Boolean {
+        val settings = getSharedPreferences(Constants.APP_CONFIG_NAME, MODE_PRIVATE)
+        return settings.getBoolean(Constants.IS_FIRST_LAUNCH_KEY, true)
     }
 }

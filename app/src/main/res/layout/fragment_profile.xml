@@ -39,16 +39,19 @@
                 android:text="Имя"
                 android:textAppearance="@style/TextSmallLightStyle" />
 
-            <EditText
+            <TextView
                 android:id="@+id/etUserName"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="@style/TextSmallLightStyle"/>
+                android:layout_height="match_parent"
+                android:text="Имя"
+                android:gravity="center_vertical"
+                android:textAppearance="@style/TextSmallLightStyle"
+                android:textColor="?attr/ig_primaryColor"/>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:orientation="horizontal">
 
             <TextView
@@ -59,29 +62,21 @@
                 android:text="Пол"
                 android:textAppearance="@style/TextSmallLightStyle" />
 
-            <ImageButton
-                android:id="@+id/btnMale"
-                android:background="@drawable/shape_edit_text_background"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:src="@drawable/ic_male"
-                app:tint="?attr/ig_defaultTextColor" />
+            <TextView
+                android:id="@+id/etUserSex"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Мужской"
+                android:gravity="center_vertical"
+                android:textAppearance="@style/TextSmallLightStyle"
+                android:textColor="?attr/ig_primaryColor"/>
 
-            <ImageButton
-                android:id="@+id/btnFemale"
-                android:background="@drawable/shape_edit_text_background"
-                android:layout_marginStart="5dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:src="@drawable/ic_female"
-                app:tint="?attr/ig_defaultTextColor"/>
+
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:orientation="horizontal">
 
             <TextView
@@ -92,16 +87,19 @@
                 android:text="Рост"
                 android:textAppearance="@style/TextSmallLightStyle" />
 
-            <EditText
+            <TextView
                 android:id="@+id/etUserHeight"
-                android:textAppearance="@style/TextSmallLightStyle"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="match_parent"
+                android:text="170"
+                android:gravity="center_vertical"
+                android:textAppearance="@style/TextSmallLightStyle"
+                android:textColor="?attr/ig_primaryColor"/>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:orientation="horizontal">
 
             <TextView
@@ -112,11 +110,14 @@
                 android:text="Вес"
                 android:textAppearance="@style/TextSmallLightStyle" />
 
-            <EditText
+            <TextView
                 android:id="@+id/etUserWeight"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="@style/TextSmallLightStyle"/>
+                android:layout_height="match_parent"
+                android:text="65"
+                android:gravity="center_vertical"
+                android:textAppearance="@style/TextSmallLightStyle"
+                android:textColor="?attr/ig_primaryColor"/>
         </LinearLayout>
         <Button
             android:visibility="gone"

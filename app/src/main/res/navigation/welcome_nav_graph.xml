@@ -10,7 +10,7 @@
         android:label="fragment_hello"
         tools:layout="@layout/fragment_hello" >
         <action
-            android:id="@+id/action_helloFragment_to_getNameFragment"
+            android:id="@+id/to_getNameFragment"
             app:destination="@id/getNameFragment" />
     </fragment>
     <fragment
@@ -19,8 +19,8 @@
         android:label="fragment_get_name"
         tools:layout="@layout/fragment_get_name" >
         <action
-            android:id="@+id/action_getNameFragment_to_getWeightFragment"
-            app:destination="@id/getWeightFragment" />
+            android:id="@+id/to_getActivityLevelFragment"
+            app:destination="@id/getActivityLevelFragment" />
     </fragment>
     <fragment
         android:id="@+id/getWeightFragment"
@@ -28,7 +28,7 @@
         android:label="fragment_get_weight"
         tools:layout="@layout/fragment_get_weight" >
         <action
-            android:id="@+id/action_getWeightFragment_to_getGoalFragment"
+            android:id="@+id/to_getGoalFragment"
             app:destination="@id/getGoalFragment" />
     </fragment>
     <fragment
@@ -37,8 +37,8 @@
         android:label="fragment_get_goal"
         tools:layout="@layout/fragment_get_goal" >
         <action
-            android:id="@+id/action_getGoalFragment_to_getBirthdayFragment"
-            app:destination="@id/getBirthdayFragment" />
+            android:id="@+id/to_getDesiredWeightFragment"
+            app:destination="@id/getDesiredWeightFragment" />
     </fragment>
     <fragment
         android:id="@+id/getBirthdayFragment"
@@ -46,7 +46,7 @@
         android:label="fragment_get_birthday"
         tools:layout="@layout/fragment_get_birthday" >
         <action
-            android:id="@+id/action_getBirthdayFragment_to_finishFragment"
+            android:id="@+id/to_finishFragment"
             app:destination="@id/finishFragment" />
     </fragment>
     <fragment
@@ -54,4 +54,22 @@
         android:name="ru.lonelywh1te.introgymapp.presentation.view.welcome.FinishFragment"
         android:label="fragment_finish"
         tools:layout="@layout/fragment_finish" />
+    <fragment
+        android:id="@+id/getDesiredWeightFragment"
+        android:name="ru.lonelywh1te.introgymapp.presentation.view.welcome.GetDesiredWeightFragment"
+        android:label="fragment_get_desired_weight"
+        tools:layout="@layout/fragment_get_desired_weight" >
+        <action
+            android:id="@+id/to_getBirthdayFragment"
+            app:destination="@id/getBirthdayFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/getActivityLevelFragment"
+        android:name="ru.lonelywh1te.introgymapp.presentation.view.welcome.GetActivityLevelFragment"
+        android:label="fragment_get_activity_level"
+        tools:layout="@layout/fragment_get_activity_level" >
+        <action
+            android:id="@+id/to_getWeightFragment"
+            app:destination="@id/getWeightFragment" />
+    </fragment>
 </navigation>

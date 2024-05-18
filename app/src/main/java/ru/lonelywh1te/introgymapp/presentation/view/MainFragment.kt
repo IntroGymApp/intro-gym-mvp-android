@@ -1,5 +1,7 @@
 package ru.lonelywh1te.introgymapp.presentation.view
 
+import android.content.Context.MODE_PRIVATE
+import android.content.SharedPreferences
 import android.graphics.Canvas
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -17,6 +19,7 @@ import com.google.android.material.color.MaterialColors
 import com.google.android.material.snackbar.Snackbar
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator
 import org.koin.androidx.viewmodel.ext.android.getViewModel
+import ru.lonelywh1te.introgymapp.Constants
 import ru.lonelywh1te.introgymapp.R
 import ru.lonelywh1te.introgymapp.databinding.FragmentMainBinding
 import ru.lonelywh1te.introgymapp.domain.model.Workout
@@ -35,12 +38,18 @@ class MainFragment : Fragment() {
     private lateinit var workoutRecycler: RecyclerView
     private val weeklyCalendar = WeeklyCalendar()
 
+    private lateinit var userData: SharedPreferences
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        userData = requireActivity().getSharedPreferences(Constants.USER_DATA_KEY, MODE_PRIVATE)
         viewModel = getViewModel()
     }
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        val userName = userData.getString(Constants.USER_NAME_KEY, "Пользователь")
+
         binding = FragmentMainBinding.inflate(inflater, container, false)
+        binding.tvHelloUser.text = "С возвращением, $userName!"
 
         val calendarAdapter = CalendarAdapter(object : OnItemClickListener {
             override fun onDayItemClick(item: Day) {

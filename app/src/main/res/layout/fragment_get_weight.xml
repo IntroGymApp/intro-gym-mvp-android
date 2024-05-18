@@ -13,9 +13,9 @@
         android:layout_height="wrap_content"
         android:paddingStart="20dp"
         android:paddingEnd="20dp"
-        android:text="Ваш текущий вес"
+        android:text="Ваш рост и вес"
         android:textAppearance="@style/TextHeader2SemiboldStyle"
-        app:layout_constraintBottom_toTopOf="@+id/btnStart"
+        app:layout_constraintBottom_toTopOf="@+id/btnNext"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -28,22 +28,49 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="20dp"
-        android:text="Укажите, пожалуйста, ваш текущий вес."
+        android:text="Укажите, пожалуйста, ваш текущий рост и вес."
         android:textAppearance="@style/TextMediumRegularStyle" />
 
-    <EditText
-        android:id="@+id/etUserName"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:hint="0 кг"
-        android:textAppearance="@style/TextHeader1BoldStyle"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/textView2">
+
+        <EditText
+            android:id="@+id/etUserHeight"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="10dp"
+            android:gravity="center"
+            android:hint="cм"
+            android:inputType="number"
+            android:maxLines="1"
+            android:maxLength="3"
+            android:textAppearance="@style/TextHeader1BoldStyle" />
+
+        <EditText
+            android:id="@+id/etUserWeight"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="20dp"
+            android:gravity="center"
+            android:hint="кг"
+            android:inputType="number"
+            android:maxLines="1"
+            android:maxLength="3"
+            android:textAppearance="@style/TextHeader1BoldStyle" />
+    </LinearLayout>
+
 
     <Button
-        android:id="@+id/btnStart"
+        android:id="@+id/btnNext"
         style="@style/DefaultButtonStyle"
         android:layout_width="match_parent"
         android:layout_height="60dp"

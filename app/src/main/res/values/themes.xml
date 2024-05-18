@@ -2,11 +2,10 @@
 
     <style name="Theme.IntroGymApp" parent="Base.Theme.IntroGymApp">
         <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
+        <item name="android:statusBarColor">?attr/ig_backgroundColor</item>
     </style>
 
     <style name="Base.Theme.IntroGymApp" parent="Theme.Material3.Light.NoActionBar">
-        <item name="android:statusBarColor">@color/background_color</item>
-
         <item name="ig_primaryColor">@color/primary_color</item>
         <item name="ig_primaryLightColor">@color/primary_light_color</item>
         <item name="ig_backgroundColor">@color/background_color</item>

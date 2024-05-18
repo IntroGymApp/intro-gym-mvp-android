@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.view.welcome.GetNameFragment"
+    tools:context=".presentation.view.welcome.GetActivityLevelFragment"
     android:background="?attr/ig_backgroundColor">
 
     <TextView
@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:paddingStart="20dp"
         android:paddingEnd="20dp"
-        android:text="Давайте познакомимся"
+        android:text="Какой у вас образ жизни?"
         android:textAppearance="@style/TextHeader2SemiboldStyle"
         app:layout_constraintBottom_toTopOf="@+id/btnNext"
         app:layout_constraintEnd_toEndOf="parent"
@@ -28,60 +28,32 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="20dp"
-        android:text="Пожалуйста, введите ваше имя и укажите ваш пол"
+        android:text="Выберите из списка ниже подходящий для вас вариант"
         android:textAppearance="@style/TextMediumRegularStyle" />
 
-    <EditText
-        android:id="@+id/etUserName"
+
+    <Spinner
+        android:id="@+id/activityLevelSpinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:hint="Меня зовут..."
-        android:inputType="textShortMessage"
-        android:maxLines="1"
-        android:maxLength="30"
-        android:textAppearance="@style/TextSmallLightStyle"
+        android:entries="@array/activity_levels"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etUserName">
-
-        <ImageButton
-            android:id="@+id/btnMale"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/shape_edit_text_background"
-            android:padding="10dp"
-            android:src="@drawable/ic_male"
-            app:tint="?attr/ig_defaultTextColor" />
-
-        <ImageButton
-            android:id="@+id/btnFemale"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:background="@drawable/shape_edit_text_background"
-            android:padding="10dp"
-            android:src="@drawable/ic_female"
-            app:tint="?attr/ig_defaultTextColor" />
-    </LinearLayout>
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        tools:listitem="@layout/spinner_item"/>
 
     <Button
         android:id="@+id/btnNext"
         style="@style/DefaultButtonStyle"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:text="Далее"
         android:layout_margin="20dp"
+        android:text="Далее"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteX="20dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

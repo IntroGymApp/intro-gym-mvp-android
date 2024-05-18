@@ -13,9 +13,9 @@
         android:layout_height="wrap_content"
         android:paddingStart="20dp"
         android:paddingEnd="20dp"
-        android:text="Какая ваша цель?"
+        android:text="Еще чуть-чуть..."
         android:textAppearance="@style/TextHeader2SemiboldStyle"
-        app:layout_constraintBottom_toTopOf="@+id/btnStart"
+        app:layout_constraintBottom_toTopOf="@+id/btnNext"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -28,26 +28,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="20dp"
-        android:text="Укажите, чего вы хотите достичь с помощью тренировок."
+        android:text="Пожалуйста, введите вашу дату рождения. Это поможет нам предоставить более точные расчеты и рекомендации."
         android:textAppearance="@style/TextMediumRegularStyle" />
 
-    <TextView
-        android:id="@+id/btnWeightGain"
-        android:layout_width="120dp"
+    <DatePicker
+        android:id="@+id/datePicker"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/shape_edit_text_background"
-        android:gravity="center"
-        android:padding="10dp"
-        android:text="Выбрать дату"
-        android:layout_margin="20dp"
-        android:textAppearance="@style/TextSmallRegularStyle"
+        android:datePickerMode="spinner"
+        android:calendarViewShown="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:tint="?attr/ig_defaultTextColor" />
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <Button
-        android:id="@+id/btnStart"
+        android:id="@+id/btnNext"
         style="@style/DefaultButtonStyle"
         android:layout_width="match_parent"
         android:layout_height="60dp"

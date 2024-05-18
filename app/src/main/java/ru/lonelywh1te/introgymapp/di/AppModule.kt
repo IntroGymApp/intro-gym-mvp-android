@@ -7,6 +7,7 @@ import ru.lonelywh1te.introgymapp.presentation.viewModel.ExerciseExecuteFragment
 import ru.lonelywh1te.introgymapp.presentation.viewModel.ExerciseGroupFragmentViewModel
 import ru.lonelywh1te.introgymapp.presentation.viewModel.ExerciseGuideFragmentViewModel
 import ru.lonelywh1te.introgymapp.presentation.viewModel.MainFragmentViewModel
+import ru.lonelywh1te.introgymapp.presentation.viewModel.ProfileFragmentViewModel
 import ru.lonelywh1te.introgymapp.presentation.viewModel.StatsFragmentViewModel
 import ru.lonelywh1te.introgymapp.presentation.viewModel.WorkoutFragmentViewModel
 import ru.lonelywh1te.introgymapp.presentation.viewModel.WorkoutViewFragmentViewModel
@@ -74,5 +75,9 @@ val appModule = module {
         StatsFragmentViewModel(
             getAllExerciseHistoryByPeriodUseCase = get()
         )
+    }
+
+    viewModel<ProfileFragmentViewModel> {
+        ProfileFragmentViewModel(get())
     }
 }
