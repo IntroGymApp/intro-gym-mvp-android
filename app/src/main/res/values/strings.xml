@@ -7,4 +7,6 @@
         <item>Активный образ жизни (6-7 дней в неделю силовые тренировки)</item>
         <item>Экстремальный образ жизни (Физическая работа + 7 дней в неделю силовые тренировки)</item>
     </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

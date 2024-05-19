@@ -11,6 +11,8 @@ import ru.lonelywh1te.introgymapp.Constants
 import ru.lonelywh1te.introgymapp.R
 import ru.lonelywh1te.introgymapp.databinding.FragmentGetDesiredWeightBinding
 
+// TODO: не нужен?
+
 class GetDesiredWeightFragment : Fragment() {
     private lateinit var binding: FragmentGetDesiredWeightBinding
     private var userDesiredWeight = 0
@@ -21,8 +23,8 @@ class GetDesiredWeightFragment : Fragment() {
         binding.btnNext.setOnClickListener {
             saveData()
 
-            val action = GetDesiredWeightFragmentDirections.toGetBirthdayFragment()
-            findNavController().navigate(action)
+//            val action = GetDesiredWeightFragmentDirections.toGetBirthdayFragment()
+//            findNavController().navigate(action)
         }
 
         return binding.root

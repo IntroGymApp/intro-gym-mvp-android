@@ -38,7 +38,7 @@ class GetGoalFragment : Fragment() {
         binding.btnNext.setOnClickListener {
             saveData()
 
-            val action = GetGoalFragmentDirections.toGetDesiredWeightFragment()
+            val action = GetGoalFragmentDirections.toGetBirthdayFragment()
             findNavController().navigate(action)
         }
 

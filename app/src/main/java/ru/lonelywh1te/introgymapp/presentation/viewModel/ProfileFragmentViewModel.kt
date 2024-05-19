@@ -5,20 +5,22 @@ import android.content.Context
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.AndroidViewModel
 import ru.lonelywh1te.introgymapp.Constants
+import java.time.Instant
 import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.ZoneOffset
 
 class ProfileFragmentViewModel(app: Application): AndroidViewModel(app) {
     private val userData = app.getSharedPreferences(Constants.USER_DATA_KEY, Context.MODE_PRIVATE)
     private val appSettings = app.getSharedPreferences(Constants.APP_CONFIG_NAME, Context.MODE_PRIVATE)
 
-    val userName = userData.getString(Constants.USER_NAME_KEY, "Пользователь")
-    val userSex = userData.getBoolean(Constants.USER_SEX_KEY, false)
-    val userHeight = userData.getInt(Constants.USER_HEIGHT_KEY, 0)
-    val userWeight = userData.getInt(Constants.USER_WEIGHT_KEY, 0)
-    val userDesiredWeight = userData.getInt(Constants.USER_DESIRED_WEIGHT_KEY, 0)
-    private val userGoal = userData.getInt(Constants.USER_GOAL_KEY, 0)
-    private val userBirthday = userData.getLong(Constants.USER_BIRTHDAY_KEY, 0)
-    private val userActivityLevel = userData.getFloat(Constants.USER_ACTIVITY_LEVEL_KEY, 1.2f)
+    var userName = userData.getString(Constants.USER_NAME_KEY, "Пользователь")
+    var userSex = userData.getBoolean(Constants.USER_SEX_KEY, false)
+    var userHeight = userData.getInt(Constants.USER_HEIGHT_KEY, 0)
+    var userWeight = userData.getInt(Constants.USER_WEIGHT_KEY, 0)
+    var userGoal = userData.getInt(Constants.USER_GOAL_KEY, 0)
+    var userBirthday = userData.getLong(Constants.USER_BIRTHDAY_KEY, 0)
+    var userActivityLevel = userData.getFloat(Constants.USER_ACTIVITY_LEVEL_KEY, 1.2f)
 
     var calories = 0
     var proteins = 0
@@ -31,6 +33,18 @@ class ProfileFragmentViewModel(app: Application): AndroidViewModel(app) {
 
     fun getTheme(): Boolean {
         return appSettings.getBoolean(Constants.NIGHT_THEME_KEY, false)
+    }
+
+    fun updateUserData() {
+        userName = userData.getString(Constants.USER_NAME_KEY, "Пользователь")
+        userSex = userData.getBoolean(Constants.USER_SEX_KEY, false)
+        userHeight = userData.getInt(Constants.USER_HEIGHT_KEY, 0)
+        userWeight = userData.getInt(Constants.USER_WEIGHT_KEY, 0)
+        userGoal = userData.getInt(Constants.USER_GOAL_KEY, 0)
+        userBirthday = userData.getLong(Constants.USER_BIRTHDAY_KEY, 0)
+        userActivityLevel = userData.getFloat(Constants.USER_ACTIVITY_LEVEL_KEY, 1.2f)
+
+        calculateCPFC()
     }
 
     fun setTheme(isNight: Boolean) {
@@ -67,6 +81,12 @@ class ProfileFragmentViewModel(app: Application): AndroidViewModel(app) {
         return ((currentDate - userBirthday) / 31536000000L).toInt()
     }
 
+    fun getUserBirthday(): LocalDate {
+        val instant = Instant.ofEpochMilli(userBirthday)
+        val localDateTime = LocalDateTime.ofInstant(instant, ZoneOffset.systemDefault())
+        return localDateTime.toLocalDate()
+    }
+
     private fun calculateCPFC() {
         //TODO: подобрать более точные расчёты
 
@@ -94,6 +114,15 @@ class ProfileFragmentViewModel(app: Application): AndroidViewModel(app) {
                 carbohydrates = (((metabolism / 100) * 50) / 4).toInt()
             }
         }
+    }
 
+    fun saveUserData() {
+        userData.edit().putString(Constants.USER_NAME_KEY, userName).apply()
+        userData.edit().putBoolean(Constants.USER_SEX_KEY, userSex).apply()
+        userData.edit().putInt(Constants.USER_HEIGHT_KEY, userHeight).apply()
+        userData.edit().putInt(Constants.USER_WEIGHT_KEY, userWeight).apply()
+        userData.edit().putInt(Constants.USER_GOAL_KEY, userGoal).apply()
+        userData.edit().putFloat(Constants.USER_ACTIVITY_LEVEL_KEY, userActivityLevel).apply()
+        userData.edit().putLong(Constants.USER_BIRTHDAY_KEY, userBirthday).apply()
     }
 }

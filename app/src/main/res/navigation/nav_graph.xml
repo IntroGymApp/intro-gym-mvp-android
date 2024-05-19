@@ -59,7 +59,11 @@
         android:id="@+id/profileFragment"
         android:name="ru.lonelywh1te.introgymapp.presentation.view.ProfileFragment"
         android:label="Профиль"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_editProfileFragment"
+            app:destination="@id/editProfileFragment" />
+    </fragment>
     <fragment
         android:id="@+id/exerciseGroupFragment"
         android:name="ru.lonelywh1te.introgymapp.presentation.view.ExerciseGroupFragment"
@@ -170,4 +174,9 @@
             app:argType="long"
             android:defaultValue="0L" />
     </fragment>
+    <fragment
+        android:id="@+id/editProfileFragment"
+        android:name="ru.lonelywh1te.introgymapp.presentation.view.EditProfileFragment"
+        android:label="Редактировать профиль"
+        tools:layout="@layout/fragment_edit_profile" />
 </navigation>

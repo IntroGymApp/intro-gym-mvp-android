@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:paddingStart="20dp"
         android:paddingEnd="20dp"
-        android:text="Какая ваша цель?"
+        android:text="Какова ваша цель?"
         android:textAppearance="@style/TextHeader2SemiboldStyle"
         app:layout_constraintBottom_toTopOf="@+id/btnNext"
         app:layout_constraintEnd_toEndOf="parent"

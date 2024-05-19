@@ -4,16 +4,22 @@ import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 import ru.lonelywh1te.introgymapp.Constants
+import ru.lonelywh1te.introgymapp.R
 import ru.lonelywh1te.introgymapp.databinding.FragmentProfileBinding
 import ru.lonelywh1te.introgymapp.presentation.viewModel.ProfileFragmentViewModel
 
-class ProfileFragment : Fragment() {
+class ProfileFragment : Fragment(), MenuProvider {
     private lateinit var binding: FragmentProfileBinding
     private lateinit var viewModel: ProfileFragmentViewModel
 
@@ -23,6 +29,7 @@ class ProfileFragment : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        requireActivity().addMenuProvider(this, viewLifecycleOwner)
         binding = FragmentProfileBinding.inflate(inflater, container, false)
         binding.themeSwitcher.isChecked = viewModel.getTheme()
 
@@ -30,18 +37,32 @@ class ProfileFragment : Fragment() {
             viewModel.setTheme(isChecked)
         }
 
-        setUserData()
-        setCalculatorData()
+        setProfileData()
         return binding.root
+    }
+
+    override fun onPause() {
+        super.onPause()
+        println("pause")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        println("resume")
+        setProfileData()
     }
 
 
 
-    private fun setUserData() {
+    private fun setProfileData() {
+        viewModel.updateUserData()
+
         binding.etUserName.text = viewModel.userName
         binding.etUserSex.text = if (!viewModel.userSex) "Мужской" else "Женский"
         binding.etUserHeight.text = viewModel.userHeight.toString()
         binding.etUserWeight.text = viewModel.userWeight.toString()
+
+        setCalculatorData()
     }
 
     private fun setCalculatorData() {
@@ -54,5 +75,21 @@ class ProfileFragment : Fragment() {
         binding.tvCarbohydrate.text = viewModel.carbohydrates.toString()
 
         println(viewModel.getUserAge())
+    }
+
+    override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+        menuInflater.inflate(R.menu.profile_options_menu, menu)
+    }
+
+    override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+        when(menuItem.itemId) {
+            R.id.editProfileData -> {
+                val action = ProfileFragmentDirections.actionProfileFragmentToEditProfileFragment()
+                findNavController().navigate(action)
+            }
+            else -> findNavController().popBackStack()
+        }
+
+        return true
     }
 }
