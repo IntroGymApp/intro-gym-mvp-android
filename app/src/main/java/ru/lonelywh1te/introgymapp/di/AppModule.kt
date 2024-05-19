@@ -16,7 +16,8 @@ val appModule = module {
     viewModel<MainFragmentViewModel> {
         MainFragmentViewModel(
             getAllWorkoutsByDateUseCase = get(),
-            deleteWorkoutUseCase = get()
+            deleteWorkoutUseCase = get(),
+            getAllWorkoutsUseCase = get()
         )
     }
 

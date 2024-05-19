@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:paddingStart="20dp"
     android:paddingEnd="20dp"
+    android:paddingBottom="20dp"
     android:background="?attr/ig_backgroundColor"
     tools:context=".presentation.view.ProfileFragment">
 
@@ -412,5 +413,15 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"/>
     </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="start|center"
+        android:text="Версия: 1.0"
+        android:textAppearance="@style/TextSmallLightStyle"
+        android:textColor="?attr/ig_primaryColor"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -114,6 +114,11 @@ class MainFragment : Fragment() {
         }
 
         binding.ibAddWorkoutToDate.setOnClickListener {
+            if (viewModel.allWorkoutsCount == 0) {
+                Toast.makeText(requireContext(), "Вы еще не создали ни одной тренировки", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
             val action = MainFragmentDirections.toWorkoutFragment(date = weeklyCalendar.selectedDate.toEpochDay() * 86400000L, pickMode = true)
             findNavController().navigate(action)
         }
@@ -137,6 +142,7 @@ class MainFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
+        viewModel.countAllWorkouts()
         viewModel.getWorkoutsByDate(weeklyCalendar.selectedDate.toEpochDay() * 86400000L)
     }
 }
