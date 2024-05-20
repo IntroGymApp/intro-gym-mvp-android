@@ -22,12 +22,12 @@ class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        setTheme()
         if (isFirstLaunch()) {
             startActivity(Intent(this, WelcomeActivity::class.java))
             finish()
         }
 
+        setTheme()
         super.onCreate(savedInstanceState)
 
         binding = ActivityMainBinding.inflate(layoutInflater)

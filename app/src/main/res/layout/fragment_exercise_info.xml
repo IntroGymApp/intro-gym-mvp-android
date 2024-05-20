@@ -31,32 +31,33 @@
 
     <LinearLayout
         android:id="@+id/linearLayout4"
-        app:layout_constraintStart_toStartOf="@+id/imageCard"
-        app:layout_constraintTop_toBottomOf="@+id/imageCard"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="@+id/imageCard"
+        app:layout_constraintStart_toStartOf="@+id/imageCard"
+        app:layout_constraintTop_toBottomOf="@+id/imageCard">
 
         <TextView
-            android:textAppearance="@style/TextLargeSemiboldStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:text="Описание" />
+            android:text="Описание"
+            android:textAppearance="@style/TextLargeSemiboldStyle" />
 
         <TextView
             android:id="@+id/tvExersiceInfoDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Описание упражнения"
-            android:textAppearance="@style/TextMediumRegularStyle"/>
+            android:textAppearance="@style/TextMediumRegularStyle" />
 
         <TextView
-            android:textAppearance="@style/TextLargeSemiboldStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:text="Выполнение" />
+            android:text="Выполнение"
+            android:textAppearance="@style/TextLargeSemiboldStyle" />
 
         <TextView
             android:id="@+id/tvExecution"
@@ -67,11 +68,11 @@
             android:textAppearance="@style/TextMediumRegularStyle" />
 
         <TextView
-            android:textAppearance="@style/TextLargeSemiboldStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:text="Советы" />
+            android:text="Советы"
+            android:textAppearance="@style/TextLargeSemiboldStyle" />
 
         <TextView
             android:id="@+id/tvAdvices"

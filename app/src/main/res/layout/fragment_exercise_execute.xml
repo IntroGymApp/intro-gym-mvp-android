@@ -106,7 +106,8 @@
                                 android:layout_height="wrap_content"
                                 android:drawablePadding="10dp"
                                 android:gravity="center"
-                                android:padding="15dp"
+                                android:paddingTop="15dp"
+                                android:paddingBottom="15dp"
                                 android:text="Подходы"
                                 android:textAppearance="@style/TextSmallRegularStyle"
                                 app:drawableTopCompat="@drawable/ic_list_check" />
@@ -150,7 +151,8 @@
                                 android:layout_height="wrap_content"
                                 android:drawablePadding="10dp"
                                 android:gravity="center"
-                                android:padding="15dp"
+                                android:paddingTop="15dp"
+                                android:paddingBottom="15dp"
                                 android:text="Вес"
                                 android:textAppearance="@style/TextSmallRegularStyle"
                                 app:drawableTopCompat="@drawable/ic_weight" />
@@ -194,7 +196,8 @@
                                 android:layout_height="wrap_content"
                                 android:drawablePadding="10dp"
                                 android:gravity="center"
-                                android:padding="15dp"
+                                android:paddingTop="15dp"
+                                android:paddingBottom="15dp"
                                 android:text="Повторения"
                                 android:textAppearance="@style/TextSmallRegularStyle"
                                 app:drawableTopCompat="@drawable/ic_repeat" />
@@ -231,23 +234,24 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
                     android:orientation="horizontal">
 
                     <EditText
                         android:id="@+id/etCompletedReps"
                         style="@style/NumberEditTextStyle"
-                        android:layout_margin="5dp"
                         android:layout_width="150dp"
-                        android:layout_height="30dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="10dp"
                         android:hint="Повторений"
                         android:layout_weight="1"/>
 
                     <EditText
                         android:id="@+id/etCompletedWeight"
                         style="@style/NumberEditTextStyle"
-                        android:layout_margin="5dp"
                         android:layout_width="150dp"
-                        android:layout_height="30dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="10dp"
                         android:hint="Вес"
                         android:layout_weight="1"/>
 

@@ -21,7 +21,7 @@ class GetActivityLevelFragment : Fragment() {
         binding = FragmentGetActivityLevelBinding.inflate(inflater, container, false)
         val spinner = binding.activityLevelSpinner
         val adapter = ArrayAdapter.createFromResource(requireContext(), R.array.activity_levels, R.layout.spinner_item)
-        adapter.setDropDownViewResource(R.layout.spinner_item)
+        adapter.setDropDownViewResource(R.layout.spinner_dropdown_item)
 
         spinner.adapter = adapter
 
