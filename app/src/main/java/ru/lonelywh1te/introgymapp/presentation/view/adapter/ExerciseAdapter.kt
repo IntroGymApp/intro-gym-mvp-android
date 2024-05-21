@@ -45,20 +45,6 @@ class ExerciseAdapter(private val onExerciseItemClick: OnExerciseItemClick?): Re
         holder.bind(item)
     }
 
-    fun onItemMove(fromPosition: Int, toPosition: Int) {
-        val list = exerciseList.toMutableList()
-        Log.println(Log.DEBUG, "CreateEditVM", "$fromPosition to $toPosition")
-        Log.println(Log.DEBUG, "CreateEditVM", "${list.map { it.exerciseInfo.id }}")
-
-        val fromItem = list[fromPosition]
-
-        list.removeAt(fromPosition)
-        list.add(toPosition, fromItem)
-
-        exerciseList = list
-        Log.println(Log.DEBUG, "CreateEditVM", "${list.map { it.exerciseInfo.id }}")
-    }
-
     fun submitList(list: List<ExerciseWithInfo>) {
         val diffCallback = ExerciseCallback(exerciseList, list)
         val diffExercise = DiffUtil.calculateDiff(diffCallback)
@@ -67,8 +53,6 @@ class ExerciseAdapter(private val onExerciseItemClick: OnExerciseItemClick?): Re
 
         diffExercise.dispatchUpdatesTo(this)
     }
-
-    fun getList() = exerciseList
 
     class ExerciseCallback(private val oldList: List<ExerciseWithInfo>, private val newList: List<ExerciseWithInfo>): DiffUtil.Callback(){
         override fun getOldListSize(): Int = oldList.size

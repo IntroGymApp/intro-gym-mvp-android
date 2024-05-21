@@ -9,8 +9,7 @@ import ru.lonelywh1te.introgymapp.domain.model.Exercise
 import ru.lonelywh1te.introgymapp.domain.model.ExerciseWithInfo
 import ru.lonelywh1te.introgymapp.domain.model.Workout
 import ru.lonelywh1te.introgymapp.domain.usecase.exercise.AddExerciseUseCase
-import ru.lonelywh1te.introgymapp.domain.usecase.exercise.DeleteAllExercisesByWorkoutIdUseCase
-import ru.lonelywh1te.introgymapp.domain.usecase.exercise.GetAllExercisesByWorkoutIdUseCase
+import ru.lonelywh1te.introgymapp.domain.usecase.exercise.DeleteExerciseUseCase
 import ru.lonelywh1te.introgymapp.domain.usecase.exercise.GetAllExercisesWithInfoByWorkoutIdUseCase
 import ru.lonelywh1te.introgymapp.domain.usecase.exercise.UpdateExerciseUseCase
 import ru.lonelywh1te.introgymapp.domain.usecase.workout.CreateWorkoutUseCase
@@ -21,22 +20,27 @@ import ru.lonelywh1te.introgymapp.domain.usecase.workout.UpdateWorkoutUseCase
 class CreateEditWorkoutFragmentViewModel(
     private val createWorkoutUseCase: CreateWorkoutUseCase,
     private val updateWorkoutUseCase: UpdateWorkoutUseCase,
+    private val updateExerciseUseCase: UpdateExerciseUseCase,
     private val getWorkoutByIdUseCase: GetWorkoutByIdUseCase,
     private val getLastCreatedWorkoutUseCase: GetLastCreatedWorkoutUseCase,
     private val getAllExercisesWithInfoByWorkoutIdUseCase: GetAllExercisesWithInfoByWorkoutIdUseCase,
     private val addExerciseUseCase: AddExerciseUseCase,
-    private val deleteAllExercisesByWorkoutIdUseCase: DeleteAllExercisesByWorkoutIdUseCase
+    private val deleteExerciseUseCase: DeleteExerciseUseCase
 ): ViewModel() {
     val workout = MutableLiveData<Workout>()
-    val exerciseList = MutableLiveData<List<ExerciseWithInfo>>()
+    private val exerciseList = MutableLiveData<List<ExerciseWithInfo>>()
+    private val deletedExercises = mutableListOf<ExerciseWithInfo>()
+    val newExerciseList = MutableLiveData<MutableList<ExerciseWithInfo>>()
+
     val operationFinished = MutableLiveData<Boolean>()
 
     init {
         exerciseList.value = emptyList()
+        newExerciseList.value = mutableListOf()
     }
 
     fun createWorkout(workout: Workout) {
-        val exercises = exerciseList.value!!.map { it.exercise }
+        val exercises = newExerciseList.value!!.map { it.exercise }
 
         viewModelScope.launch {
             createWorkoutUseCase.execute(workout)
@@ -50,14 +54,35 @@ class CreateEditWorkoutFragmentViewModel(
 
     fun updateWorkout(workout: Workout) {
         // TODO: неэффективный метод
-        val exercises = exerciseList.value!!.map { it.exercise }
-
         viewModelScope.launch {
             updateWorkoutUseCase.execute(workout)
-            deleteAllExercisesByWorkoutId(workout.id)
-            addExercisesByWorkoutId(workout.id, exercises)
+
+            updateWorkoutExercises(
+                exerciseList.value!!.map { it.exercise },
+                newExerciseList.value!!.map { it.exercise },
+                deletedExercises.map { it.exercise })
 
             operationFinished.postValue(true)
+        }
+    }
+
+    private suspend fun updateWorkoutExercises(oldExercises: List<Exercise>, newExercises: List<Exercise>, deletedExercises: List<Exercise>) {
+        if (oldExercises == newExercises) return
+
+        if (deletedExercises.isNotEmpty()) {
+            for (exercise in deletedExercises) {
+                deleteExerciseUseCase.execute(exercise)
+            }
+        }
+
+        for (i in newExercises.indices) {
+            val exercise = oldExercises.find { it.id == newExercises[i].id }
+
+            if (exercise == null) {
+                addExerciseUseCase.execute(newExercises[i].copy(workoutId = workout.value!!.id, index = i))
+            } else {
+                updateExerciseUseCase.execute(newExercises[i].copy(index = i))
+            }
         }
     }
 
@@ -70,39 +95,41 @@ class CreateEditWorkoutFragmentViewModel(
     fun getExercisesWithInfoByWorkoutId(id: Int) {
         viewModelScope.launch {
             exerciseList.postValue(getAllExercisesWithInfoByWorkoutIdUseCase.execute(id))
+            newExerciseList.postValue(getAllExercisesWithInfoByWorkoutIdUseCase.execute(id).toMutableList())
         }
     }
 
     fun addExerciseToList(exerciseWithInfo: ExerciseWithInfo) {
-        val newList = exerciseList.value!!.toMutableList()
+        val newList = newExerciseList.value!!.toMutableList()
         newList.add(exerciseWithInfo)
-        exerciseList.value = newList
+        newExerciseList.value = newList
     }
 
-    fun deleteExerciseAtList(index: Int) {
-        val newList = exerciseList.value!!.toMutableList()
+    fun deleteExerciseFromList(index: Int) {
+        val newList = newExerciseList.value!!.toMutableList()
+        deletedExercises.add(newList[index])
         newList.removeAt(index)
-        exerciseList.value = newList
+        newExerciseList.value = newList
     }
 
     fun changeExerciseAtList(index: Int, exerciseWithInfo: ExerciseWithInfo){
-        val newList = exerciseList.value!!.toMutableList()
+        val newList = newExerciseList.value!!.toMutableList()
         newList[index] = exerciseWithInfo
-        exerciseList.value = newList
+        newExerciseList.value = newList
     }
 
-    fun getExerciseListSize(): Int = exerciseList.value!!.size
+    fun moveExercise(fromPosition: Int, toPosition: Int) {
+        val fromItem = newExerciseList.value!![fromPosition]
 
-    private suspend fun deleteAllExercisesByWorkoutId(id: Int) {
-        deleteAllExercisesByWorkoutIdUseCase.execute(id)
+        newExerciseList.value!!.removeAt(fromPosition)
+        newExerciseList.value!!.add(toPosition, fromItem)
     }
+
+    fun getExerciseListSize(): Int = newExerciseList.value!!.size
 
     private suspend fun addExercisesByWorkoutId(workoutId: Int, exercises: List<Exercise>) {
-        for (index in exercises.indices) {
-            val exercise = exercises[index]
-            Log.println(Log.DEBUG, "CreateEditVM", "$exercise")
-            val workoutExercise = Exercise(workoutId, exercise.exerciseInfoId, exercise.sets, exercise.reps, exercise.weight, exercise.note)
-            addExerciseUseCase.execute(workoutExercise)
+        for (i in exercises.indices) {
+            addExerciseUseCase.execute(exercises[i].copy(workoutId = workoutId, index = i))
         }
     }
 }

@@ -1,6 +1,7 @@
 package ru.lonelywh1te.introgymapp.presentation.view.workout
 
 import android.graphics.Canvas
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -67,8 +68,6 @@ class CreateEditWorkoutFragment : Fragment() {
         }
 
         binding.btnSaveWorkout.setOnClickListener {
-            viewModel.exerciseList.value = adapter.getList()
-
             if (!editMode) {
                 createWorkout()
             } else {
@@ -81,7 +80,7 @@ class CreateEditWorkoutFragment : Fragment() {
             setWorkoutData(it)
         }
 
-        viewModel.exerciseList.observe(viewLifecycleOwner) { list ->
+        viewModel.newExerciseList.observe(viewLifecycleOwner) { list ->
             adapter.submitList(list)
         }
 
@@ -99,25 +98,18 @@ class CreateEditWorkoutFragment : Fragment() {
         }
 
         val itemTouchHelperCallback = object: ItemTouchHelper.SimpleCallback((ItemTouchHelper.UP or ItemTouchHelper.DOWN), ItemTouchHelper.LEFT) {
-            override fun clearView(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder) {
-                super.clearView(recyclerView, viewHolder)
-                viewModel.exerciseList.value = adapter.getList()
-            }
-
             override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean {
                 val fromPosition = viewHolder.absoluteAdapterPosition
                 val toPosition = target.absoluteAdapterPosition
 
-                adapter.onItemMove(fromPosition, toPosition)
+                viewModel.moveExercise(fromPosition, toPosition)
                 adapter.notifyItemMoved(fromPosition,toPosition)
 
                 return true
             }
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                val list = adapter.getList().toMutableList()
-                list.removeAt(viewHolder.absoluteAdapterPosition)
-                adapter.submitList(list.toList())
+                viewModel.deleteExerciseFromList(viewHolder.absoluteAdapterPosition)
             }
 
             override fun onChildDraw(c: Canvas, recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, dX: Float, dY: Float, actionState: Int, isCurrentlyActive: Boolean) {

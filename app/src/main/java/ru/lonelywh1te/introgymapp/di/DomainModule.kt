@@ -5,6 +5,7 @@ import ru.lonelywh1te.introgymapp.domain.usecase.exercise.AddExerciseHistoryUseC
 import ru.lonelywh1te.introgymapp.domain.usecase.exercise.AddExerciseUseCase
 import ru.lonelywh1te.introgymapp.domain.usecase.exercise.DeleteAllExercisesByWorkoutIdUseCase
 import ru.lonelywh1te.introgymapp.domain.usecase.exercise.DeleteExerciseHistoryUseCase
+import ru.lonelywh1te.introgymapp.domain.usecase.exercise.DeleteExerciseUseCase
 import ru.lonelywh1te.introgymapp.domain.usecase.exercise.GetAllExerciseGroupUseCase
 import ru.lonelywh1te.introgymapp.domain.usecase.exercise.GetAllExerciseHistoryByIdUseCase
 import ru.lonelywh1te.introgymapp.domain.usecase.exercise.GetAllExerciseHistoryByPeriodUseCase
@@ -32,6 +33,7 @@ val domainModule = module {
     factory<GetAllExerciseGroupUseCase> { GetAllExerciseGroupUseCase(get()) }
     factory<DeleteAllExercisesByWorkoutIdUseCase> { DeleteAllExercisesByWorkoutIdUseCase(get()) }
     factory<GetAllExerciseHistoryByPeriodUseCase> { GetAllExerciseHistoryByPeriodUseCase(get()) }
+    factory<DeleteExerciseUseCase> { DeleteExerciseUseCase(get()) }
 
     factory<CreateWorkoutUseCase> { CreateWorkoutUseCase(get()) }
     factory<DeleteWorkoutUseCase> { DeleteWorkoutUseCase(get()) }

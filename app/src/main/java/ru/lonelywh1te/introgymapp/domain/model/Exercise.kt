@@ -35,6 +35,8 @@ data class Exercise(
     val weight: Float = 0f,
     @ColumnInfo("note")
     val note: String? = null,
+    @ColumnInfo("index")
+    val index: Int = 0,
 
     @PrimaryKey(autoGenerate = true) val id: Int = 0
 ): Parcelable

@@ -16,10 +16,12 @@
         <activity
             android:name=".presentation.view.welcome.WelcomeActivity"
             android:exported="false"
-            android:theme="@style/Theme.IntroGymApp" />
+            android:theme="@style/Theme.IntroGymApp"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".presentation.view.MainActivity"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -10,6 +10,7 @@ interface ExerciseRepository {
     suspend fun addExercise(exercise: Exercise)
     suspend fun addExerciseHistory(exerciseHistory: ExerciseHistory)
     suspend fun updateExercise(exercise: Exercise)
+    suspend fun deleteExercise(exercise: Exercise)
     suspend fun deleteExerciseHistory(exerciseHistory: ExerciseHistory)
     suspend fun deleteAllExercisesByWorkoutId(id: Int)
     suspend fun getAllExercisesInfoByGroup(group: String): List<ExerciseInfo>

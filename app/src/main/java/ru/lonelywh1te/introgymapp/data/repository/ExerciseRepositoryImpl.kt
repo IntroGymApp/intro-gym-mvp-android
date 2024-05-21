@@ -21,6 +21,10 @@ class ExerciseRepositoryImpl(private val exerciseDao: ExerciseDao): ExerciseRepo
         exerciseDao.updateExercise(exercise)
     }
 
+    override suspend fun deleteExercise(exercise: Exercise) {
+        exerciseDao.deleteExercise(exercise)
+    }
+
     override suspend fun deleteExerciseHistory(exerciseHistory: ExerciseHistory) {
         exerciseDao.deleteExerciseHistory(exerciseHistory)
     }

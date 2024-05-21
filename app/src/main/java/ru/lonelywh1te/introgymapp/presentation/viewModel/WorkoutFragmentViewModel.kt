@@ -49,8 +49,7 @@ class WorkoutFragmentViewModel(
 
     private suspend fun addExercisesByWorkoutId(workoutId: Int, exercises: List<Exercise>) {
         for (exercise in exercises) {
-            val workoutExercise = Exercise(workoutId, exercise.exerciseInfoId, exercise.sets, exercise.reps, exercise.weight, exercise.note)
-            addExerciseUseCase.execute(workoutExercise)
+            addExerciseUseCase.execute(exercise.copy(id = 0, workoutId = workoutId))
         }
     }
 }

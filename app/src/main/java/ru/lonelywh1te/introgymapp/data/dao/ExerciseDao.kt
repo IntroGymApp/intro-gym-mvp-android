@@ -26,11 +26,14 @@ interface ExerciseDao {
     @Update
     suspend fun updateExercise(exercise: Exercise)
 
+    @Delete
+    suspend fun deleteExercise(exercise: Exercise)
+
     @Query("SELECT * FROM exercise_info where `group_id`=:group")
     suspend fun getAllExercisesInfoByGroup(group: String): List<ExerciseInfo>
 
     @Transaction
-    @Query("SELECT * FROM exercise WHERE workout_id=:id")
+    @Query("SELECT * FROM exercise WHERE workout_id=:id ORDER BY `index` ASC")
     suspend fun getAllExercisesWithInfoByWorkoutId(id: Int): List<ExerciseWithInfo>
 
 
