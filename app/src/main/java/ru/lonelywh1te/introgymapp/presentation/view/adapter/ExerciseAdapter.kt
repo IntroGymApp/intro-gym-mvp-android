@@ -85,6 +85,13 @@ class ExerciseViewHolder(private val binding: ExerciseItemBinding): RecyclerView
             binding.tvExercisePlan.visibility = View.VISIBLE
         }
 
+        if (item.exercise.note == null) {
+            binding.tvExerciseNote.visibility = View.GONE
+        } else {
+            binding.tvExerciseNote.text = item.exercise.note
+            binding.tvExerciseNote.visibility = View.VISIBLE
+        }
+
         Glide.with(binding.root)
             .load((Uri.parse("${AssetsPath.PREVIEW_EXERCISE_INFO_IMG}/${item.exerciseInfo.img}")))
             .diskCacheStrategy(DiskCacheStrategy.RESOURCE)

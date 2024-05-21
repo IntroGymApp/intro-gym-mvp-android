@@ -76,6 +76,19 @@
                     android:textAppearance="@style/TextSmallRegularStyle"
                     android:textColor="?attr/ig_primaryColor"
                     android:text="3x10x15кг" />
+
+                <TextView
+                    android:id="@+id/tvExerciseNote"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:textAppearance="@style/TextSmallRegularStyle"
+                    android:textColor="?attr/ig_primaryLightColor"
+                    android:textStyle="italic"
+                    android:text="ААААААААААААААААААААААА"
+                    android:maxLines="1"
+                    android:ellipsize="end"/>
             </LinearLayout>
 
 
