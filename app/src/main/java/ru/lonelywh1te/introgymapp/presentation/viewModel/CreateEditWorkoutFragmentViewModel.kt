@@ -106,10 +106,9 @@ class CreateEditWorkoutFragmentViewModel(
     }
 
     fun deleteExerciseFromList(index: Int) {
-        val newList = newExerciseList.value!!.toMutableList()
-        deletedExercises.add(newList[index])
-        newList.removeAt(index)
-        newExerciseList.value = newList
+        val deletedExercise = newExerciseList.value!!.toMutableList()[index]
+        deletedExercises.add(deletedExercise)
+        newExerciseList.value!!.removeAt(index)
     }
 
     fun changeExerciseAtList(index: Int, exerciseWithInfo: ExerciseWithInfo){

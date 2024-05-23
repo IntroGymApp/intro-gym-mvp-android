@@ -110,6 +110,7 @@ class CreateEditWorkoutFragment : Fragment() {
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 viewModel.deleteExerciseFromList(viewHolder.absoluteAdapterPosition)
+                adapter.notifyItemRemoved(viewHolder.absoluteAdapterPosition)
             }
 
             override fun onChildDraw(c: Canvas, recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, dX: Float, dY: Float, actionState: Int, isCurrentlyActive: Boolean) {
