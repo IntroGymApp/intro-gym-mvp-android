@@ -126,7 +126,7 @@
 
     <LinearLayout
         android:visibility="gone"
-        android:alpha="0.5"
+        android:alpha="0.4"
         android:id="@+id/noWorkoutsLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -142,7 +142,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/ic_dumbell"
             android:padding="15dp"
-            app:tint="?attr/ig_primaryColor" />
+            app:tint="?attr/ig_defaultTextColor" />
 
         <TextView
             android:layout_width="wrap_content"

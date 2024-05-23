@@ -74,6 +74,7 @@
         <item name="android:textColor">?attr/ig_backgroundColor</item>
         <item name="android:textAppearance">@style/TextLargeSemiboldStyle</item>
         <item name="android:backgroundTint">?attr/ig_primaryColor</item>
+        <item name="rippleColor">?attr/ig_primaryColor</item>
     </style>
 
     <style name="SecondaryButtonStyle" parent="DefaultButtonStyle">

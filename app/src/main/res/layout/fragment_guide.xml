@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:gravity="center_horizontal"
     tools:context=".presentation.view.guide.GuideFragment"
@@ -12,8 +11,8 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/exerciseGuideCard"
         android:layout_margin="20dp"
-        app:cardCornerRadius="10dp"
-        android:layout_width="350dp"
+        style="@style/DefaultCardStyle"
+        android:layout_width="match_parent"
         android:layout_height="150dp">
 
         <ImageView
@@ -31,6 +30,54 @@
             android:padding="15dp"
             android:textAppearance="@style/TextHeader3SemiboldStyle"
             android:textColor="@color/white"/>
+    </androidx.cardview.widget.CardView>
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/workoutGuideCard"
+        style="@style/DefaultCardStyle"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="150dp">
+
+        <ImageView
+            android:id="@+id/ivWorkoutGuide"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_launcher_background"
+            android:scaleType="centerCrop"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Тренировки"
+            android:layout_gravity="bottom"
+            android:padding="15dp"
+            android:textAppearance="@style/TextHeader3SemiboldStyle"
+            android:textColor="@color/white"/>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/nutritionGuideCard"
+        android:layout_margin="20dp"
+        style="@style/DefaultCardStyle"
+        android:layout_width="match_parent"
+        android:layout_height="150dp">
+
+        <ImageView
+            android:id="@+id/ivNutritionGuide"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_launcher_background"
+            android:scaleType="centerCrop"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Питание"
+            android:layout_gravity="bottom"
+            android:padding="15dp"
+            android:textAppearance="@style/TextHeader3SemiboldStyle"
+            android:textColor="@color/white"/>
     </androidx.cardview.widget.CardView>
 </LinearLayout>

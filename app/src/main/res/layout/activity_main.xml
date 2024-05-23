@@ -31,6 +31,7 @@
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         style="@style/BottomNavigationStyle"
+        android:animateLayoutChanges="true"
         android:id="@+id/bottomMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

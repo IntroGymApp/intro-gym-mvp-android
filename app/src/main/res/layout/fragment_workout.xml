@@ -45,4 +45,33 @@
         tools:listitem="@layout/workout_item"
         app:layout_constraintTop_toBottomOf="@+id/createWorkoutLayout" />
 
+
+    <LinearLayout
+        android:id="@+id/noWorkoutsLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:alpha="0.4"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/rvWorkouts"
+        app:layout_constraintEnd_toEndOf="@+id/rvWorkouts"
+        app:layout_constraintStart_toStartOf="@+id/rvWorkouts"
+        app:layout_constraintTop_toBottomOf="@+id/createWorkoutLayout">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:src="@drawable/ic_dumbell"
+            app:tint="?attr/ig_defaultTextColor" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Вы еще не составили ни одной тренировки"
+            android:textAppearance="@style/TextMediumRegularStyle" />
+    </LinearLayout>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

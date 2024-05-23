@@ -115,7 +115,7 @@ class MainFragment : Fragment() {
 
         binding.ibAddWorkoutToDate.setOnClickListener {
             if (viewModel.allWorkoutsCount == 0) {
-                Toast.makeText(requireContext(), "Вы еще не создали ни одной тренировки", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Вы еще не составили ни одной тренировки", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
