@@ -149,6 +149,9 @@
         <argument
             android:name="title"
             app:argType="string" />
+        <action
+            android:id="@+id/to_exerciseInfoFragment"
+            app:destination="@id/exerciseInfoFragment" />
     </fragment>
     <fragment
         android:id="@+id/workoutViewFragment"
@@ -187,6 +190,9 @@
             android:name="date"
             app:argType="long"
             android:defaultValue="0L" />
+        <action
+            android:id="@+id/to_exerciseInfoFragment"
+            app:destination="@id/exerciseInfoFragment" />
     </fragment>
     <fragment
         android:id="@+id/editProfileFragment"
