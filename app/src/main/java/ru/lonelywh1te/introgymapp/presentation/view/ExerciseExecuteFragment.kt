@@ -4,11 +4,16 @@ import android.content.Context
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import androidx.core.content.ContextCompat
+import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -25,7 +30,7 @@ import ru.lonelywh1te.introgymapp.domain.model.ExerciseWithInfo
 import ru.lonelywh1te.introgymapp.presentation.view.adapter.ExerciseHistoryAdapter
 import ru.lonelywh1te.introgymapp.presentation.viewModel.ExerciseExecuteFragmentViewModel
 
-class ExerciseExecuteFragment : Fragment() {
+class ExerciseExecuteFragment : Fragment(), MenuProvider {
     private lateinit var binding: FragmentExerciseExecuteBinding
     private lateinit var exerciseWithInfo: ExerciseWithInfo
     private lateinit var viewModel: ExerciseExecuteFragmentViewModel
@@ -39,6 +44,7 @@ class ExerciseExecuteFragment : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        requireActivity().addMenuProvider(this, viewLifecycleOwner)
         binding = FragmentExerciseExecuteBinding.inflate(layoutInflater)
 
         val adapter = ExerciseHistoryAdapter()
@@ -117,5 +123,20 @@ class ExerciseExecuteFragment : Fragment() {
     private fun hideKeyboard(view: View) {
         val inputMethodManager = view.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
+    }
+
+    override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+        menuInflater.inflate(R.menu.exercise_info_menu, menu)
+    }
+
+    override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+        when (menuItem.itemId) {
+            R.id.aboutExercise -> {
+                val action = ExerciseExecuteFragmentDirections.toExerciseInfoFragment(exerciseWithInfo.exerciseInfo.name, exerciseWithInfo.exerciseInfo)
+                findNavController().navigate(action)
+            }
+        }
+
+        return true
     }
 }

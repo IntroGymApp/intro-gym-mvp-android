@@ -2,21 +2,28 @@ package ru.lonelywh1te.introgymapp.presentation.view
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResult
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import ru.lonelywh1te.introgymapp.R
 import ru.lonelywh1te.introgymapp.databinding.FragmentPlanExerciseBinding
 import ru.lonelywh1te.introgymapp.domain.model.ExerciseWithInfo
 
-class PlanExerciseFragment : Fragment() {
+class PlanExerciseFragment : Fragment(), MenuProvider {
     private lateinit var binding: FragmentPlanExerciseBinding
     private lateinit var exerciseWithInfo: ExerciseWithInfo
     private val args: PlanExerciseFragmentArgs by navArgs()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        requireActivity().addMenuProvider(this, viewLifecycleOwner)
+
         binding = FragmentPlanExerciseBinding.inflate(inflater, container, false)
         exerciseWithInfo = args.exerciseWithInfo
 
@@ -48,5 +55,20 @@ class PlanExerciseFragment : Fragment() {
         binding.etReps.setHint(exerciseWithInfo.exercise.reps.toString())
         binding.etWeight.setHint(exerciseWithInfo.exercise.weight.toString())
         if (exerciseWithInfo.exercise.note != null) binding.etNote.setText(exerciseWithInfo.exercise.note)
+    }
+
+    override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+        menuInflater.inflate(R.menu.exercise_info_menu, menu)
+    }
+
+    override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+        when (menuItem.itemId) {
+            R.id.aboutExercise -> {
+                val action = PlanExerciseFragmentDirections.toExerciseInfoFragment(exerciseWithInfo.exerciseInfo.name, exerciseWithInfo.exerciseInfo)
+                findNavController().navigate(action)
+            }
+        }
+
+        return true
     }
 }
