@@ -119,7 +119,7 @@ class MainFragment : Fragment() {
                 return@setOnClickListener
             }
 
-            val action = MainFragmentDirections.toWorkoutFragment(date = weeklyCalendar.selectedDate.toEpochDay() * 86400000L, pickMode = true)
+            val action = MainFragmentDirections.toPickWorkoutFragment(date = weeklyCalendar.selectedDate.toEpochDay() * 86400000L, pickMode = true)
             findNavController().navigate(action)
         }
 

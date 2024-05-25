@@ -54,6 +54,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
+            if (destination.id == R.id.mainFragment) binding.bottomMenu.selectedItemId = R.id.mainFragment
+
             if (destination.id == R.id.exerciseExecuteFragment) {
                 binding.bottomMenu.visibility = View.GONE
             } else if (binding.bottomMenu.visibility == View.GONE) {
